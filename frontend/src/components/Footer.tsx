@@ -1,0 +1,174 @@
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
+import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER } from '../data/site';
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
+  const mueblesItems = [
+    { label: 'Cocina', href: '#contacto' },
+    { label: 'Sala', href: '#contacto' },
+    { label: 'Dormitorio', href: '#contacto' },
+    { label: 'Muebles de Oficina', href: '#contacto' },
+    { label: 'Muebles para Comercios', href: '#contacto' },
+  ];
+
+  const serviciosItems = [
+    { label: 'Diseño de muebles de melamina', href: '#contacto' },
+    { label: 'Trabajos de melamina a domicilio', href: '#contacto' },
+    { label: 'Muebles personalizados', href: '#contacto' },
+  ];
+
+  return (
+    <footer className="bg-[#061230] text-white">
+      <div className="max-w-6xl mx-auto px-5 py-14">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-12 mb-12">
+          <div className="lg:flex-1 lg:max-w-md">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-md bg-[#1A8FBB] flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <rect x="2" y="2" width="7" height="7" rx="1" fill="white" />
+                  <rect x="11" y="2" width="7" height="7" rx="1" fill="white" opacity="0.6" />
+                  <rect x="2" y="11" width="7" height="7" rx="1" fill="white" opacity="0.6" />
+                  <rect x="11" y="11" width="7" height="7" rx="1" fill="white" />
+                </svg>
+              </div>
+              <span className="font-bold text-xl tracking-tight">
+                Decor<span className="text-[#22BDDD]">forma</span>
+              </span>
+            </div>
+            <p className="text-white/50 text-sm leading-relaxed max-w-xl mb-6">
+              Especialistas en diseño, fabricación y comercialización de muebles
+              de melamina a medida. Transformamos espacios con calidad y
+              precisión desde hace más de 8 años.
+            </p>
+            <a
+              href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#1A8FBB]/30"
+            >
+              Cotiza por WhatsApp
+            </a>
+            <div className="flex gap-3 mt-6">
+              {[
+                { icon: Instagram, href: '#', label: 'Instagram' },
+                { icon: Facebook, href: '#', label: 'Facebook' },
+                { icon: Youtube, href: '#', label: 'YouTube' },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1A8FBB] flex items-center justify-center transition-colors duration-200"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:w-[220px]">
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
+              Muebles
+            </h4>
+            <ul className="space-y-3 text-white/50 text-sm">
+              {mueblesItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="hover:text-[#22BDDD] transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:w-[260px]">
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
+              Servicios
+            </h4>
+            <ul className="space-y-3 text-white/50 text-sm">
+              {serviciosItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="hover:text-[#22BDDD] transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li className="pt-2">
+                {CATALOG_2026_URL ? (
+                  <a
+                    href={CATALOG_2026_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                  >
+                    Catálogo 2026
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center justify-center w-full bg-white/5 text-white/50 text-sm font-semibold px-4 py-2 rounded-lg">
+                    Catálogo 2026
+                  </span>
+                )}
+              </li>
+            </ul>
+          </div>
+
+          <div className="lg:w-[260px]">
+            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
+              Contacto
+            </h4>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <a
+                  href="tel:+51999999999"
+                  className="flex items-start gap-3 text-white/50 hover:text-[#22BDDD] transition-colors"
+                >
+                  <Phone size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
+                  +51 999 999 999
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@decorforma.pe"
+                  className="flex items-start gap-3 text-white/50 hover:text-[#22BDDD] transition-colors"
+                >
+                  <Mail size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
+                  info@decorforma.pe
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-white/50">
+                <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
+                Av. Principal 123, Lima, Perú
+              </li>
+            </ul>
+            <div className="mt-5 bg-white/5 rounded-xl p-4">
+              <p className="text-white/60 text-xs font-medium mb-1">Horario de atención</p>
+              <p className="text-white/40 text-xs">Lun - Vie: 8am - 6pm</p>
+              <p className="text-white/40 text-xs">Sáb: 9am - 1pm</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/30 text-xs">
+            © {year} Decorforma. Todos los derechos reservados.
+          </p>
+          <div className="flex gap-5 text-white/30 text-xs">
+            <a href="#" className="hover:text-white/60 transition-colors">
+              Política de privacidad
+            </a>
+            <a href="#" className="hover:text-white/60 transition-colors">
+              Términos y condiciones
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

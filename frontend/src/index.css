@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Fira Sans', system-ui, sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+
+  .opacity-initial { opacity: 0; }
+
+  @keyframes navdrop {
+    0% {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border-radius: 50%;
+    color: currentColor;
+    background:
+      linear-gradient(0deg, color-mix(in srgb, currentColor 50%, transparent) 30%, #0000 0 70%, currentColor 0)
+        50%/8% 100%,
+      linear-gradient(90deg, color-mix(in srgb, currentColor 25%, transparent) 30%, #0000 0 70%,
+        color-mix(in srgb, currentColor 75%, transparent) 0)
+        50%/100% 8%;
+    background-repeat: no-repeat;
+    animation: l23 1s infinite steps(12);
+  }
+
+  .loader::before,
+  .loader::after {
+    content: '';
+    grid-area: 1/1;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.915;
+    transform: rotate(30deg);
+  }
+
+  .loader::after {
+    opacity: 0.83;
+    transform: rotate(60deg);
+  }
+
+  @keyframes l23 {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+
+  @keyframes fav-bounce {
+    from,
+    to {
+      transform: scale(1);
+    }
+
+    25% {
+      transform: scale(1.5, 2.1);
+    }
+
+    50% {
+      transform: scale(2.1, 1.5);
+    }
+
+    75% {
+      transform: scale(1.5, 2.05);
+    }
+  }
+
+  .product-card-fav input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .product-card-fav svg {
+    width: 100%;
+    height: 100%;
+    fill: #a8a8a8;
+    transition: transform 200ms ease;
+  }
+
+  .product-card-fav input:checked ~ svg {
+    animation: fav-bounce 0.5s;
+    fill: rgb(255, 95, 95);
+    filter: drop-shadow(0px 3px 1px rgba(53, 53, 53, 0.14));
+  }
+}
