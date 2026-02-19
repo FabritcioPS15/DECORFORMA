@@ -1,5 +1,5 @@
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
-import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER } from '../data/site';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Zap } from 'lucide-react';
+import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -51,13 +51,15 @@ export default function Footer() {
             </a>
             <div className="flex gap-3 mt-6">
               {[
-                { icon: Instagram, href: '#', label: 'Instagram' },
-                { icon: Facebook, href: '#', label: 'Facebook' },
-                { icon: Youtube, href: '#', label: 'YouTube' },
+                { icon: Instagram, href: INSTAGRAM_URL, label: 'Instagram' },
+                { icon: Facebook, href: FACEBOOK_URL, label: 'Facebook' },
+                { icon: Youtube, href: YOUTUBE_URL, label: 'YouTube' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1A8FBB] flex items-center justify-center transition-colors duration-200"
                 >
@@ -142,9 +144,20 @@ export default function Footer() {
                   info@decorforma.pe
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-white/50">
-                <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
-                Av. Principal 123, Lima, Perú
+              <li>
+                <div className="flex items-start gap-3 text-white/50">
+                  <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
+                  Av. Principal 123, Lima, Perú
+                </div>
+              </li>
+              <li className="pt-4 border-t border-white/5 mt-4">
+                <a
+                  href="/quienes-somos"
+                  className="text-white font-bold hover:text-[#22BDDD] transition-colors flex items-center gap-2"
+                >
+                  Conoce más sobre nosotros
+                  <Zap size={14} className="text-[#22BDDD]" />
+                </a>
               </li>
             </ul>
             <div className="mt-5 bg-white/5 rounded-xl p-4">
@@ -169,6 +182,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }

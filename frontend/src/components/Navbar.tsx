@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER } from '../data/site';
+import { Menu, X, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { WA_MESSAGE, WA_NUMBER } from '../data/site';
 
 export default function Navbar() {
   const location = useLocation();
@@ -53,44 +54,48 @@ export default function Navbar() {
   }, [desktopDropdown]);
 
   const mueblesItems = [
-    { label: 'Cocina', to: '/categoria/cocina' },
-    { label: 'Sala', to: '/categoria/sala' },
-    { label: 'Dormitorio', to: '/categoria/dormitorio' },
-    { label: 'Muebles de Oficina', to: '/categoria/oficina' },
-    { label: 'Muebles para Comercios', to: '/categoria/comercios' },
+    { label: 'Cocinas de Lujo', to: '/categoria/cocina' },
+    { label: 'Salas & Centros de TV', to: '/categoria/sala' },
+    { label: 'Dormitorios & Closets', to: '/categoria/dormitorio' },
+    { label: 'Espacios de Oficina', to: '/categoria/oficina' },
+    { label: 'Bibliotecas & Estanterías', to: '/categoria/bibliotecas' },
+    { label: 'Muebles de Madera Fina', to: '/categoria/madera' },
+    { label: 'Instituciones Educativas', to: '/categoria/educativo' },
+    { label: 'Muebles Comerciales', to: '/categoria/comercios' },
   ];
 
   const serviciosItems = [
-    { label: 'Diseño de muebles de melamina', href: '/#diseno' },
-    { label: 'Trabajos de melamina a domicilio', href: '/#domicilio' },
-    { label: 'Muebles personalizados', href: '/#personalizados' },
+    { label: 'Diseño de muebles de melamina', to: '/servicios/diseno' },
+    { label: 'Trabajos de melamina a domicilio', to: '/servicios/domicilio' },
+    { label: 'Muebles personalizados', to: '/servicios/personalizados' },
   ];
 
-  const catalogoLink = { label: 'Catálogo 2026', href: CATALOG_2026_URL };
+  const catalogoLink = { label: 'Catálogo', to: '/catalogo' };
 
   const isHome = location.pathname === '/';
   const showBackground = !isHome || scrolled || menuOpen || desktopDropdown !== null;
   const navTextClass = showBackground
     ? 'text-white/80 hover:text-white'
     : 'text-[#22BDDD] hover:text-white';
-  const navTextActiveClass = showBackground ? 'text-white' : 'text-white';
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        showBackground
-          ? 'bg-[#0B2545]/88 backdrop-blur-xl shadow-md shadow-black/10'
-          : 'bg-transparent'
-      }`}
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${showBackground
+        ? 'bg-[#0B2545]/70 backdrop-blur-[20px] shadow-2xl shadow-black/20 border-b border-white/5'
+        : 'bg-transparent'
+        }`}
     >
       <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-md bg-[#1A8FBB] flex items-center justify-center">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <rect x="2" y="2" width="7" height="7" rx="1" fill="white" />
-              <rect x="11" y="2" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-              <rect x="2" y="11" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-              <rect x="11" y="11" width="7" height="7" rx="1" fill="white" />
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1A8FBB] to-[#22BDDD] flex items-center justify-center shadow-lg shadow-[#1A8FBB]/20 group-hover:scale-110 transition-transform duration-300">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" />
+              <rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6" />
+              <rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6" />
+              <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" />
             </svg>
           </div>
           <span className="text-white font-bold text-xl tracking-tight">
@@ -98,102 +103,89 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <div ref={mueblesDropdownRef} className="relative">
-            <button
-              type="button"
-              className={`text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-md px-1 -mx-1 hover:-translate-y-0.5 ${
-                desktopDropdown === 'muebles'
-                  ? navTextActiveClass
-                  : navTextClass
-              }`}
-              aria-expanded={desktopDropdown === 'muebles'}
-              onClick={() =>
-                setDesktopDropdown((v) => (v === 'muebles' ? null : 'muebles'))
-              }
-            >
-              Muebles
-            </button>
-            {desktopDropdown === 'muebles' && (
-              <div className="absolute left-0 top-full pt-3 origin-top animate-[navdrop_160ms_ease-out]">
-                <div className="w-64 rounded-2xl bg-[#061230]/96 backdrop-blur-xl border border-white/15 shadow-2xl overflow-hidden">
-                  {mueblesItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className="block px-4 py-3 text-sm text-white/75 hover:text-white hover:bg-white/10 transition-colors"
-                      onClick={() => setDesktopDropdown(null)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          <Link
+            to="/quienes-somos"
+            className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
+          >
+            Nosotros
+          </Link>
 
-          <div ref={serviciosDropdownRef} className="relative">
-            <button
-              type="button"
-              className={`text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-md px-1 -mx-1 hover:-translate-y-0.5 ${
-                desktopDropdown === 'servicios'
-                  ? navTextActiveClass
+          {[
+            { label: 'Muebles', dropdown: 'muebles' },
+            { label: 'Servicios', dropdown: 'servicios' },
+          ].map((nav) => (
+            <div key={nav.label} ref={nav.dropdown === 'muebles' ? mueblesDropdownRef : serviciosDropdownRef} className="relative">
+              <button
+                type="button"
+                className={`text-sm font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 focus:outline-none ${desktopDropdown === nav.dropdown
+                  ? 'text-[#22BDDD]'
                   : navTextClass
-              }`}
-              aria-expanded={desktopDropdown === 'servicios'}
-              onClick={() =>
-                setDesktopDropdown((v) =>
-                  v === 'servicios' ? null : 'servicios'
-                )
-              }
-            >
-              Servicios
-            </button>
-            {desktopDropdown === 'servicios' && (
-              <div className="absolute left-0 top-full pt-3 origin-top animate-[navdrop_160ms_ease-out]">
-                <div className="w-72 rounded-2xl bg-[#061230]/96 backdrop-blur-xl border border-white/15 shadow-2xl overflow-hidden">
-                  {serviciosItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="block px-4 py-3 text-sm text-white/75 hover:text-white hover:bg-white/10 transition-colors"
-                      onClick={() => setDesktopDropdown(null)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+                  }`}
+                aria-expanded={desktopDropdown === nav.dropdown}
+                onClick={() =>
+                  setDesktopDropdown((v) => (v === nav.dropdown ? null : (nav.dropdown as any)))
+                }
+              >
+                {nav.label}
+                <svg
+                  className={`w-4 h-4 transition-transform duration-300 ${desktopDropdown === nav.dropdown ? 'rotate-180' : ''}`}
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
 
-          {catalogoLink.href ? (
-            <a
-              href={catalogoLink.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-md px-1 -mx-1 ${navTextClass}`}
-            >
-              {catalogoLink.label}
-            </a>
-          ) : (
-            <span className="text-white/50 text-sm font-semibold">
-              {catalogoLink.label}
-            </span>
-          )}
+              {desktopDropdown === nav.dropdown && (
+                <div className="absolute left-0 top-full pt-4 origin-top animate-[navdrop_200ms_ease-out]">
+                  <div className="w-64 rounded-2xl bg-[#0B2545]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden p-1.5">
+                    {(nav.dropdown === 'muebles' ? mueblesItems : serviciosItems).map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.to}
+                        className="flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                        onClick={() => setDesktopDropdown(null)}
+                      >
+                        <div className={`w-1.5 h-1.5 rounded-full ${nav.dropdown === 'muebles' ? 'bg-[#1A8FBB]' : 'bg-[#22BDDD]'}`} />
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <Link
+            to={catalogoLink.to}
+            className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
+          >
+            Catálogo
+          </Link>
+
+          <Link
+            to="/recomendaciones"
+            className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
+          >
+            Recomendaciones
+          </Link>
+
+          <div className="h-6 w-[1px] bg-white/10 mx-2" />
 
           <a
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#1A8FBB]/30"
+            className="group relative overflow-hidden bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#1A8FBB]/40 flex items-center gap-2"
           >
-            Cotiza
+            <span className="relative z-10">Cotizar Proyecto</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           </a>
         </nav>
 
         <button
-          className="md:hidden text-white p-1"
+          className="md:hidden text-white p-2 hover:bg-white/5 rounded-xl transition-colors"
           onClick={() => {
             setMenuOpen(!menuOpen);
             setMobileMueblesOpen(false);
@@ -201,89 +193,92 @@ export default function Navbar() {
           }}
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden bg-[#0B2545]/98 backdrop-blur-md border-t border-white/10">
-          <div className="px-5 py-4 flex flex-col gap-4">
-            <div>
-              <button
-                type="button"
-                className="w-full text-left text-white/90 font-semibold py-1"
-                onClick={() => setMobileMueblesOpen((v) => !v)}
-              >
-                Muebles
-              </button>
-              {mobileMueblesOpen && (
-                <div className="mt-2 pl-3 border-l border-white/10 flex flex-col bg-white/5 rounded-xl py-2">
-                  {mueblesItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className="text-white/70 hover:text-white py-2 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+      {/* Mobile Nav */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#0B2545] border-t border-white/5 overflow-hidden shadow-2xl shadow-black"
+          >
+            <div className="px-5 py-6 flex flex-col gap-6">
+              <div>
+                <button
+                  type="button"
+                  className="w-full flex justify-between items-center text-white/90 font-bold tracking-wide py-2"
+                  onClick={() => setMobileMueblesOpen((v) => !v)}
+                >
+                  Modelos de Muebles
+                  <ChevronRight size={18} className={`transition-transform duration-300 ${mobileMueblesOpen ? 'rotate-90' : ''}`} />
+                </button>
+                {mobileMueblesOpen && (
+                  <div className="mt-3 pl-2 grid grid-cols-1 gap-1">
+                    {mueblesItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.to}
+                        className="text-white/60 hover:text-[#22BDDD] py-2.5 text-sm font-medium transition-colors border-l border-white/5 pl-4 ml-1"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            <div>
-              <button
-                type="button"
-                className="w-full text-left text-white/90 font-semibold py-1"
-                onClick={() => setMobileServiciosOpen((v) => !v)}
-              >
-                Servicios
-              </button>
-              {mobileServiciosOpen && (
-                <div className="mt-2 pl-3 border-l border-white/10 flex flex-col bg-white/5 rounded-xl py-2">
-                  {serviciosItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="text-white/70 hover:text-white py-2 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+              <div>
+                <button
+                  type="button"
+                  className="w-full flex justify-between items-center text-white/90 font-bold tracking-wide py-2"
+                  onClick={() => setMobileServiciosOpen((v) => !v)}
+                >
+                  Nuestros Servicios
+                  <ChevronRight size={18} className={`transition-transform duration-300 ${mobileServiciosOpen ? 'rotate-90' : ''}`} />
+                </button>
+                {mobileServiciosOpen && (
+                  <div className="mt-3 pl-2 grid grid-cols-1 gap-1">
+                    {serviciosItems.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.to}
+                        className="text-white/60 hover:text-[#22BDDD] py-2.5 text-sm font-medium transition-colors border-l border-white/5 pl-4 ml-1"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            {catalogoLink.href ? (
-              <a
-                href={catalogoLink.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white font-medium py-1 transition-colors"
+              <Link
+                to={catalogoLink.to}
+                className="text-white/80 hover:text-white font-bold tracking-wide py-2 flex items-center justify-between"
                 onClick={() => setMenuOpen(false)}
               >
-                {catalogoLink.label}
-              </a>
-            ) : (
-              <span className="text-white/50 font-medium py-1">
-                {catalogoLink.label}
-              </span>
-            )}
+                {catalogoLink.label} Digital 2026
+                <ChevronRight size={18} className="text-white/20" />
+              </Link>
 
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1A8FBB] text-white font-semibold text-center py-3 rounded-lg mt-2"
-              onClick={() => setMenuOpen(false)}
-            >
-              Cotiza
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
+              <a
+                href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-[#1A8FBB] to-[#0F6E95] text-white font-bold text-base text-center py-4 rounded-2xl mt-2 shadow-lg shadow-[#1A8FBB]/20"
+                onClick={() => setMenuOpen(false)}
+              >
+                Cotizar por WhatsApp
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
