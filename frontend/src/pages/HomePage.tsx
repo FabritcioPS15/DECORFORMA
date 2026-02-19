@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Reveal } from '../components/Reveal';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
@@ -98,125 +100,135 @@ export default function HomePage() {
   return (
     <main>
       <section
-        className="relative overflow-hidden min-h-screen pt-24 pb-12 flex items-center"
-        onMouseEnter={() => {
-          setHeroPaused(true);
-        }}
-        onMouseLeave={() => {
-          if (heroLocked) return;
-          setHeroPaused(false);
-        }}
-        onFocusCapture={() => {
-          setHeroPaused(true);
-        }}
-        onBlurCapture={() => {
-          if (heroLocked) return;
-          setHeroPaused(false);
-        }}
+        className="relative overflow-hidden min-h-[100svh] lg:min-h-screen pt-24 pb-12 flex items-center"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => !heroLocked && setHeroPaused(false)}
       >
-        <img
-          src={heroItem.image}
-          alt={heroItem.title}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${
-            immersiveActive ? 'scale-[1.12]' : 'scale-[1.03]'
-          } ${heroFading ? 'opacity-60' : 'opacity-100'}`}
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-[#0B2545]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/55" />
+        {/* Background Layer with Framer Motion for smooth transitions */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={heroItem.image}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: immersiveActive ? 1.12 : 1.05 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            src={heroItem.image}
+            alt={heroItem.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+        </AnimatePresence>
+
+        <div className="absolute inset-0 bg-[#0B2545]/60 md:bg-[#0B2545]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#061230]/80" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
-                Muebles de melamina <span className="text-[#22BDDD]">a medida</span>
-              </h1>
-              <p className="text-white/70 mt-4 text-lg leading-relaxed">
-                Explora nuestra galería y elige una categoría. Cada página está lista
-                para convertirse en tu catálogo tipo e-commerce.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Main Text Content */}
+            <div className="lg:col-span-5 text-center lg:text-left">
+              <Reveal y={20}>
+                <span className="inline-block px-4 py-1.5 rounded-full bg-[#1A8FBB]/20 border border-[#1A8FBB]/30 text-[#22BDDD] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6">
+                  Decoración de Vanguardia
+                </span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
+                  Muebles de melamina <br className="hidden md:block" />
+                  <span className="text-[#22BDDD]">a tu medida</span>
+                </h1>
+                <p className="text-white/70 text-base md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                  Diseñamos y fabricamos espacios inteligentes que reflejan tu estilo. Calidad premium con tecnología de punta.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                  <Link
+                    to="/catalogo"
+                    className="w-full sm:w-auto bg-[#1A8FBB] hover:bg-[#0F6E95] text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-xl shadow-[#1A8FBB]/20 flex items-center justify-center gap-2 group"
+                  >
+                    Ver Catálogo
+                    <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link
+                    to="/quienes-somos"
+                    className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-bold px-8 py-4 rounded-2xl border border-white/10 transition-all backdrop-blur-md"
+                  >
+                    Nuestra Historia
+                  </Link>
+                </div>
+              </Reveal>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
+            {/* Showcase Visuals */}
+            <div className="lg:col-span-7 mt-8 lg:mt-0">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                {/* Main Visual Container */}
                 <div
-                  className={`${
-                    immersiveActive
-                      ? 'sm:col-span-2 lg:col-span-12'
-                      : 'lg:col-span-7'
-                  } rounded-3xl overflow-hidden relative group cursor-pointer transition-all duration-500 ease-out`}
-                  onClick={() => {
-                    if (!heroLocked) return;
-                    setHeroLocked(false);
-                    setHeroPaused(false);
-                  }}
-                  aria-label={
-                    heroLocked
-                      ? 'Cerrar vista inmersiva'
-                      : 'Vista inmersiva (pasa el mouse o selecciona una miniatura)'
-                  }
+                  className={`${heroLocked ? 'lg:col-span-12' : 'lg:col-span-7'
+                    } rounded-[2.5rem] overflow-hidden relative group transition-all duration-700 ease-out shadow-2xl shadow-black/40 border border-white/10 h-[380px] md:h-[500px] lg:h-[560px]`}
+                  onClick={() => heroLocked && setHeroLocked(false)}
                 >
-                  <img
-                    src={heroItem.image}
-                    alt={heroItem.title}
-                    className={`w-full object-cover transition-all duration-700 ease-out ${
-                      immersiveActive
-                        ? 'h-[520px] sm:h-[600px] lg:h-[620px]'
-                        : 'h-[420px] sm:h-[540px] lg:h-[560px]'
-                    } ${
-                      heroFading ? 'opacity-60 scale-[1.02]' : 'opacity-100 scale-[1.08]'
-                    } group-hover:scale-[1.14]`}
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-white/80 text-sm">Destacado</p>
-                    <h2 className="text-white text-2xl font-extrabold">
-                      {heroItem.title}
-                    </h2>
-                    <p className="text-white/75 text-sm mt-2 max-w-md leading-relaxed">
-                      {heroItem.description}
-                    </p>
-                    {heroLocked && (
-                      <p className="text-white/70 text-xs mt-3">
-                        Click para cerrar
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={heroItem.image}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      src={heroItem.image}
+                      alt={heroItem.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    />
+                  </AnimatePresence>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      key={heroItem.title}
+                    >
+                      <h2 className="text-white text-xl md:text-3xl font-extrabold mb-2">
+                        {heroItem.title}
+                      </h2>
+                      <p className="text-white/60 text-sm md:text-base max-w-sm">
+                        {heroItem.description}
                       </p>
-                    )}
+                    </motion.div>
+                  </div>
+
+                  {/* Mobile Pagination Dots */}
+                  <div className="lg:hidden absolute top-6 right-8 flex gap-2">
+                    {gallery.map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === heroIndex % gallery.length ? 'bg-[#22BDDD] w-4' : 'bg-white/30'
+                          }`}
+                      />
+                    ))}
                   </div>
                 </div>
 
-                <div className={heroLocked ? 'hidden' : 'lg:col-span-5 grid grid-cols-2 gap-4'}>
+                {/* Desktop Thumbnails (Hidden on Mobile) */}
+                <div className={`${heroLocked ? 'hidden' : 'hidden lg:grid col-span-5 grid-cols-2 gap-4'}`}>
                   {heroThumbs.map((item) => {
                     const idx = gallery.findIndex((g) => g.title === item.title);
-
                     return (
                       <button
                         key={item.title}
                         type="button"
-                        className="rounded-3xl overflow-hidden relative text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition-all duration-500 ease-out"
+                        className="rounded-[2rem] overflow-hidden relative text-left transition-all duration-500 hover:scale-[1.03] active:scale-95 group border border-white/5"
                         onClick={() => {
                           setHeroByIndex(idx);
                           setHeroLocked(true);
                           setHeroPaused(true);
                         }}
-                        onMouseEnter={() => {
-                          setHeroPaused(true);
-                        }}
-                        onMouseLeave={() => {
-                          if (heroLocked) return;
-                          setHeroPaused(false);
-                        }}
-                        aria-label={`Ver ${item.title}`}
                       >
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="w-full h-[200px] sm:h-[240px] object-cover"
+                          className="w-full h-full aspect-square object-cover opacity-60 group-hover:opacity-100 transition-opacity"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white text-sm font-bold leading-tight">
+                          <h3 className="text-white text-[11px] font-bold uppercase tracking-wider">
                             {item.title}
                           </h3>
                         </div>

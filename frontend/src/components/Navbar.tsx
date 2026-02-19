@@ -201,80 +201,137 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0B2545] border-t border-white/5 overflow-hidden shadow-2xl shadow-black"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-x-0 top-[72px] bg-[#0B2545]/95 backdrop-blur-[40px] border-b border-white/10 overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] z-40 rounded-b-[2rem]"
           >
-            <div className="px-5 py-6 flex flex-col gap-6">
-              <div>
-                <button
-                  type="button"
-                  className="w-full flex justify-between items-center text-white/90 font-bold tracking-wide py-2"
-                  onClick={() => setMobileMueblesOpen((v) => !v)}
+            <div className="px-6 py-8 flex flex-col gap-3 max-h-[80vh] overflow-y-auto custom-scrollbar">
+              {/* Basic Links */}
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
+                <Link
+                  to="/quienes-somos"
+                  className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  Modelos de Muebles
-                  <ChevronRight size={18} className={`transition-transform duration-300 ${mobileMueblesOpen ? 'rotate-90' : ''}`} />
-                </button>
-                {mobileMueblesOpen && (
-                  <div className="mt-3 pl-2 grid grid-cols-1 gap-1">
-                    {mueblesItems.map((item) => (
-                      <Link
-                        key={item.label}
-                        to={item.to}
-                        className="text-white/60 hover:text-[#22BDDD] py-2.5 text-sm font-medium transition-colors border-l border-white/5 pl-4 ml-1"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#22BDDD]" />
+                  Nosotros
+                </Link>
+              </motion.div>
 
-              <div>
+              {/* Muebles Accordion */}
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.05 }}>
                 <button
-                  type="button"
-                  className="w-full flex justify-between items-center text-white/90 font-bold tracking-wide py-2"
-                  onClick={() => setMobileServiciosOpen((v) => !v)}
+                  onClick={() => setMobileMueblesOpen(!mobileMueblesOpen)}
+                  className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
                 >
-                  Nuestros Servicios
-                  <ChevronRight size={18} className={`transition-transform duration-300 ${mobileServiciosOpen ? 'rotate-90' : ''}`} />
-                </button>
-                {mobileServiciosOpen && (
-                  <div className="mt-3 pl-2 grid grid-cols-1 gap-1">
-                    {serviciosItems.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.to}
-                        className="text-white/60 hover:text-[#22BDDD] py-2.5 text-sm font-medium transition-colors border-l border-white/5 pl-4 ml-1"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
+                  <div className="flex items-center gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#1A8FBB]" />
+                    Muebles
                   </div>
-                )}
-              </div>
+                  <ChevronRight size={20} className={`text-white/30 transition-transform duration-300 ${mobileMueblesOpen ? 'rotate-90' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileMueblesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-8 flex flex-col gap-1"
+                    >
+                      {mueblesItems.map((item) => (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          className="text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
 
-              <Link
-                to={catalogoLink.to}
-                className="text-white/80 hover:text-white font-bold tracking-wide py-2 flex items-center justify-between"
-                onClick={() => setMenuOpen(false)}
-              >
-                {catalogoLink.label} Digital 2026
-                <ChevronRight size={18} className="text-white/20" />
-              </Link>
+              {/* Servicios Accordion */}
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 }}>
+                <button
+                  onClick={() => setMobileServiciosOpen(!mobileServiciosOpen)}
+                  className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#22BDDD]" />
+                    Servicios
+                  </div>
+                  <ChevronRight size={20} className={`text-white/30 transition-transform duration-300 ${mobileServiciosOpen ? 'rotate-90' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileServiciosOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-8 flex flex-col gap-1"
+                    >
+                      {serviciosItems.map((item) => (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          className="text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
 
-              <a
-                href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#1A8FBB] to-[#0F6E95] text-white font-bold text-base text-center py-4 rounded-2xl mt-2 shadow-lg shadow-[#1A8FBB]/20"
-                onClick={() => setMenuOpen(false)}
+              {/* More Links */}
+              {[
+                { label: 'Catálogo', to: '/catalogo', iconColor: 'bg-[#1A8FBB]' },
+                { label: 'Recomendaciones', to: '/recomendaciones', iconColor: 'bg-[#22BDDD]' }
+              ].map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.15 + i * 0.05 }}
+                >
+                  <Link
+                    to={link.to}
+                    className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <div className={`w-1.5 h-1.5 rounded-full ${link.iconColor}`} />
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+
+              <div className="h-[1px] bg-white/5 my-2" />
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
               >
-                Cotizar por WhatsApp
-              </a>
+                <a
+                  href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#1A8FBB] to-[#22BDDD] text-white font-extrabold text-base py-4 rounded-[1.5rem] shadow-xl shadow-[#1A8FBB]/20 active:scale-95 transition-transform"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                  Cotización Personalizada
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}

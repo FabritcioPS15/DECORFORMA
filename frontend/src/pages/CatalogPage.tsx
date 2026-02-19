@@ -1,7 +1,7 @@
 import { categories } from '../data/categories';
 import { Reveal } from '../components/Reveal';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function CatalogPage() {
