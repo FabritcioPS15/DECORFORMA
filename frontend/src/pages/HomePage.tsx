@@ -98,7 +98,7 @@ export default function HomePage() {
   return (
     <main>
       <section
-        className="relative overflow-hidden min-h-screen pt-24 pb-12 flex items-center"
+        className="relative overflow-hidden h-screen md:h-screen flex items-center"
         onMouseEnter={() => {
           setHeroPaused(true);
         }}
@@ -125,67 +125,50 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[#0B2545]/55" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/55" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-5 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+        <div className="relative z-10 max-w-6xl mx-auto px-5 w-full pt-20 md:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-center">
+            <div className="lg:col-span-5 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
                 Muebles de melamina <span className="text-[#22BDDD]">a medida</span>
               </h1>
-              <p className="text-white/70 mt-4 text-lg leading-relaxed">
+              <p className="text-white/70 mt-3 md:mt-4 text-base md:text-lg leading-relaxed">
                 Explora nuestra galería y elige una categoría. Cada página está lista
                 para convertirse en tu catálogo tipo e-commerce.
               </p>
             </div>
 
             <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div
-                  className={`${
-                    immersiveActive
-                      ? 'sm:col-span-2 lg:col-span-12'
-                      : 'lg:col-span-7'
-                  } rounded-3xl overflow-hidden relative group cursor-pointer transition-all duration-500 ease-out`}
-                  onClick={() => {
-                    if (!heroLocked) return;
-                    setHeroLocked(false);
-                    setHeroPaused(false);
-                  }}
-                  aria-label={
-                    heroLocked
-                      ? 'Cerrar vista inmersiva'
-                      : 'Vista inmersiva (pasa el mouse o selecciona una miniatura)'
-                  }
+                  className={`rounded-2xl md:rounded-3xl overflow-hidden relative transition-all duration-500 ease-out`}
+                  aria-label="Galería de proyectos"
                 >
                   <img
                     src={heroItem.image}
                     alt={heroItem.title}
                     className={`w-full object-cover transition-all duration-700 ease-out ${
                       immersiveActive
-                        ? 'h-[520px] sm:h-[600px] lg:h-[620px]'
-                        : 'h-[420px] sm:h-[540px] lg:h-[560px]'
+                        ? 'h-[250px] sm:h-[350px] md:h-[420px] lg:h-[560px]'
+                        : 'h-[250px] sm:h-[350px] md:h-[420px] lg:h-[560px]'
                     } ${
                       heroFading ? 'opacity-60 scale-[1.02]' : 'opacity-100 scale-[1.08]'
-                    } group-hover:scale-[1.14]`}
+                    }`}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-white/80 text-sm">Destacado</p>
-                    <h2 className="text-white text-2xl font-extrabold">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <p className="text-white/80 text-xs md:text-sm">Destacado</p>
+                    <h2 className="text-white text-lg md:text-2xl font-extrabold">
                       {heroItem.title}
                     </h2>
-                    <p className="text-white/75 text-sm mt-2 max-w-md leading-relaxed">
+                    <p className="text-white/75 text-xs md:text-sm mt-1 md:mt-2 max-w-md leading-relaxed">
                       {heroItem.description}
                     </p>
-                    {heroLocked && (
-                      <p className="text-white/70 text-xs mt-3">
-                        Click para cerrar
-                      </p>
-                    )}
                   </div>
                 </div>
 
-                <div className={heroLocked ? 'hidden' : 'lg:col-span-5 grid grid-cols-2 gap-4'}>
+                {/* Miniaturas ocultas en móvil, visibles en desktop */}
+                <div className="hidden lg:grid lg:grid-cols-2 gap-4">
                   {heroThumbs.map((item) => {
                     const idx = gallery.findIndex((g) => g.title === item.title);
 
