@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Reveal } from '../components/Reveal';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
@@ -171,35 +173,26 @@ export default function HomePage() {
                 <div className="hidden lg:grid lg:grid-cols-2 gap-4">
                   {heroThumbs.map((item) => {
                     const idx = gallery.findIndex((g) => g.title === item.title);
-
                     return (
                       <button
                         key={item.title}
                         type="button"
-                        className="rounded-3xl overflow-hidden relative text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition-all duration-500 ease-out"
+                        className="rounded-[2rem] overflow-hidden relative text-left transition-all duration-500 hover:scale-[1.03] active:scale-95 group border border-white/5"
                         onClick={() => {
                           setHeroByIndex(idx);
                           setHeroLocked(true);
                           setHeroPaused(true);
                         }}
-                        onMouseEnter={() => {
-                          setHeroPaused(true);
-                        }}
-                        onMouseLeave={() => {
-                          if (heroLocked) return;
-                          setHeroPaused(false);
-                        }}
-                        aria-label={`Ver ${item.title}`}
                       >
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="w-full h-[200px] sm:h-[240px] object-cover"
+                          className="w-full h-full aspect-square object-cover opacity-60 group-hover:opacity-100 transition-opacity"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white text-sm font-bold leading-tight">
+                          <h3 className="text-white text-[11px] font-bold uppercase tracking-wider">
                             {item.title}
                           </h3>
                         </div>

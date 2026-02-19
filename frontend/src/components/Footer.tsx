@@ -1,21 +1,22 @@
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
-import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER } from '../data/site';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   const mueblesItems = [
-    { label: 'Cocina', href: '#contacto' },
-    { label: 'Sala', href: '#contacto' },
-    { label: 'Dormitorio', href: '#contacto' },
-    { label: 'Muebles de Oficina', href: '#contacto' },
-    { label: 'Muebles para Comercios', href: '#contacto' },
+    { label: 'Cocinas de Lujo', to: '/categoria/cocina' },
+    { label: 'Salas & Centros de TV', to: '/categoria/sala' },
+    { label: 'Dormitorios & Closets', to: '/categoria/dormitorio' },
+    { label: 'Espacios de Oficina', to: '/categoria/oficina' },
+    { label: 'Instituciones Educativas', to: '/categoria/educativo' },
   ];
 
   const serviciosItems = [
-    { label: 'Diseño de muebles de melamina', href: '#contacto' },
-    { label: 'Trabajos de melamina a domicilio', href: '#contacto' },
-    { label: 'Muebles personalizados', href: '#contacto' },
+    { label: 'Diseño 3D', to: '/servicios/diseno' },
+    { label: 'Trabajos a Domicilio', to: '/servicios/domicilio' },
+    { label: 'Muebles a Medida', to: '/servicios/personalizados' },
   ];
 
   return (
@@ -51,13 +52,15 @@ export default function Footer() {
             </a>
             <div className="flex gap-3 mt-6">
               {[
-                { icon: Instagram, href: '#', label: 'Instagram' },
-                { icon: Facebook, href: '#', label: 'Facebook' },
-                { icon: Youtube, href: '#', label: 'YouTube' },
+                { icon: Instagram, href: INSTAGRAM_URL, label: 'Instagram' },
+                { icon: Facebook, href: FACEBOOK_URL, label: 'Facebook' },
+                { icon: Youtube, href: YOUTUBE_URL, label: 'YouTube' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1A8FBB] flex items-center justify-center transition-colors duration-200"
                 >
@@ -74,12 +77,12 @@ export default function Footer() {
             <ul className="space-y-3 text-white/50 text-sm">
               {mueblesItems.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.to}
                     className="hover:text-[#22BDDD] transition-colors"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -92,12 +95,12 @@ export default function Footer() {
             <ul className="space-y-3 text-white/50 text-sm">
               {serviciosItems.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.to}
                     className="hover:text-[#22BDDD] transition-colors"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-2">
@@ -142,9 +145,20 @@ export default function Footer() {
                   info@decorforma.pe
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-white/50">
-                <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
-                Av. Principal 123, Lima, Perú
+              <li>
+                <div className="flex items-start gap-3 text-white/50">
+                  <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
+                  Av. Principal 123, Lima, Perú
+                </div>
+              </li>
+              <li className="pt-4 border-t border-white/5 mt-4">
+                <Link
+                  to="/quienes-somos"
+                  className="text-white font-bold hover:text-[#22BDDD] transition-colors flex items-center gap-2"
+                >
+                  Conoce más sobre nosotros
+                  <Zap size={14} className="text-[#22BDDD]" />
+                </Link>
               </li>
             </ul>
             <div className="mt-5 bg-white/5 rounded-xl p-4">
@@ -169,6 +183,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }
