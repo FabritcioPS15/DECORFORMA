@@ -1,9 +1,12 @@
 import { Reveal } from '../components/Reveal';
-import { Star, Quote, CheckCircle2, ShieldCheck, Sparkles, Droplets, Sun, Wind } from 'lucide-react';
+import { Star, Quote, CheckCircle2, ShieldCheck, Sparkles, Droplets, Sun, Wind, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WA_NUMBER, WA_MESSAGE } from '../data/site';
+import { useState, useEffect } from 'react';
 
 export default function RecommendationsPage() {
+    const [currentTestimonial, setCurrentTestimonial] = useState(0);
+    
     const testimonials = [
         {
             name: "Ricardo Mendoza",
@@ -24,6 +27,19 @@ export default function RecommendationsPage() {
             stars: 5
         }
     ];
+
+    // Auto-advance carousel
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+        }, 5000); // Cambiar cada 5 segundos
+
+        return () => clearInterval(interval);
+    }, [testimonials.length]);
+
+    const goToTestimonial = (index: number) => {
+        setCurrentTestimonial(index);
+    };
 
     const maintenanceTips = [
         {
@@ -118,7 +134,7 @@ export default function RecommendationsPage() {
                 </div>
             </section>
 
-            {/* Testimonials Grid */}
+            {/* Testimonials Carousel */}
             <section className="py-32 px-5">
                 <div className="max-w-6xl mx-auto">
                     <Reveal y={20}>
@@ -128,25 +144,62 @@ export default function RecommendationsPage() {
                         </h2>
                     </Reveal>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {testimonials.map((t, i) => (
-                            <Reveal key={t.name} delay={i * 0.1} y={30}>
-                                <div className="bg-[#0B2545]/50 border border-white/5 rounded-3xl p-8 hover:bg-[#0B2545] transition-all aspect-square flex flex-col justify-between group">
-                                    <div>
-                                        <div className="flex gap-1 mb-6 text-[#22BDDD]">
-                                            {[...Array(t.stars)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                    <div className="relative max-w-4xl mx-auto">
+                        {/* Carousel Container */}
+                        <div className="relative overflow-hidden rounded-3xl">
+                            <div className="flex transition-transform duration-500 ease-in-out">
+                                {testimonials.map((testimonial, index) => (
+                                    <div
+                                        key={testimonial.name}
+                                        className={`w-full flex-shrink-0 px-4 transition-opacity duration-500 ${
+                                            index === currentTestimonial ? 'opacity-100' : 'opacity-0 absolute'
+                                        }`}
+                                    >
+                                        <div className="bg-[#0B2545]/50 border border-white/5 rounded-3xl p-12 hover:bg-[#0B2545] transition-all">
+                                            <div className="flex gap-1 mb-6 text-[#22BDDD]">
+                                                {[...Array(testimonial.stars)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
+                                            </div>
+                                            <p className="text-white/70 italic leading-relaxed text-xl mb-8 underline decoration-[#1A8FBB]/30 underline-offset-8">
+                                                "{testimonial.text}"
+                                            </p>
+                                            <div>
+                                                <div className="text-white font-bold text-lg">{testimonial.name}</div>
+                                                <div className="text-white/30 text-sm font-medium uppercase tracking-wider">{testimonial.role}</div>
+                                            </div>
                                         </div>
-                                        <p className="text-white/70 italic leading-relaxed text-lg underline decoration-[#1A8FBB]/30 underline-offset-8">
-                                            "{t.text}"
-                                        </p>
                                     </div>
-                                    <div className="mt-8">
-                                        <div className="text-white font-bold group-hover:text-[#22BDDD] transition-colors">{t.name}</div>
-                                        <div className="text-white/30 text-xs font-medium uppercase tracking-wider">{t.role}</div>
-                                    </div>
-                                </div>
-                            </Reveal>
-                        ))}
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Navigation Buttons */}
+                        <button
+                            onClick={() => goToTestimonial((currentTestimonial - 1 + testimonials.length) % testimonials.length)}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-[#0B2545]/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#1A8FBB] transition-colors"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button
+                            onClick={() => goToTestimonial((currentTestimonial + 1) % testimonials.length)}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-[#0B2545]/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#1A8FBB] transition-colors"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+
+                        {/* Dots Indicator */}
+                        <div className="flex justify-center gap-2 mt-8">
+                            {testimonials.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => goToTestimonial(index)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                        index === currentTestimonial
+                                            ? 'bg-[#22BDDD] w-8'
+                                            : 'bg-white/20 hover:bg-white/40'
+                                    }`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

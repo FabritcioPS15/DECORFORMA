@@ -84,7 +84,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${showBackground
-        ? 'bg-[#0B2545]/70 backdrop-blur-[20px] shadow-2xl shadow-black/20 border-b border-white/5'
+        ? 'bg-[#0B2545]/75 backdrop-blur-[40px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] border-b border-white/15'
         : 'bg-transparent'
         }`}
     >
@@ -99,7 +99,7 @@ export default function Navbar() {
             </svg>
           </div>
           <span className="text-white font-bold text-xl tracking-tight">
-            Decor<span className="text-[#22BDDD]">forma</span>
+            DECOR<span className="text-[#22BDDD]">FORMA</span>
           </span>
         </Link>
 
@@ -139,7 +139,7 @@ export default function Navbar() {
 
               {desktopDropdown === nav.dropdown && (
                 <div className="absolute left-0 top-full pt-4 origin-top animate-[navdrop_200ms_ease-out]">
-                  <div className="w-64 rounded-2xl bg-[#0B2545]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden p-1.5">
+                  <div className="w-64 rounded-2xl bg-[#0B2545]/90 backdrop-blur-[40px] border border-white/20 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden p-1.5">
                     {(nav.dropdown === 'muebles' ? mueblesItems : serviciosItems).map((item) => (
                       <Link
                         key={item.label}
@@ -205,7 +205,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed inset-x-0 top-[72px] bg-[#0B2545]/95 backdrop-blur-[40px] border-b border-white/10 overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] z-40 rounded-b-[2rem]"
+            className="md:hidden fixed inset-x-0 top-[72px] bg-[#0B2545]/80 backdrop-blur-[40px] border-b border-white/20 overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] z-40 rounded-b-[2rem]"
           >
             <div className="px-6 py-8 flex flex-col gap-3 max-h-[80vh] overflow-y-auto custom-scrollbar">
               {/* Basic Links */}
@@ -223,7 +223,10 @@ export default function Navbar() {
               {/* Muebles Accordion */}
               <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.05 }}>
                 <button
-                  onClick={() => setMobileMueblesOpen(!mobileMueblesOpen)}
+                  onClick={() => {
+                  setMobileMueblesOpen(!mobileMueblesOpen);
+                  if (!mobileMueblesOpen) setMobileServiciosOpen(false);
+                }}
                   className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
                 >
                   <div className="flex items-center gap-4">
@@ -258,7 +261,10 @@ export default function Navbar() {
               {/* Servicios Accordion */}
               <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 }}>
                 <button
-                  onClick={() => setMobileServiciosOpen(!mobileServiciosOpen)}
+                  onClick={() => {
+                  setMobileServiciosOpen(!mobileServiciosOpen);
+                  if (!mobileServiciosOpen) setMobileMueblesOpen(false);
+                }}
                   className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
                 >
                   <div className="flex items-center gap-4">

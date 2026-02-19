@@ -1,7 +1,7 @@
 import { categories } from '../data/categories';
 import { Reveal } from '../components/Reveal';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Palette, Wrench } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function CatalogPage() {
@@ -69,6 +69,39 @@ export default function CatalogPage() {
                         ))}
                     </div>
                 </div>
+            </section>
+
+            {/* Designer CTA */}
+            <section className="pb-32 px-5">
+                <Reveal y={20} width="100%">
+                    <div className="max-w-4xl mx-auto rounded-[2.5rem] bg-gradient-to-r from-[#1A8FBB]/20 to-[#22BDDD]/20 border border-white/10 p-12 text-center">
+                        <div className="flex items-center justify-center mb-4">
+                            <Wrench className="text-[#22BDDD] mr-3" size={32} />
+                            <h2 className="text-2xl font-bold text-white">¿Quieres diseñar tu propio mueble?</h2>
+                        </div>
+                        <p className="text-white/40 mb-8 max-w-2xl mx-auto">
+                            Usa nuestro editor 3D para crear muebles completamente personalizados. 
+                            Arrastra componentes, ajusta medidas y visualiza en tiempo real.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link
+                                to="/editor"
+                                className="bg-[#22BDDD] hover:bg-[#1A8FBB] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 group"
+                            >
+                                <Palette size={20} />
+                                Abrir Editor 3D
+                                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                            </Link>
+                            <Link
+                                to="/servicios/personalizados"
+                                className="text-[#22BDDD] font-bold hover:underline flex items-center justify-center gap-2"
+                            >
+                                Ver Muebles Personalizados
+                                <ArrowRight size={18} />
+                            </Link>
+                        </div>
+                    </div>
+                </Reveal>
             </section>
 
             {/* Simple Help CTA */}

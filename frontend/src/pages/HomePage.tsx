@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Reveal } from '../components/Reveal';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
@@ -129,78 +127,88 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 w-full pt-20 md:pt-0">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-center">
-            <div className="lg:col-span-5 text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Muebles de melamina <span className="text-[#22BDDD]">a medida</span>
-              </h1>
-              <p className="text-white/70 mt-3 md:mt-4 text-base md:text-lg leading-relaxed">
-                Explora nuestra galería y elige una categoría. Cada página está lista
-                para convertirse en tu catálogo tipo e-commerce.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 gap-4">
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-4">
+                {/* Imagen principal */}
                 <div
-                  className={`rounded-2xl md:rounded-3xl overflow-hidden relative transition-all duration-500 ease-out`}
-                  aria-label="Galería de proyectos"
+                  className={`col-span-2 lg:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative transition-all duration-500 ease-out`}
+                  aria-label="Proyecto actual"
                 >
                   <img
                     src={heroItem.image}
                     alt={heroItem.title}
                     className={`w-full object-cover transition-all duration-700 ease-out ${
                       immersiveActive
-                        ? 'h-[250px] sm:h-[350px] md:h-[420px] lg:h-[560px]'
-                        : 'h-[250px] sm:h-[350px] md:h-[420px] lg:h-[560px]'
+                        ? 'h-[200px] sm:h-[250px] md:h-[350px] lg:h-[400px]'
+                        : 'h-[200px] sm:h-[250px] md:h-[350px] lg:h-[400px]'
                     } ${
                       heroFading ? 'opacity-60 scale-[1.02]' : 'opacity-100 scale-[1.08]'
                     }`}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                    <p className="text-white/80 text-xs md:text-sm">Destacado</p>
-                    <h2 className="text-white text-lg md:text-2xl font-extrabold">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                    <p className="text-white/80 text-xs md:text-sm">Actual</p>
+                    <h2 className="text-white text-sm md:text-lg font-extrabold">
                       {heroItem.title}
                     </h2>
-                    <p className="text-white/75 text-xs md:text-sm mt-1 md:mt-2 max-w-md leading-relaxed">
-                      {heroItem.description}
-                    </p>
                   </div>
                 </div>
 
-                {/* Miniaturas ocultas en móvil, visibles en desktop */}
-                <div className="hidden lg:grid lg:grid-cols-2 gap-4">
-                  {heroThumbs.map((item) => {
-                    const idx = gallery.findIndex((g) => g.title === item.title);
-                    return (
-                      <button
-                        key={item.title}
-                        type="button"
-                        className="rounded-[2rem] overflow-hidden relative text-left transition-all duration-500 hover:scale-[1.03] active:scale-95 group border border-white/5"
-                        onClick={() => {
-                          setHeroByIndex(idx);
-                          setHeroLocked(true);
-                          setHeroPaused(true);
-                        }}
-                      >
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full aspect-square object-cover opacity-60 group-hover:opacity-100 transition-opacity"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white text-[11px] font-bold uppercase tracking-wider">
-                            {item.title}
-                          </h3>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                {/* Cards de navegación */}
+                {heroThumbs.slice(0, 4).map((item) => {
+                  const idx = gallery.findIndex((g) => g.title === item.title);
+                  const isActive = idx === heroIndex;
+
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      className={`rounded-xl overflow-hidden relative text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition-all duration-300 ease-out ${
+                        isActive ? 'ring-2 ring-[#22BDDD] scale-105' : 'hover:scale-105'
+                      }`}
+                      onClick={() => {
+                        setHeroByIndex(idx);
+                        setHeroLocked(true);
+                        setHeroPaused(true);
+                      }}
+                      onMouseEnter={() => {
+                        setHeroPaused(true);
+                      }}
+                      onMouseLeave={() => {
+                        if (heroLocked) return;
+                        setHeroPaused(false);
+                      }}
+                      aria-label={`Ver ${item.title}`}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-[120px] sm:h-[140px] md:h-[150px] lg:h-[130px] object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3">
+                        <h3 className="text-white text-xs md:text-sm font-bold leading-tight line-clamp-2">
+                          {item.title}
+                        </h3>
+                      </div>
+                      {isActive && (
+                        <div className="absolute top-2 right-2 w-2 h-2 bg-[#22BDDD] rounded-full animate-pulse" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
+            </div>
+
+            <div className="lg:col-span-5 order-1 lg:order-2 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                Muebles de melamina <span className="text-[#22BDDD]">a medida</span>
+              </h1>
+              <p className="text-white/70 mt-3 md:mt-4 text-base md:text-lg leading-relaxed">
+                {heroItem.description}
+              </p>
             </div>
           </div>
         </div>

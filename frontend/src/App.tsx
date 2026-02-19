@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage';
 import RecommendationsPage from './pages/RecommendationsPage';
 import CatalogPage from './pages/CatalogPage';
 import ServicePage from './pages/ServicePage';
+import EditorPage from './pages/EditorPage';
 import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'quienes-somos', element: <AboutPage /> },
       { path: 'recomendaciones', element: <RecommendationsPage /> },
       { path: 'catalogo', element: <CatalogPage /> },
+      { path: 'editor', element: <EditorPage /> },
       { path: 'servicios/:slug', element: <ServicePage /> },
       { path: '*', element: <NotFound /> },
     ],
