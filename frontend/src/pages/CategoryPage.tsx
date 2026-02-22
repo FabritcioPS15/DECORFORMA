@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { categories } from '../data/categories';
-import { WA_NUMBER, WA_MESSAGE } from '../data/site';
+import { WA_NUMBER } from '../data/site';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import { Reveal } from '../components/Reveal';
@@ -58,13 +58,6 @@ export default function CategoryPage() {
           </Reveal>
 
           <div className="max-w-3xl">
-            <Reveal delay={0.2}>
-              <div className="inline-flex items-center gap-2 bg-[#22BDDD]/20 border border-[#22BDDD]/40 text-[#22BDDD] text-sm font-bold px-4 py-1.5 rounded-full mb-6">
-                <Sparkles size={14} className="animate-pulse" />
-                Diseño Premium & Exclusivo
-              </div>
-            </Reveal>
-
             <Reveal delay={0.3}>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
                 {category.label}
@@ -80,7 +73,7 @@ export default function CategoryPage() {
             <Reveal delay={0.5}>
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <a
-                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE + ' interesado en ' + category.label)}`}
+                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Decorforma, estoy interesado en recibir información y cotizar mi proyecto de: ' + category.label)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-8 py-4.5 rounded-2xl shadow-xl shadow-green-900/30 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-base group"

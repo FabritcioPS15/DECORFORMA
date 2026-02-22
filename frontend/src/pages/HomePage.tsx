@@ -1,268 +1,70 @@
-import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
-
-const gallery = [
-  {
-    title: 'Cocina integral moderna',
-    description: 'Diseños funcionales con acabados premium y distribución optimizada.',
-    image:
-      'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  },
-  {
-    title: 'Closet a medida',
-    description: 'Aprovecha cada centímetro: módulos, cajones y herrajes a tu gusto.',
-    image:
-      'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  },
-  {
-    title: 'Centro de entretenimiento',
-    description: 'Paneles, repisas y almacenamiento oculto para un living ordenado.',
-    image:
-      'https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  },
-  {
-    title: 'Oficina ejecutiva',
-    description: 'Espacios de trabajo con personalidad: escritorios, estantes y más.',
-    image:
-      'https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  },
-  {
-    title: 'Dormitorio juvenil',
-    description: 'Camas, clósets y estaciones de estudio pensadas para crecer contigo.',
-    image:
-      'https://images.pexels.com/photos/6312023/pexels-photo-6312023.jpeg?auto=compress&cs=tinysrgb&w=1200',
-  },
-];
+import Hero from '../components/Hero';
+import { Reveal } from '../components/Reveal';
 
 export default function HomePage() {
   const featured = products.slice(0, 6);
 
-  const [heroIndex, setHeroIndex] = useState(0);
-  const [heroFading, setHeroFading] = useState(false);
-  const [heroPaused, setHeroPaused] = useState(false);
-  const [heroLocked, setHeroLocked] = useState(false);
-
-  const heroItem = gallery[heroIndex % gallery.length];
-
-  const heroThumbs = useMemo(() => {
-    return gallery.filter((_, idx) => idx !== heroIndex).slice(0, 4);
-  }, [heroIndex]);
-
-  useEffect(() => {
-    if (gallery.length <= 1) return;
-
-    if (heroPaused) return;
-
-    let timeout: number | undefined;
-    const interval = window.setInterval(() => {
-      setHeroFading(true);
-      if (timeout) window.clearTimeout(timeout);
-      timeout = window.setTimeout(() => {
-        setHeroIndex((v) => (v + 1) % gallery.length);
-        setHeroFading(false);
-      }, 350);
-    }, 6500);
-
-    return () => {
-      window.clearInterval(interval);
-      if (timeout) window.clearTimeout(timeout);
-    };
-  }, [heroPaused]);
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      setHeroLocked(false);
-      setHeroPaused(false);
-    };
-
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, []);
-
-  const setHeroByIndex = (nextIndex: number) => {
-    if (nextIndex === heroIndex) return;
-    setHeroFading(true);
-    window.setTimeout(() => {
-      setHeroIndex(((nextIndex % gallery.length) + gallery.length) % gallery.length);
-      setHeroFading(false);
-    }, 250);
-  };
-
-  const immersiveActive = heroLocked || heroFading;
-
   return (
     <main>
-      <section
-        className="relative overflow-hidden h-screen md:h-screen flex items-center"
-        onMouseEnter={() => {
-          setHeroPaused(true);
-        }}
-        onMouseLeave={() => {
-          if (heroLocked) return;
-          setHeroPaused(false);
-        }}
-        onFocusCapture={() => {
-          setHeroPaused(true);
-        }}
-        onBlurCapture={() => {
-          if (heroLocked) return;
-          setHeroPaused(false);
-        }}
-      >
-        <img
-          src={heroItem.image}
-          alt={heroItem.title}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${
-            immersiveActive ? 'scale-[1.12]' : 'scale-[1.03]'
-          } ${heroFading ? 'opacity-60' : 'opacity-100'}`}
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-[#0B2545]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/55" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-5 w-full pt-20 md:pt-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-center">
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-4">
-                {/* Imagen principal */}
-                <div
-                  className={`col-span-2 lg:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative transition-all duration-500 ease-out`}
-                  aria-label="Proyecto actual"
-                >
-                  <img
-                    src={heroItem.image}
-                    alt={heroItem.title}
-                    className={`w-full object-cover transition-all duration-700 ease-out ${
-                      immersiveActive
-                        ? 'h-[200px] sm:h-[250px] md:h-[350px] lg:h-[400px]'
-                        : 'h-[200px] sm:h-[250px] md:h-[350px] lg:h-[400px]'
-                    } ${
-                      heroFading ? 'opacity-60 scale-[1.02]' : 'opacity-100 scale-[1.08]'
-                    }`}
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
-                    <p className="text-white/80 text-xs md:text-sm">Actual</p>
-                    <h2 className="text-white text-sm md:text-lg font-extrabold">
-                      {heroItem.title}
-                    </h2>
-                  </div>
-                </div>
-
-                {/* Cards de navegación */}
-                {heroThumbs.slice(0, 4).map((item) => {
-                  const idx = gallery.findIndex((g) => g.title === item.title);
-                  const isActive = idx === heroIndex;
-
-                  return (
-                    <button
-                      key={item.title}
-                      type="button"
-                      className={`rounded-xl overflow-hidden relative text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition-all duration-300 ease-out ${
-                        isActive ? 'ring-2 ring-[#22BDDD] scale-105' : 'hover:scale-105'
-                      }`}
-                      onClick={() => {
-                        setHeroByIndex(idx);
-                        setHeroLocked(true);
-                        setHeroPaused(true);
-                      }}
-                      onMouseEnter={() => {
-                        setHeroPaused(true);
-                      }}
-                      onMouseLeave={() => {
-                        if (heroLocked) return;
-                        setHeroPaused(false);
-                      }}
-                      aria-label={`Ver ${item.title}`}
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-[120px] sm:h-[140px] md:h-[150px] lg:h-[130px] object-cover"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3">
-                        <h3 className="text-white text-xs md:text-sm font-bold leading-tight line-clamp-2">
-                          {item.title}
-                        </h3>
-                      </div>
-                      {isActive && (
-                        <div className="absolute top-2 right-2 w-2 h-2 bg-[#22BDDD] rounded-full animate-pulse" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 order-1 lg:order-2 text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Muebles de melamina <span className="text-[#22BDDD]">a medida</span>
-              </h1>
-              <p className="text-white/70 mt-3 md:mt-4 text-base md:text-lg leading-relaxed">
-                {heroItem.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       <section className="bg-white">
         <div className="max-w-6xl mx-auto px-5 py-16">
           <div className="flex items-end justify-between gap-6 mb-10">
-            <div>
-              <p className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
-                Categorías
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2">
-                Elige tu tipo de mueble
-              </h2>
-              <p className="text-gray-500 mt-3 max-w-2xl">
-                Entra a una categoría para ver ejemplos, estilos, medidas y dejar
-                tu solicitud lista para cotización.
-              </p>
-            </div>
+            <Reveal>
+              <div>
+                <p className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+                  Categorías
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2">
+                  Elige tu tipo de mueble
+                </h2>
+                <p className="text-gray-500 mt-3 max-w-2xl">
+                  Entra a una categoría para ver ejemplos, estilos, medidas y dejar
+                  tu solicitud lista para cotización.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((c) => (
-              <Link
-                key={c.slug}
-                to={`/categoria/${c.slug}`}
-                className="group rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
-              >
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img
-                    src={c.image}
-                    alt={c.label}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545]/75 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <h3 className="text-white text-xl font-extrabold">{c.label}</h3>
-                    <p className="text-white/75 text-sm mt-1 line-clamp-2">
-                      {c.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="px-5 py-4 flex items-center justify-between">
-                  <span className="text-[#0B2545] font-semibold">Ver colección</span>
-                  <span className="w-10 h-10 rounded-full bg-[#E8F6FB] group-hover:bg-[#1A8FBB] flex items-center justify-center transition-colors">
-                    <ArrowRight
-                      size={18}
-                      className="text-[#1A8FBB] group-hover:text-white transition-colors"
+            {categories.map((c, idx) => (
+              <Reveal key={c.slug} delay={0.1 * idx}>
+                <Link
+                  to={`/categoria/${c.slug}`}
+                  className="group rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img
+                      src={c.image}
+                      alt={c.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
                     />
-                  </span>
-                </div>
-              </Link>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <h3 className="text-white text-xl font-extrabold">{c.label}</h3>
+                      <p className="text-white/75 text-sm mt-1 line-clamp-2">
+                        {c.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="px-5 py-4 flex items-center justify-between">
+                    <span className="text-[#0B2545] font-semibold">Ver colección</span>
+                    <span className="w-10 h-10 rounded-full bg-[#E8F6FB] group-hover:bg-[#1A8FBB] flex items-center justify-center transition-colors">
+                      <ArrowRight
+                        size={18}
+                        className="text-[#1A8FBB] group-hover:text-white transition-colors"
+                      />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -271,31 +73,34 @@ export default function HomePage() {
       <section className="bg-[#F4F8FC]">
         <div className="max-w-6xl mx-auto px-5 py-16">
           <div className="flex items-end justify-between gap-6 mb-10">
-            <div>
-              <p className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
-                Destacados
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2">
-                Inspiración para tu próximo proyecto
-              </h2>
-              <p className="text-gray-500 mt-3 max-w-2xl">
-                Estos son ejemplos. Cuando tengas tu catálogo real, aquí irán tus
-                productos con fotos, medidas y variantes.
-              </p>
-            </div>
+            <Reveal>
+              <div>
+                <p className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+                  Destacados
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2">
+                  Inspiración para tu próximo proyecto
+                </h2>
+                <p className="text-gray-500 mt-3 max-w-2xl">
+                  Estos son ejemplos. Cuando tengas tu catálogo real, aquí irán tus
+                  productos con fotos, medidas y variantes.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.map((p) => (
-              <ProductCard
-                key={p.id}
-                title={p.title}
-                subtitle={p.subtitle}
-                image={p.image}
-                tags={p.tags}
-                priceFrom={p.priceFrom}
-                colorVariants={p.colorVariants}
-              />
+            {featured.map((p, idx) => (
+              <Reveal key={p.id} delay={0.1 * idx}>
+                <ProductCard
+                  title={p.title}
+                  subtitle={p.subtitle}
+                  image={p.image}
+                  tags={p.tags}
+                  priceFrom={p.priceFrom}
+                  colorVariants={p.colorVariants}
+                />
+              </Reveal>
             ))}
           </div>
 

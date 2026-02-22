@@ -73,7 +73,7 @@ export default function Footer() {
           {/* Quick Links Grid */}
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Muebles</h4>
+              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Catálogo</h4>
               <ul className="space-y-2 text-white/50 text-sm">
                 {mueblesItems.slice(0, 3).map((item) => (
                   <li key={item.label}>
@@ -101,7 +101,7 @@ export default function Footer() {
           {/* Contact & Catalog */}
           <div className="space-y-4">
             <div className="bg-white/5 rounded-xl p-4">
-              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Contacto</h4>
+              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Contáctanos</h4>
               <div className="space-y-3 text-sm">
                 <a href="tel:+51999999999" className="flex items-center gap-3 text-white/50 hover:text-[#22BDDD] transition-colors">
                   <Phone size={15} className="text-[#1A8FBB]" />
@@ -117,7 +117,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            
+
             {CATALOG_2026_URL && (
               <a
                 href={CATALOG_2026_URL}
@@ -182,9 +182,19 @@ export default function Footer() {
 
           <div className="lg:w-[220px]">
             <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
-              Muebles
+              Catálogo
             </h4>
             <ul className="space-y-3 text-white/50 text-sm">
+              <li>
+                <Link to="/" className="hover:text-[#22BDDD] transition-colors">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link to="/quienes-somos" className="hover:text-[#22BDDD] transition-colors">
+                  Nosotros
+                </Link>
+              </li>
               {mueblesItems.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -234,7 +244,7 @@ export default function Footer() {
 
           <div className="lg:w-[260px]">
             <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
-              Contacto
+              Contáctanos
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
@@ -267,7 +277,14 @@ export default function Footer() {
                   className="text-white font-bold hover:text-[#22BDDD] transition-colors flex items-center gap-2"
                 >
                   Conoce más sobre nosotros
-                  <Zap size={14} className="text-[#22BDDD]" />
+                </Link>
+              </li>
+              <li className="pt-2">
+                <Link
+                  to="/catalogo"
+                  className="text-white/50 hover:text-[#22BDDD] transition-colors flex items-center gap-2"
+                >
+                  Proyectos realizados
                 </Link>
               </li>
             </ul>

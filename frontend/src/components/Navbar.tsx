@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WA_MESSAGE, WA_NUMBER } from '../data/site';
 
 export default function Navbar() {
   const location = useLocation();
@@ -11,10 +10,10 @@ export default function Navbar() {
   const [mobileMueblesOpen, setMobileMueblesOpen] = useState(false);
   const [mobileServiciosOpen, setMobileServiciosOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<
-    'muebles' | 'servicios' | null
+    'catalogo' | 'servicios' | null
   >(null);
 
-  const mueblesDropdownRef = useRef<HTMLDivElement | null>(null);
+  const catalogoDropdownRef = useRef<HTMLDivElement | null>(null);
   const serviciosDropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -39,10 +38,10 @@ export default function Navbar() {
       if (!desktopDropdown) return;
       const target = e.target as Node;
 
-      const inMuebles = mueblesDropdownRef.current?.contains(target);
+      const inCatalogo = catalogoDropdownRef.current?.contains(target);
       const inServicios = serviciosDropdownRef.current?.contains(target);
 
-      if (!inMuebles && !inServicios) setDesktopDropdown(null);
+      if (!inCatalogo && !inServicios) setDesktopDropdown(null);
     };
 
     document.addEventListener('keydown', onKeyDown);
@@ -53,7 +52,7 @@ export default function Navbar() {
     };
   }, [desktopDropdown]);
 
-  const mueblesItems = [
+  const catalogoItems = [
     { label: 'Cocinas de Lujo', to: '/categoria/cocina' },
     { label: 'Salas & Centros de TV', to: '/categoria/sala' },
     { label: 'Dormitorios & Closets', to: '/categoria/dormitorio' },
@@ -70,7 +69,7 @@ export default function Navbar() {
     { label: 'Muebles personalizados', to: '/servicios/personalizados' },
   ];
 
-  const catalogoLink = { label: 'Catálogo', to: '/catalogo' };
+  const proyectosLink = { label: 'Proyectos', to: '/catalogo' };
 
   const isHome = location.pathname === '/';
   const showBackground = !isHome || scrolled || menuOpen || desktopDropdown !== null;
@@ -106,6 +105,13 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
+            to="/"
+            className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
+          >
+            Inicio
+          </Link>
+
+          <Link
             to="/quienes-somos"
             className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
           >
@@ -113,10 +119,10 @@ export default function Navbar() {
           </Link>
 
           {[
-            { label: 'Muebles', dropdown: 'muebles' },
+            { label: 'Catálogo', dropdown: 'catalogo' },
             { label: 'Servicios', dropdown: 'servicios' },
           ].map((nav) => (
-            <div key={nav.label} ref={nav.dropdown === 'muebles' ? mueblesDropdownRef : serviciosDropdownRef} className="relative">
+            <div key={nav.label} ref={nav.dropdown === 'catalogo' ? catalogoDropdownRef : serviciosDropdownRef} className="relative">
               <button
                 type="button"
                 className={`text-sm font-bold tracking-wide transition-all duration-200 flex items-center gap-1.5 focus:outline-none ${desktopDropdown === nav.dropdown
@@ -140,14 +146,14 @@ export default function Navbar() {
               {desktopDropdown === nav.dropdown && (
                 <div className="absolute left-0 top-full pt-4 origin-top animate-[navdrop_200ms_ease-out]">
                   <div className="w-64 rounded-2xl bg-[#0B2545]/90 backdrop-blur-[40px] border border-white/20 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden p-1.5">
-                    {(nav.dropdown === 'muebles' ? mueblesItems : serviciosItems).map((item) => (
+                    {(nav.dropdown === 'catalogo' ? catalogoItems : serviciosItems).map((item) => (
                       <Link
                         key={item.label}
                         to={item.to}
                         className="flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
                         onClick={() => setDesktopDropdown(null)}
                       >
-                        <div className={`w-1.5 h-1.5 rounded-full ${nav.dropdown === 'muebles' ? 'bg-[#1A8FBB]' : 'bg-[#22BDDD]'}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${nav.dropdown === 'catalogo' ? 'bg-[#1A8FBB]' : 'bg-[#22BDDD]'}`} />
                         {item.label}
                       </Link>
                     ))}
@@ -158,30 +164,29 @@ export default function Navbar() {
           ))}
 
           <Link
-            to={catalogoLink.to}
+            to={proyectosLink.to}
             className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
           >
-            Catálogo
+            Proyectos
           </Link>
 
-          <Link
-            to="/recomendaciones"
-            className={`text-sm font-bold tracking-wide transition-all duration-200 ${navTextClass}`}
-          >
-            Recomendaciones
-          </Link>
+
 
           <div className="h-6 w-[1px] bg-white/10 mx-2" />
 
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => {
+              if (location.pathname !== '/') {
+                window.location.href = '/#contacto';
+              } else {
+                document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
             className="group relative overflow-hidden bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#1A8FBB]/40 flex items-center gap-2"
           >
-            <span className="relative z-10">Cotizar Proyecto</span>
+            <span className="relative z-10">Contáctanos</span>
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-          </a>
+          </button>
         </nav>
 
         <button
@@ -209,7 +214,20 @@ export default function Navbar() {
           >
             <div className="px-6 py-8 flex flex-col gap-3 max-h-[80vh] overflow-y-auto custom-scrollbar">
               {/* Basic Links */}
+              {/* Inicio Link */}
               <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
+                <Link
+                  to="/"
+                  className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#1A8FBB]" />
+                  Inicio
+                </Link>
+              </motion.div>
+
+              {/* Nosotros Link */}
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.05 }}>
                 <Link
                   to="/quienes-somos"
                   className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
@@ -220,18 +238,18 @@ export default function Navbar() {
                 </Link>
               </motion.div>
 
-              {/* Muebles Accordion */}
-              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.05 }}>
+              {/* Catálogo Accordion */}
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 }}>
                 <button
                   onClick={() => {
-                  setMobileMueblesOpen(!mobileMueblesOpen);
-                  if (!mobileMueblesOpen) setMobileServiciosOpen(false);
-                }}
+                    setMobileMueblesOpen(!mobileMueblesOpen);
+                    if (!mobileMueblesOpen) setMobileServiciosOpen(false);
+                  }}
                   className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#1A8FBB]" />
-                    Muebles
+                    Catálogo
                   </div>
                   <ChevronRight size={20} className={`text-white/30 transition-transform duration-300 ${mobileMueblesOpen ? 'rotate-90' : ''}`} />
                 </button>
@@ -243,7 +261,7 @@ export default function Navbar() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-8 flex flex-col gap-1"
                     >
-                      {mueblesItems.map((item) => (
+                      {catalogoItems.map((item) => (
                         <Link
                           key={item.label}
                           to={item.to}
@@ -259,12 +277,12 @@ export default function Navbar() {
               </motion.div>
 
               {/* Servicios Accordion */}
-              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 }}>
+              <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.15 }}>
                 <button
                   onClick={() => {
-                  setMobileServiciosOpen(!mobileServiciosOpen);
-                  if (!mobileServiciosOpen) setMobileMueblesOpen(false);
-                }}
+                    setMobileServiciosOpen(!mobileServiciosOpen);
+                    if (!mobileServiciosOpen) setMobileMueblesOpen(false);
+                  }}
                   className="w-full flex items-center justify-between gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
                 >
                   <div className="flex items-center gap-4">
@@ -296,27 +314,22 @@ export default function Navbar() {
                 </AnimatePresence>
               </motion.div>
 
-              {/* More Links */}
-              {[
-                { label: 'Catálogo', to: '/catalogo', iconColor: 'bg-[#1A8FBB]' },
-                { label: 'Recomendaciones', to: '/recomendaciones', iconColor: 'bg-[#22BDDD]' }
-              ].map((link, i) => (
-                <motion.div
-                  key={link.to}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.15 + i * 0.05 }}
+              {/* Proyectos Link */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Link
+                  to="/catalogo"
+                  className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  <Link
-                    to={link.to}
-                    className="flex items-center gap-4 text-white/90 font-bold text-lg p-3 hover:bg-white/5 rounded-2xl transition-all"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <div className={`w-1.5 h-1.5 rounded-full ${link.iconColor}`} />
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#1A8FBB]" />
+                  Proyectos
+                </Link>
+              </motion.div>
+
 
               <div className="h-[1px] bg-white/5 my-2" />
 
@@ -325,18 +338,19 @@ export default function Navbar() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <a
-                  href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    if (location.pathname !== '/') {
+                      window.location.href = '/#contacto';
+                    } else {
+                      document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#1A8FBB] to-[#22BDDD] text-white font-extrabold text-base py-4 rounded-[1.5rem] shadow-xl shadow-[#1A8FBB]/20 active:scale-95 transition-transform"
-                  onClick={() => setMenuOpen(false)}
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
-                  Cotización Personalizada
-                </a>
+                  Contáctanos
+                </button>
               </motion.div>
             </div>
           </motion.div>

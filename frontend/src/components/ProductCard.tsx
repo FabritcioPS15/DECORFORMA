@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { WA_MESSAGE, WA_NUMBER } from '../data/site';
 
 type ProductCardProps = {
@@ -113,11 +113,10 @@ export default function ProductCard({
                   <button
                     key={v.name}
                     type="button"
-                    className={`h-6 w-6 rounded-full border-2 transition-all duration-200 ${
-                      selected
-                        ? 'border-[#0B2545] scale-[1.02]'
-                        : 'border-black/20 hover:border-black/40'
-                    }`}
+                    className={`h-6 w-6 rounded-full border-2 transition-all duration-200 ${selected
+                      ? 'border-[#0B2545] scale-[1.02]'
+                      : 'border-black/20 hover:border-black/40'
+                      }`}
                     style={{ backgroundColor: v.hex }}
                     aria-label={`Color ${v.name}`}
                     onClick={() => setActiveVariant(idx)}
@@ -133,9 +132,9 @@ export default function ProductCard({
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[1.1rem] rounded-b-xl bg-[#1A8FBB] hover:bg-[#0F6E95] text-white font-extrabold text-sm py-2.5 transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[1.1rem] rounded-b-xl bg-[#1A8FBB] hover:bg-[#0F6E95] text-white font-extrabold text-sm py-2.5 transition-colors group"
           >
-            <MessageCircle size={16} />
+            <FaWhatsapp size={18} className="group-hover:rotate-12 transition-transform" />
             Cotiza
           </a>
 
@@ -143,10 +142,10 @@ export default function ProductCard({
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[46px] inline-flex items-center justify-center rounded-[1.1rem] rounded-b-xl bg-[#25D366] hover:bg-[#1fba57] transition-colors"
+            className="w-[46px] inline-flex items-center justify-center rounded-[1.1rem] rounded-b-xl bg-[#25D366] hover:bg-[#1fba57] transition-colors group"
             aria-label="Cotizar por WhatsApp"
           >
-            <MessageCircle size={16} className="text-white" />
+            <FaWhatsapp size={18} className="text-white group-hover:rotate-12 transition-transform" />
           </a>
         </div>
       </div>

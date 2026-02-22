@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useInView } from '../hooks/useInView';
+import { Reveal } from './Reveal';
 
 const faqs = [
   {
@@ -30,65 +30,57 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const { ref, inView } = useInView();
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section className="py-20 bg-white">
-      <div ref={ref} className="max-w-3xl mx-auto px-5">
-        <div
-          className={`text-center mb-14 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
-            Preguntas frecuentes
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-4">
-            Resolvemos tus dudas
-          </h2>
-          <p className="text-gray-500 leading-relaxed">
-            ¿Tienes más preguntas? Escríbenos por WhatsApp y te respondemos al instante.
-          </p>
-        </div>
+      <div className="max-w-3xl mx-auto px-5">
+        <Reveal width="100%">
+          <div className="text-center mb-14">
+            <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+              Preguntas frecuentes
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-4">
+              Resolvemos tus dudas
+            </h2>
+            <p className="text-gray-500 leading-relaxed">
+              ¿Tienes más preguntas? Escríbenos por WhatsApp y te respondemos al instante.
+            </p>
+          </div>
+        </Reveal>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className={`border border-gray-100 rounded-xl overflow-hidden transition-all duration-500 ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              } ${open === i ? 'border-[#1A8FBB]/40 shadow-md' : 'hover:border-gray-200'}`}
-              style={{ transitionDelay: `${i * 60}ms` }}
-            >
-              <button
-                className="w-full flex items-center justify-between gap-4 p-5 text-left"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span
-                  className={`font-semibold text-sm leading-snug transition-colors ${
-                    open === i ? 'text-[#1A8FBB]' : 'text-[#0B2545]'
-                  }`}
-                >
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  size={18}
-                  className={`text-[#1A8FBB] flex-shrink-0 transition-transform duration-300 ${
-                    open === i ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
+            <Reveal key={i} delay={i * 0.05} width="100%">
               <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  open === i ? 'max-h-48' : 'max-h-0'
-                }`}
+                className={`border border-gray-100 rounded-xl overflow-hidden transition-all duration-500 ${open === i ? 'border-[#1A8FBB]/40 shadow-md' : 'hover:border-gray-200'}`}
               >
-                <p className="px-5 pb-5 text-gray-500 text-sm leading-relaxed">
-                  {faq.a}
-                </p>
+                <button
+                  className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                  onClick={() => setOpen(open === i ? null : i)}
+                >
+                  <span
+                    className={`font-semibold text-sm leading-snug transition-colors ${open === i ? 'text-[#1A8FBB]' : 'text-[#0B2545]'
+                      }`}
+                  >
+                    {faq.q}
+                  </span>
+                  <ChevronDown
+                    size={18}
+                    className={`text-[#1A8FBB] flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''
+                      }`}
+                  />
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${open === i ? 'max-h-48' : 'max-h-0'
+                    }`}
+                >
+                  <p className="px-5 pb-5 text-gray-500 text-sm leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

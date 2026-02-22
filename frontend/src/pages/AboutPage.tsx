@@ -1,5 +1,6 @@
 import { Reveal } from '../components/Reveal';
-import { Award, CheckCircle2, Heart, Users, ShieldCheck, Zap } from 'lucide-react';
+import { Award, CheckCircle2, Heart, Users, ShieldCheck, MessageCircle, Zap } from 'lucide-react';
+import { WA_NUMBER } from '../data/site';
 
 export default function AboutPage() {
     return (
@@ -17,9 +18,6 @@ export default function AboutPage() {
 
                 <div className="relative max-w-6xl mx-auto px-5 w-full">
                     <Reveal y={30}>
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-[#1A8FBB]/20 border border-[#1A8FBB]/30 text-[#22BDDD] text-xs font-bold uppercase tracking-widest mb-6">
-                            Nuestra Historia
-                        </span>
                         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-8 max-w-2xl">
                             Transformando Espacios <br />
                             <span className="text-[#22BDDD]">Con Pasión y Precisión</span>
@@ -123,7 +121,7 @@ export default function AboutPage() {
             {/* Cartera de Clientes */}
             <section className="py-32 bg-white/[0.02]">
                 <div className="max-w-6xl mx-auto px-5">
-                    <Reveal y={20}>
+                    <Reveal y={20} width="100%">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Confían en Nosotros</h2>
                             <p className="text-white/50 max-w-2xl mx-auto">
@@ -148,7 +146,7 @@ export default function AboutPage() {
             {/* Nuestro Proceso */}
             <section className="py-32 border-t border-white/5">
                 <div className="max-w-6xl mx-auto px-5">
-                    <Reveal y={20}>
+                    <Reveal y={20} width="100%">
                         <div className="text-center mb-20">
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuestro Proceso</h2>
                             <p className="text-white/50 max-w-2xl mx-auto">
@@ -236,17 +234,17 @@ export default function AboutPage() {
                             Conversa con nosotros y descubre cómo nuestra maestría en melamina y madera puede transformar tu espacio.
                         </p>
                         <a
-                            href="https://wa.me/51999999999?text=Hola Decorforma, vengo de ver su historia y me gustaría cotizar un proyecto."
+                            href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Decorforma, vengo de ver su historia y me gustaría recibir información y cotizar mi proyecto.')}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-white text-[#1A8FBB] font-bold px-8 py-4 rounded-2xl hover:bg-white/90 hover:scale-105 transition-all shadow-xl relative z-10"
+                            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-green-900/20 hover:scale-105 active:scale-95 relative z-10 group"
                         >
-                            Iniciar mi Proyecto
-                            <Zap size={18} fill="currentColor" />
+                            <MessageCircle size={22} className="group-hover:scale-110 transition-transform" />
+                            Cotizar mi Proyecto
                         </a>
                     </div>
                 </Reveal>
             </section>
-        </main>
+        </main >
     );
 }

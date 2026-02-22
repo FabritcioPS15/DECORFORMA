@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
-import { useInView } from '../hooks/useInView';
+import { Reveal } from './Reveal';
 
 const furnitureTypes = [
   'Closet / Ropero',
@@ -14,7 +14,6 @@ const furnitureTypes = [
 ];
 
 export default function ContactForm() {
-  const { ref, inView } = useInView();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -40,48 +39,42 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="py-20 bg-[#F4F8FC]">
-      <div ref={ref} className="max-w-6xl mx-auto px-5">
+      <div className="max-w-6xl mx-auto px-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div
-            className={`transition-all duration-700 ${
-              inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-            }`}
-          >
-            <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
-              Contacto
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-5">
-              Cuéntanos tu proyecto
-            </h2>
-            <p className="text-gray-500 leading-relaxed mb-8">
-              Completa el formulario y nos comunicaremos contigo en menos de 2 horas
-              para comenzar a diseñar el espacio que siempre soñaste.
-            </p>
+          <Reveal x={-30}>
+            <div>
+              <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+                Contacto
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-5">
+                Cuéntanos tu proyecto
+              </h2>
+              <p className="text-gray-500 leading-relaxed mb-8">
+                Completa el formulario y nos comunicaremos contigo en menos de 2 horas
+                para comenzar a diseñar el espacio que siempre soñaste.
+              </p>
 
-            <div className="space-y-5">
-              {[
-                { step: '01', title: 'Nos envías tu consulta', desc: 'Cuéntanos qué necesitas y el espacio disponible.' },
-                { step: '02', title: 'Recibimos tu diseño', desc: 'Nuestros diseñadores elaboran una propuesta visual.' },
-                { step: '03', title: 'Aprobamos y fabricamos', desc: 'Fabricamos y entregamos según lo acordado.' },
-              ].map((item) => (
-                <div key={item.step} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#1A8FBB]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-[#1A8FBB] text-xs font-bold">{item.step}</span>
+              <div className="space-y-5">
+                {[
+                  { step: '01', title: 'Nos envías tu consulta', desc: 'Cuéntanos qué necesitas y el espacio disponible.' },
+                  { step: '02', title: 'Recibimos tu diseño', desc: 'Nuestros diseñadores elaboran una propuesta visual.' },
+                  { step: '03', title: 'Aprobamos y fabricamos', desc: 'Fabricamos y entregamos según lo acordado.' },
+                ].map((item) => (
+                  <div key={item.step} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#1A8FBB]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[#1A8FBB] text-xs font-bold">{item.step}</span>
+                    </div>
+                    <div>
+                      <p className="font-bold text-[#0B2545] text-sm">{item.title}</p>
+                      <p className="text-gray-500 text-sm">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-[#0B2545] text-sm">{item.title}</p>
-                    <p className="text-gray-500 text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div
-            className={`transition-all duration-700 delay-200 ${
-              inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}
-          >
+          <Reveal delay={0.3} x={30}>
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               {submitted ? (
                 <div className="text-center py-10">
@@ -179,7 +172,7 @@ export default function ContactForm() {
                 </form>
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

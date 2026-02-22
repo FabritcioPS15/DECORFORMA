@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { services } from '../data/services';
 import { Reveal } from '../components/Reveal';
-import { CheckCircle2, Phone } from 'lucide-react';
-import { WA_NUMBER, WA_MESSAGE } from '../data/site';
+import { CheckCircle2, MessageCircle } from 'lucide-react';
+import { WA_NUMBER } from '../data/site';
 
 export default function ServicePage() {
     const { slug } = useParams();
@@ -32,9 +32,6 @@ export default function ServicePage() {
 
                 <div className="relative max-w-6xl mx-auto px-5 w-full">
                     <Reveal y={30}>
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-[#1A8FBB]/20 border border-[#1A8FBB]/30 text-[#22BDDD] text-xs font-bold uppercase tracking-widest mb-6">
-                            Nuestros Servicios Especializados
-                        </span>
                         <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight">
                             {service.label}
                         </h1>
@@ -90,18 +87,18 @@ export default function ServicePage() {
                         <p className="text-white/50 mb-10 text-lg">Hagamos realidad tu proyecto con la mejor tecnología en melamina.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a
-                                href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+                                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Decorforma, estoy interesado en recibir información y cotizar mi proyecto de: ' + service.label)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-3 bg-[#1A8FBB] hover:bg-[#0F6E95] text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-[#1A8FBB]/20 hover:scale-105"
+                                className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-green-900/20 hover:scale-105 active:scale-95 group"
                             >
-                                <Phone size={20} />
-                                Consultar Ahora
+                                <MessageCircle size={22} className="group-hover:scale-110 transition-transform" />
+                                Cotizar mi Proyecto
                             </a>
                         </div>
                     </div>
                 </Reveal>
             </section>
-        </main>
+        </main >
     );
 }

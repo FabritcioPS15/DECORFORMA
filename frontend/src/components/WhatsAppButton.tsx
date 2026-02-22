@@ -9,19 +9,33 @@ export default function WhatsAppButton() {
   const [tooltip, setTooltip] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 1500);
-    const tooltipTimer = setTimeout(() => setTooltip(false), 6000);
+    const handleScroll = () => {
+      // Show button only when scrolled down more than 300px (outside Hero range)
+      if (window.scrollY > 300) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+        setTooltip(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Initial check
+    handleScroll();
+
+    const tooltipTimer = setTimeout(() => setTooltip(false), 8000);
+
     return () => {
-      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
       clearTimeout(tooltipTimer);
     };
   }, []);
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 transition-all duration-500 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      }`}
+      className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 transition-all duration-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
     >
       {tooltip && (
         <div className="flex items-center gap-2 bg-white rounded-xl shadow-xl px-4 py-3 max-w-[220px] border border-gray-100">
