@@ -9,8 +9,8 @@ export default function AboutPage() {
             <section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden pt-20">
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"
-                        className="w-full h-full object-cover animate-slow-zoom"
+                        src="/assets/images/48.png"
+                        className="w-full h-full object-cover object-top animate-slow-zoom"
                         alt="Carpintería Premium"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#061230]/90 via-[#061230]/50 to-transparent" />
@@ -33,10 +33,10 @@ export default function AboutPage() {
             <section className="relative -mt-16 z-10 px-5 mb-24">
                 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                        { label: 'Años de Experiencia', value: '8+', icon: Award },
-                        { label: 'Proyectos Entregados', value: '1500+', icon: CheckCircle2 },
-                        { label: 'Clientes Felices', value: '1200+', icon: Heart },
-                        { label: 'Especialistas', value: '15+', icon: Users },
+                        { label: 'Años de Experiencia', value: '10+', icon: Award },
+                        { label: 'Proyectos Entregados', value: '1000+', icon: CheckCircle2 },
+                        { label: 'Clientes Felices', value: '1000+', icon: Heart },
+                        { label: 'Especialistas', value: '7+', icon: Users },
                     ].map((stat, i) => (
                         <Reveal key={stat.label} delay={i * 0.1} y={20}>
                             <div className="bg-[#0B2545]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-[#1A8FBB]/50 transition-colors group">
@@ -55,8 +55,8 @@ export default function AboutPage() {
                     <Reveal x={-30}>
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                             <img
-                                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
-                                className="w-full aspect-[4/5] object-cover"
+                                src="/assets/images/4.jpeg"
+                                className="w-full aspect-[3/5] object-cover object-top"
                                 alt="Diseño de interiores premium"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#061230] via-transparent to-transparent opacity-60" />
@@ -101,7 +101,12 @@ export default function AboutPage() {
                             <div className="p-8 rounded-3xl bg-[#0B2545]/50 border border-white/5 hover:bg-[#0B2545] transition-all duration-300">
                                 <h3 className="text-2xl font-bold text-[#22BDDD] mb-4">Nuestra Misión</h3>
                                 <p className="text-white/60 leading-relaxed">
-                                    Ofrecer soluciones de mobiliario a medida que superen las expectativas de nuestros clientes en diseño, calidad y funcionalidad, utilizando materiales de primera y procesos innovadores para transformar cada hogar y oficina.
+                                    Diseñar y fabricar mobiliario a medida que supere las
+                                    expectativas de nuestros clientes en diseño, calidad y
+                                    funcionalidad, empleando materiales de primera
+                                    categoría y procesos innovadores que permitan
+                                    transformar cada hogar y oficina en espacios únicos,
+                                    eficientes y duraderos.
                                 </p>
                             </div>
                         </Reveal>
@@ -110,7 +115,13 @@ export default function AboutPage() {
                             <div className="p-8 rounded-3xl bg-[#0B2545]/50 border border-white/5 hover:bg-[#0B2545] transition-all duration-300">
                                 <h3 className="text-2xl font-bold text-[#22BDDD] mb-4">Nuestra Visión</h3>
                                 <p className="text-white/60 leading-relaxed">
-                                    Ser la empresa líder en el Perú en diseño y fabricación de muebles de melamina y madera, reconocida por nuestra excelencia operativa, innovación constante y el compromiso inquebrantable con la satisfacción total del cliente.
+                                    Consolidarnos como la empresa líder en el Perú en
+                                    diseño y fabricación de muebles de melamina y madera,
+                                    reconocida por nuestra excelencia operativa, innovación
+                                    permanente y un compromiso sostenido con la calidad,
+                                    la sostenibilidad y la satisfacción integral de nuestros
+                                    clientes.
+
                                 </p>
                             </div>
                         </Reveal>
@@ -123,9 +134,12 @@ export default function AboutPage() {
                 <div className="max-w-6xl mx-auto px-5">
                     <Reveal y={20} width="100%">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Confían en Nosotros</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Calidad que se siente y perdura</h2>
                             <p className="text-white/50 max-w-2xl mx-auto">
-                                Hemos tenido el privilegio de trabajar con empresas e instituciones que valoran la calidad y el diseño excepcional.
+                                Trabajamos con aglomerados de alto estándar,
+                                seleccionadas por su resistencia, espesor y acabado
+                                superior.
+
                             </p>
                         </div>
                     </Reveal>
@@ -207,13 +221,13 @@ export default function AboutPage() {
                         <Reveal x={-40}>
                             <div className="grid grid-cols-2 gap-4">
                                 <img
-                                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070&auto=format&fit=crop"
+                                    src="/assets/images/28.jpeg"
                                     className="rounded-3xl h-64 w-full object-cover"
                                     alt="Tecnología de precisión"
                                 />
                                 <img
-                                    src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=2000&auto=format&fit=crop"
-                                    className="rounded-3xl h-64 w-full object-cover mt-8"
+                                    src="/assets/images/15.jpeg"
+                                    className="rounded-3xl h-64 w-full object-cover object-left mt-8"
                                     alt="Carpintería moderna"
                                 />
                             </div>
