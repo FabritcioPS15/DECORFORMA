@@ -1,12 +1,13 @@
 import { Reveal } from '../components/Reveal';
 import { Award, CheckCircle2, Heart, Users, ShieldCheck, MessageCircle, Zap } from 'lucide-react';
 import { WA_NUMBER } from '../data/site';
+import Counter from '../components/Counter';
 
 export default function AboutPage() {
     return (
         <main className="bg-[#061230] min-h-screen">
             {/* Hero Section */}
-            <section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden pt-20">
+            <section className="relative h-[60vh] min-h-[400px] md:min-h-[500px] flex items-center overflow-hidden pt-32 md:pt-20">
                 <div className="absolute inset-0">
                     <img
                         src="/assets/images/48.png"
@@ -18,31 +19,33 @@ export default function AboutPage() {
 
                 <div className="relative max-w-6xl mx-auto px-5 w-full">
                     <Reveal y={30}>
-                        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-8 max-w-2xl">
+                        <h1 className="text-3xl md:text-6xl font-bold text-white leading-tight mb-8 max-w-2xl">
                             Transformando Espacios <br />
                             <span className="text-[#22BDDD]">Con Pasión y Precisión</span>
                         </h1>
-                        <p className="text-white/70 text-lg md:text-xl max-w-xl leading-relaxed">
-                            Desde hace más de 8 años, Decorforma combina la tradición de la carpintería fina con la innovación de la melamina moderna.
+                        <p className="text-white/70 text-base md:text-xl max-w-xl leading-relaxed">
+                            Desde hace más de 10 años, Decorforma combina la tradición de la carpintería fina con la innovación de la melamina moderna.
                         </p>
                     </Reveal>
                 </div>
             </section>
 
             {/* Stats / Trust Row */}
-            <section className="relative -mt-16 z-10 px-5 mb-24">
-                <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <section className="relative -mt-12 md:-mt-16 z-10 px-5 mb-24">
+                <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
-                        { label: 'Años de Experiencia', value: '10+', icon: Award },
-                        { label: 'Proyectos Entregados', value: '1000+', icon: CheckCircle2 },
-                        { label: 'Clientes Felices', value: '1000+', icon: Heart },
-                        { label: 'Especialistas', value: '7+', icon: Users },
+                        { label: 'Años de Experiencia', value: 10, suffix: '+', icon: Award },
+                        { label: 'Proyectos Entregados', value: 1000, suffix: '+', icon: CheckCircle2 },
+                        { label: 'Clientes Felices', value: 1000, suffix: '+', icon: Heart },
+                        { label: 'Especialistas', value: 7, suffix: '+', icon: Users },
                     ].map((stat, i) => (
-                        <Reveal key={stat.label} delay={i * 0.1} y={20}>
-                            <div className="bg-[#0B2545]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-[#1A8FBB]/50 transition-colors group">
-                                <stat.icon className="w-8 h-8 text-[#22BDDD] mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                                <div className="text-white/50 text-xs font-medium uppercase tracking-wider">{stat.label}</div>
+                        <Reveal key={stat.label} delay={i * 0.1} y={20} width="100%">
+                            <div className="bg-[#0B2545]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-[#1A8FBB]/50 transition-colors group h-full flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
+                                <stat.icon className="w-8 h-8 text-[#22BDDD] mb-3 group-hover:scale-110 transition-transform" />
+                                <div className="text-2xl md:text-3xl font-bold text-white mb-1">
+                                    <Counter value={stat.value} suffix={stat.suffix} />
+                                </div>
+                                <div className="text-white/50 text-[10px] md:text-xs font-medium uppercase tracking-wider line-clamp-2">{stat.label}</div>
                             </div>
                         </Reveal>
                     ))}
@@ -50,12 +53,12 @@ export default function AboutPage() {
             </section>
 
             {/* Philosophy Section */}
-            <section className="max-w-6xl mx-auto px-5 mb-32">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <section className="max-w-6xl mx-auto px-5 mb-20 md:mb-32">
+                <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
                     <Reveal x={-30}>
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                             <img
-                                src="/assets/images/4.jpeg"
+                                src="/assets/images/22 nuevo.png"
                                 className="w-full aspect-[3/5] object-cover object-top"
                                 alt="Diseño de interiores premium"
                             />
@@ -94,7 +97,7 @@ export default function AboutPage() {
             </section>
 
             {/* Mission/Vision */}
-            <section className="bg-[#0B2545]/30 py-32 border-y border-white/5">
+            <section className="bg-[#0B2545]/30 py-20 md:py-32 border-y border-white/5">
                 <div className="max-w-6xl mx-auto px-5">
                     <div className="grid md:grid-cols-2 gap-12">
                         <Reveal y={20}>
@@ -129,8 +132,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Cartera de Clientes */}
-            <section className="py-32 bg-white/[0.02]">
+            {/* Cartera de Clientes / Quality */}
+            <section className="py-20 md:py-32 bg-white/[0.02]">
                 <div className="max-w-6xl mx-auto px-5">
                     <Reveal y={20} width="100%">
                         <div className="text-center mb-16">
@@ -158,10 +161,10 @@ export default function AboutPage() {
             </section>
 
             {/* Nuestro Proceso */}
-            <section className="py-32 border-t border-white/5">
+            <section className="py-20 md:py-32 border-t border-white/5">
                 <div className="max-w-6xl mx-auto px-5">
                     <Reveal y={20} width="100%">
-                        <div className="text-center mb-20">
+                        <div className="text-center mb-12 md:mb-20">
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Nuestro Proceso</h2>
                             <p className="text-white/50 max-w-2xl mx-auto">
                                 Un camino estructurado desde la idea inicial hasta la entrega final de tu mobiliario premium.
@@ -194,9 +197,9 @@ export default function AboutPage() {
             </section>
 
             {/* Centro de Trabajo (Workshop) */}
-            <section className="py-32 bg-gradient-to-b from-transparent to-[#0B2545]/20">
+            <section className="py-20 md:py-32 bg-gradient-to-b from-transparent to-[#0B2545]/20">
                 <div className="max-w-6xl mx-auto px-5">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
                         <div className="space-y-8 lg:order-2">
                             <Reveal y={20}>
                                 <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
@@ -221,7 +224,7 @@ export default function AboutPage() {
                         <Reveal x={-40}>
                             <div className="grid grid-cols-2 gap-4">
                                 <img
-                                    src="/assets/images/28.jpeg"
+                                    src="/assets/images/22.jpeg"
                                     className="rounded-3xl h-64 w-full object-cover"
                                     alt="Tecnología de precisión"
                                 />
@@ -237,9 +240,9 @@ export default function AboutPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-32 px-5">
+            <section className="py-20 md:py-32 px-5">
                 <Reveal y={20} width="100%">
-                    <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-[#1A8FBB] to-[#116483] rounded-[3rem] p-12 md:p-20 shadow-2xl relative overflow-hidden group">
+                    <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-[#1A8FBB] to-[#116483] rounded-[3rem] p-8 md:p-20 shadow-2xl relative overflow-hidden group">
                         <div className="absolute inset-0 bg-white/5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700" />
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 relative z-10">
                             ¿Listo para dar vida <br /> a tu próximo proyecto?

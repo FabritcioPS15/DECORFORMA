@@ -150,7 +150,7 @@ export default function Footer() {
             <p className="text-white/50 text-sm leading-relaxed max-w-xl mb-6">
               Especialistas en diseño, fabricación y comercialización de muebles
               de melamina a medida. Transformamos espacios con calidad y
-              precisión desde hace más de 8 años.
+              precisión desde hace más de 10 años.
             </p>
             <a
               href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}

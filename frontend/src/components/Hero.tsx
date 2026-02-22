@@ -133,12 +133,12 @@ export default function Hero() {
 
       <div
         ref={ref}
-        className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col justify-center pt-24 pb-12 mt-4 md:mt-0"
+        className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col justify-center pt-32 pb-16 md:pt-24 md:pb-12 mt-8 md:mt-0"
       >
         <div className="max-w-3xl">
           <div
             key={`subtitle-${currentSlide}`}
-            className={`inline-flex items-center gap-2 bg-[#1A8FBB]/20 border border-[#1A8FBB]/40 text-[#22BDDD] text-xs font-semibold px-4 py-1.5 rounded-full mb-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            className={`inline-flex items-center gap-2 bg-[#1A8FBB]/20 border border-[#1A8FBB]/40 text-[#22BDDD] text-[10px] md:text-xs font-semibold px-4 py-1.5 rounded-full mb-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
           >
             <span className="w-2 h-2 rounded-full bg-[#22BDDD] animate-pulse" />
@@ -173,14 +173,14 @@ export default function Hero() {
               href="https://wa.me/51999999999?text=Hola%2C%20quiero%20cotizar"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105 group text-sm"
+              className="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-8 py-4 md:px-6 md:py-3.5 rounded-xl shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105 group text-sm md:text-base"
             >
               <FaWhatsapp className="group-hover:rotate-12 transition-transform" size={20} />
               {slides[currentSlide].cta1}
             </a>
             <a
               href="#contacto"
-              className="flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-300 hover:scale-105 text-sm"
+              className="flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-white font-bold px-8 py-4 md:px-6 md:py-3.5 rounded-xl transition-all duration-300 hover:scale-105 text-sm md:text-base"
             >
               <FaRulerCombined size={18} />
               {slides[currentSlide].cta2}
@@ -188,7 +188,7 @@ export default function Hero() {
           </div>
 
           <div
-            className={`flex flex-wrap items-center gap-10 mt-16 transition-all duration-700 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            className={`flex flex-wrap items-center gap-6 md:gap-10 mt-12 md:mt-16 transition-all duration-700 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
           >
             {slides[currentSlide].stats.map((stat) => (
