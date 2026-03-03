@@ -70,7 +70,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#F4F8FC]">
+      <section className="bg-gray-50">
         <div className="max-w-6xl mx-auto px-5 py-16">
           <div className="flex items-end justify-between gap-6 mb-10">
             <Reveal>

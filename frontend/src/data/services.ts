@@ -1,3 +1,10 @@
+import { ElementType } from 'react';
+import {
+    IoCreateOutline,
+    IoHomeOutline,
+    IoColorWandOutline
+} from 'react-icons/io5';
+
 export interface Service {
     slug: string;
     label: string;
@@ -5,6 +12,7 @@ export interface Service {
     longDescription: string;
     image: string;
     benefits: string[];
+    icon: ElementType;
 }
 
 export const services: Service[] = [
@@ -19,7 +27,8 @@ export const services: Service[] = [
             'Optimización de espacios pequeños',
             'Asesoría en combinación de texturas y colores',
             'Planos técnicos para fabricación precisa'
-        ]
+        ],
+        icon: IoCreateOutline,
     },
     {
         slug: 'domicilio',
@@ -32,7 +41,8 @@ export const services: Service[] = [
             'Instalación limpia y rápida',
             'Ajustes en sitio para acabados perfectos',
             'Personal altamente calificado y uniformado'
-        ]
+        ],
+        icon: IoHomeOutline,
     },
     {
         slug: 'personalizados',
@@ -45,6 +55,7 @@ export const services: Service[] = [
             'Herrajes con cierre suave de marcas líderes',
             'Garantía extendida por defectos de fabricación',
             'Resultados únicos que no encontrarás en tiendas'
-        ]
+        ],
+        icon: IoColorWandOutline,
     }
 ];
