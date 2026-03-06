@@ -53,6 +53,7 @@ export default function Navbar() {
   }, [desktopDropdown]);
 
   const catalogoItems = [
+    { label: 'Ver Catálogo Completo', to: '/catalogo', isMain: true },
     { label: 'Cocinas de Lujo', to: '/categoria/cocina' },
     { label: 'Salas & Centros de TV', to: '/categoria/sala' },
     { label: 'Dormitorios & Closets', to: '/categoria/dormitorio' },
@@ -64,6 +65,7 @@ export default function Navbar() {
   ];
 
   const serviciosItems = [
+    { label: 'Ver Todos los Servicios', to: '/servicios', isMain: true },
     { label: 'Diseño de muebles de melamina', to: '/servicios/diseno' },
     { label: 'Trabajos de melamina a domicilio', to: '/servicios/domicilio' },
     { label: 'Muebles personalizados', to: '/servicios/personalizados' },
@@ -150,10 +152,12 @@ export default function Navbar() {
                       <Link
                         key={item.label}
                         to={item.to}
-                        className="flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                        className={`flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all ${
+                          item.isMain ? 'bg-gradient-to-r from-[#1A8FBB]/20 to-[#22BDDD]/20 border border-[#22BDDD]/30' : ''
+                        }`}
                         onClick={() => setDesktopDropdown(null)}
                       >
-                        <div className={`w-1.5 h-1.5 rounded-full ${nav.dropdown === 'catalogo' ? 'bg-[#1A8FBB]' : 'bg-[#22BDDD]'}`} />
+                        <div className={`w-1.5 h-1.5 rounded-full ${nav.dropdown === 'catalogo' ? 'bg-[#1A8FBB]' : 'bg-[#22BDDD]'} ${item.isMain ? 'ring-2 ring-current' : ''}`} />
                         {item.label}
                       </Link>
                     ))}
@@ -265,7 +269,9 @@ export default function Navbar() {
                         <Link
                           key={item.label}
                           to={item.to}
-                          className="text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors"
+                          className={`text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors ${
+                            item.isMain ? 'text-[#22BDDD] font-bold' : ''
+                          }`}
                           onClick={() => setMenuOpen(false)}
                         >
                           {item.label}
@@ -303,7 +309,9 @@ export default function Navbar() {
                         <Link
                           key={item.label}
                           to={item.to}
-                          className="text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors"
+                          className={`text-white/60 hover:text-[#22BDDD] py-2.5 text-[15px] font-medium transition-colors ${
+                            item.isMain ? 'text-[#22BDDD] font-bold' : ''
+                          }`}
                           onClick={() => setMenuOpen(false)}
                         >
                           {item.label}

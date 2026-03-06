@@ -5,6 +5,7 @@ import CategoryPage from './pages/CategoryPage';
 import AboutPage from './pages/AboutPage';
 import CatalogPage from './pages/CatalogPage';
 import ServicePage from './pages/ServicePage';
+import ServicesPage from './pages/ServicesPage';
 import EditorPage from './pages/EditorPage';
 import NotFound from './pages/NotFound';
 
@@ -17,8 +18,9 @@ const router = createBrowserRouter([
       { path: 'categoria/:slug', element: <CategoryPage /> },
       { path: 'quienes-somos', element: <AboutPage /> },
       { path: 'catalogo', element: <CatalogPage /> },
-      { path: 'editor', element: <EditorPage /> },
+      { path: 'servicios', element: <ServicesPage /> },
       { path: 'servicios/:slug', element: <ServicePage /> },
+      { path: 'editor', element: <EditorPage /> },
       { path: '*', element: <NotFound /> },
     ],
   },

@@ -52,6 +52,6 @@ export const categories: Category[] = [
     slug: 'educativo',
     label: 'Instituciones Educativas',
     description: 'Mobiliario ergonómico y funcional diseñado para potenciar el aprendizaje. Creamos espacios educativos modernos que fomentan la colaboración y el enfoque.',
-    image: 'https://mobiliarioeducativo.pe/wp-content/uploads/2023/03/Mesas-y-sillas-escolares.jpg',
+    image: '/assets/images/115.png',
   },
 ];
