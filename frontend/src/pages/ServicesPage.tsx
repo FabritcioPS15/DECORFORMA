@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 import { services } from '../data/services';
 import { ArrowRight, Wrench, Palette, Home, Truck, Hammer } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const serviceIcons = {
   diseno: <Palette size={24} />,
@@ -14,29 +13,16 @@ export default function ServicesPage() {
     return (
         <main className="bg-[#061230] min-h-screen">
             {/* Services Hero */}
-            <section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden pt-20">
-                <div className="absolute inset-0">
-                    <motion.img
-                        initial={{ scale: 1.1 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 1.5, ease: 'easeOut' }}
-                        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop"
-                        className="w-full h-full object-cover opacity-40"
-                        alt="Servicios Decorforma"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#061230] via-[#061230]/60 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#061230]/80 via-transparent to-transparent" />
-                </div>
-
-                <div className="relative max-w-6xl mx-auto px-5 w-full">
+            <section className="relative py-32 px-5">
+                <div className="max-w-6xl mx-auto text-center">
                     <Reveal y={30}>
                         <span className="text-[#22BDDD] text-[12px] font-black uppercase tracking-[0.3em] mb-4 block">
                             Nuestros Servicios
                         </span>
-                        <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                             Soluciones <span className="text-[#22BDDD]">Profesionales</span>
                         </h1>
-                        <p className="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed">
+                        <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
                             Transformamos tus ideas en realidad con diseño personalizado, instalación a domicilio y muebles hechos a tu medida.
                         </p>
                     </Reveal>
