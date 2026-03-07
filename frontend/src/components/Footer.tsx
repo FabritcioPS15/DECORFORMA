@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Zap } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
 
