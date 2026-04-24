@@ -4,6 +4,8 @@ import { Layout, Hammer, Paintbrush, Check, ArrowRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { services } from '../data/services';
 
+import SEO from '../components/SEO';
+
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -17,6 +19,10 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-white min-h-screen">
+      <SEO 
+        title="Nuestros Servicios" 
+        description="Soluciones integrales de diseño, carpintería fina y arquitectura de interiores. Descubre cómo transformamos tus espacios paso a paso."
+      />
       {/* Header Section - Centered */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">

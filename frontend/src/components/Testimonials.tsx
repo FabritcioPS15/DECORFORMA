@@ -1,5 +1,6 @@
 import { Star, Quote } from 'lucide-react';
 import { Reveal } from './Reveal';
+import { CountUp } from './CountUp';
 
 const testimonials = [
   {
@@ -88,7 +89,7 @@ export default function Testimonials() {
             <Reveal key={s.label} delay={0.4 + (i * 0.1)} width="100%">
               <div className="bg-decor-navy rounded-none p-10 text-center flex flex-col justify-center h-full border border-white/5">
                 <p className="text-4xl md:text-5xl font-serif text-white mb-2">
-                  {s.value}
+                  <CountUp value={s.value} />
                 </p>
                 <p className="text-decor-accent text-[10px] font-black uppercase tracking-[0.2em]">{s.label}</p>
               </div>

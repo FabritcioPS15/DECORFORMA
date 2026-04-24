@@ -86,7 +86,7 @@ export default function Navbar() {
             <button 
               onMouseEnter={() => handleMouseEnter('catalogo')}
               onMouseLeave={handleMouseLeave}
-              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-decor-navy/70 hover:text-decor-navy ${desktopDropdown === 'catalogo' ? 'text-decor-navy opacity-100' : ''}`}
+              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-black/80 hover:text-black ${desktopDropdown === 'catalogo' ? 'text-black opacity-100' : ''}`}
             >
               Catálogo
               <motion.div animate={{ rotate: desktopDropdown === 'catalogo' ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -97,7 +97,7 @@ export default function Navbar() {
             <button 
               onMouseEnter={() => handleMouseEnter('servicios')}
               onMouseLeave={handleMouseLeave}
-              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-decor-navy/70 hover:text-decor-navy ${desktopDropdown === 'servicios' ? 'text-decor-navy opacity-100' : ''}`}
+              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-black/80 hover:text-black ${desktopDropdown === 'servicios' ? 'text-black opacity-100' : ''}`}
             >
               Servicios
               <motion.div animate={{ rotate: desktopDropdown === 'servicios' ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -208,7 +208,7 @@ function NavLink({ to, children, active, onClick }: any) {
     <Link
       to={to}
       onClick={onClick}
-      className="relative px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 group text-decor-navy/70 hover:text-decor-navy"
+      className="relative px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 group text-black/80 hover:text-black"
     >
       {children}
       <motion.div 

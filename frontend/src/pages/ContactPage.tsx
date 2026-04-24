@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
+import SEO from '../components/SEO';
 
 export default function ContactPage() {
   return (
     <main className="bg-white min-h-screen">
+      <SEO 
+        title="Contacto" 
+        description="Ponte en contacto con DECORFORMA. Agenda una consulta gratuita para transformar tus espacios con diseño y mobiliario de alta calidad."
+      />
       {/* Header Section - Centered (Architecture Style) */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">

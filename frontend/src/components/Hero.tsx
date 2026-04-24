@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { CountUp } from './CountUp';
 
 const slides = [
   {
@@ -166,7 +167,9 @@ export default function Hero() {
             >
               {slides[currentSlide].stats.map((stat, i) => (
                 <div key={i}>
-                  <p className="text-4xl md:text-5xl font-serif text-white mb-2">{stat.value}</p>
+                  <p className="text-4xl md:text-5xl font-serif text-white mb-2">
+                    <CountUp value={stat.value} />
+                  </p>
                   <span className="text-decor-accent text-xs font-bold uppercase tracking-widest">{stat.label}</span>
                 </div>
               ))}

@@ -7,6 +7,9 @@ import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import { Reveal } from '../components/Reveal';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { CountUp } from '../components/CountUp';
+
+import SEO from '../components/SEO';
 
 export default function CategoryPage() {
   const { slug } = useParams();
@@ -16,6 +19,7 @@ export default function CategoryPage() {
   if (!category) {
     return (
       <main className="min-h-screen bg-white pt-20">
+        <SEO title="Categoría no encontrada" description="La categoría que buscas no existe." />
         <div className="max-w-6xl mx-auto px-5 py-16 text-center">
           <Reveal delay={0.1}>
             <h1 className="text-3xl font-serif text-decor-navy mt-6 mb-8">
@@ -36,6 +40,11 @@ export default function CategoryPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <SEO 
+        title={category.label} 
+        description={category.description} 
+        image={category.image}
+      />
       {/* Immersive Hero Section - Centered (Architecture Style) */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">
@@ -84,7 +93,7 @@ export default function CategoryPage() {
                 ].map((item, i) => (
                   <div key={i} className="flex flex-col items-center justify-center text-center p-8 border-b md:border-b-0 border-r-0 md:border-r border-gray-100 last:border-0">
                     <p className="text-[10px] font-black text-decor-accent uppercase tracking-[0.3em] mb-2">{item.label}</p>
-                    <p className="text-lg font-serif text-decor-navy">{item.value}</p>
+                    <p className="text-lg font-serif text-decor-navy"><CountUp value={item.value} /></p>
                   </div>
                 ))}
               </div>

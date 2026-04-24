@@ -3,23 +3,20 @@ import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { SmoothScroll } from '../components/SmoothScroll';
 
 export default function RootLayout() {
   const location = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
-    <SmoothScroll>
-      <div className="min-h-screen font-sans">
-        <Navbar />
-        <Outlet />
-        <Footer />
-        <WhatsAppButton />
-      </div>
-    </SmoothScroll>
+    <div className="min-h-screen font-sans">
+      <Navbar />
+      <Outlet />
+      <Footer />
+      <WhatsAppButton />
+    </div>
   );
 }

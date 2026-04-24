@@ -4,6 +4,8 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { projects, Project } from '../data/projects';
 
+import SEO from '../components/SEO';
+
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('Todos');
   const categories = ['Todos', 'Residencial', 'Comercial', 'Remodelación', 'Interiores'];
@@ -14,6 +16,10 @@ export default function ProjectsPage() {
 
   return (
     <main className="bg-white min-h-screen">
+      <SEO 
+        title="Proyectos y Portafolio" 
+        description="Explora nuestra galería de proyectos residenciales, comerciales y de diseño de interiores. Inspiración y alta calidad en cada detalle."
+      />
       {/* Header Section - Centered (Architecture Style) */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">

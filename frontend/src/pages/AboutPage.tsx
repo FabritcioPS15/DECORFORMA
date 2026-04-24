@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Reveal } from '../components/Reveal';
 import { Target, Eye, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function AboutPage() {
     const values = [
@@ -12,6 +13,10 @@ export default function AboutPage() {
 
     return (
         <main className="bg-white min-h-screen">
+            <SEO 
+                title="Quiénes Somos" 
+                description="Conoce la historia detrás de DECORFORMA. Años de experiencia creando mobiliario y arquitectura de interiores con la más alta calidad y dedicación."
+            />
             {/* Header Section - Centered (Architecture Style) */}
             <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
                 <div className="absolute inset-0">

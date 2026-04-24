@@ -5,8 +5,8 @@ export default {
     extend: {
       colors: {
         decor: {
-          navy: '#1a4567',
-          accent: '#c5a572',
+          navy: '#000000',
+          accent: '#266ca5',
           base: '#ffffff',
           dark: '#0B1F4A',
           muted: '#F4F1EA', // Warm beige
@@ -34,8 +34,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['Arimo', 'system-ui', 'sans-serif'],
+        serif: ['Exo 2', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',

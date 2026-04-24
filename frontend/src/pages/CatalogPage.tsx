@@ -5,6 +5,8 @@ import { Reveal } from '../components/Reveal';
 import { products } from '../data/products';
 import { categories as siteCategories } from '../data/categories';
 
+import SEO from '../components/SEO';
+
 export default function CatalogPage() {
   const [filter, setFilter] = useState('Todos');
   
@@ -17,6 +19,10 @@ export default function CatalogPage() {
 
   return (
     <main className="bg-white min-h-screen">
+      <SEO 
+        title="Catálogo de Productos" 
+        description="Navega por nuestro catálogo completo de mobiliario, acabados y decoración para encontrar las piezas perfectas para tu proyecto."
+      />
       {/* Header Section - Centered (Architecture Style) */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">

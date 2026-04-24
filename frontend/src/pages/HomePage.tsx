@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, ShieldCheck, Award, Heart, Layout, Home, Paintbrush, Hammer } from 'lucide-react';
 import Hero from '../components/Hero';
 import { Reveal } from '../components/Reveal';
-import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import { products } from '../data/products';
 
 export default function HomePage() {
@@ -11,6 +11,10 @@ export default function HomePage() {
 
   return (
     <main className="bg-white">
+      <SEO 
+        title="Estudio de Diseño y Mobiliario" 
+        description="DECORFORMA es un estudio especializado en diseño de interiores y fabricación de mobiliario a medida de alta gama."
+      />
       <Hero />
 
       {/* SECTION: SOBRE NOSOTROS - Architecture Studio Style */}
@@ -90,13 +94,15 @@ export default function HomePage() {
       {/* SECTION: NUESTROS SERVICIOS */}
       <section className="py-24 bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <Reveal y={20}>
-              <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Nuestros Servicios</span>
-              <h2 className="text-4xl md:text-5xl font-medium font-serif text-decor-navy italic">
-                Soluciones integrales
-              </h2>
-              <div className="w-20 h-[1px] bg-decor-accent mx-auto mt-8" />
+          <div className="text-center mb-20 flex flex-col items-center justify-center w-full">
+            <Reveal y={20} width="100%">
+              <div className="flex flex-col items-center justify-center w-full">
+                <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 block text-center">Nuestros Servicios</span>
+                <h2 className="text-4xl md:text-5xl font-medium font-serif text-decor-navy italic text-center">
+                  Soluciones integrales
+                </h2>
+                <div className="w-20 h-[1px] bg-decor-accent mx-auto mt-8" />
+              </div>
             </Reveal>
           </div>
 
