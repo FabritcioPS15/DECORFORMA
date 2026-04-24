@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
-import { FaWhatsapp, FaRulerCombined } from 'react-icons/fa';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const slides = [
