@@ -7,7 +7,6 @@ const MotionLink = motion(Link);
 
 export default function Navbar() {
   const location = useLocation();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<'catalogo' | 'servicios' | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -39,14 +38,6 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
     setMenuOpen(false);
     setDesktopDropdown(null);
   }, [location.pathname]);
@@ -70,11 +61,7 @@ export default function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-          scrolled 
-            ? 'bg-white/95 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] py-3 border-b border-gray-100' 
-            : 'bg-transparent py-6'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)] py-3 border-b border-gray-100"
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
           {/* Logo */}
@@ -86,22 +73,20 @@ export default function Navbar() {
             <img 
               src="/assets/images/DecorformaLogo.png" 
               alt="Decorforma" 
-              className="h-12 md:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+              className="h-14 md:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
             />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
-            <NavLink to="/" scrolled={scrolled} active={isActive('/')} onClick={() => setDesktopDropdown(null)}>Inicio</NavLink>
-            <NavLink to="/quienes-somos" scrolled={scrolled} active={isActive('/quienes-somos')} onClick={() => setDesktopDropdown(null)}>Nosotros</NavLink>
+            <NavLink to="/" active={isActive('/')} onClick={() => setDesktopDropdown(null)}>Inicio</NavLink>
+            <NavLink to="/quienes-somos" active={isActive('/quienes-somos')} onClick={() => setDesktopDropdown(null)}>Nosotros</NavLink>
             
             {/* MegaMenu Triggers */}
             <button 
               onMouseEnter={() => handleMouseEnter('catalogo')}
               onMouseLeave={handleMouseLeave}
-              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 ${
-                scrolled ? 'text-decor-navy/70 hover:text-decor-navy' : 'text-white/80 hover:text-white'
-              } ${desktopDropdown === 'catalogo' ? 'text-decor-navy opacity-100' : ''}`}
+              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-decor-navy/70 hover:text-decor-navy ${desktopDropdown === 'catalogo' ? 'text-decor-navy opacity-100' : ''}`}
             >
               Catálogo
               <motion.div animate={{ rotate: desktopDropdown === 'catalogo' ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -112,9 +97,7 @@ export default function Navbar() {
             <button 
               onMouseEnter={() => handleMouseEnter('servicios')}
               onMouseLeave={handleMouseLeave}
-              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 ${
-                scrolled ? 'text-decor-navy/70 hover:text-decor-navy' : 'text-white/80 hover:text-white'
-              } ${desktopDropdown === 'servicios' ? 'text-decor-navy opacity-100' : ''}`}
+              className={`flex items-center gap-1.5 px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 text-decor-navy/70 hover:text-decor-navy ${desktopDropdown === 'servicios' ? 'text-decor-navy opacity-100' : ''}`}
             >
               Servicios
               <motion.div animate={{ rotate: desktopDropdown === 'servicios' ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -122,18 +105,14 @@ export default function Navbar() {
               </motion.div>
             </button>
 
-            <NavLink to="/proyectos" scrolled={scrolled} active={isActive('/proyectos')} onClick={() => setDesktopDropdown(null)}>Proyectos</NavLink>
+            <NavLink to="/proyectos" active={isActive('/proyectos')} onClick={() => setDesktopDropdown(null)}>Proyectos</NavLink>
 
             <MotionLink
               to="/contacto"
               onClick={() => setDesktopDropdown(null)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`ml-4 px-7 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${
-                scrolled 
-                  ? 'bg-decor-navy text-white hover:bg-decor-navy/90 shadow-xl shadow-decor-navy/10' 
-                  : 'bg-white text-decor-navy hover:bg-gray-50 shadow-xl shadow-black/10'
-              }`}
+              className="ml-4 px-7 py-2.5 rounded-none font-bold text-sm transition-all duration-300 bg-decor-navy text-white hover:bg-decor-navy/90 shadow-xl shadow-decor-navy/10"
             >
               Contáctanos
             </MotionLink>
@@ -143,23 +122,25 @@ export default function Navbar() {
           <AnimatePresence>
             {desktopDropdown && (
               <div 
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 pointer-events-auto"
+                className="absolute top-full left-0 right-0 mt-[1px] z-50 pointer-events-auto"
                 onMouseEnter={() => {
                   if (timeoutRef.current) clearTimeout(timeoutRef.current);
                 }}
                 onMouseLeave={handleMouseLeave}
               >
-                <MegaMenu 
-                  type={desktopDropdown}
-                  onClose={() => setDesktopDropdown(null)}
-                />
+                <div className="max-w-7xl mx-auto px-6 flex justify-center">
+                  <MegaMenu 
+                    type={desktopDropdown}
+                    onClose={() => setDesktopDropdown(null)}
+                  />
+                </div>
               </div>
             )}
           </AnimatePresence>
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-decor-navy hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+            className="md:hidden p-2 rounded-lg transition-colors text-decor-navy hover:bg-gray-100"
             onClick={() => setMenuOpen(true)}
           >
             <Menu size={28} />
@@ -189,7 +170,7 @@ export default function Navbar() {
                 <img 
                   src="/assets/images/DecorformaLogo.png" 
                   alt="Decorforma" 
-                  className="h-10 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
                 <button onClick={() => setMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                   <X size={24} className="text-gray-500" />
@@ -208,7 +189,7 @@ export default function Navbar() {
                 <Link
                   to="/contacto"
                   onClick={() => setMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 bg-decor-navy text-white py-4 rounded-xl font-bold shadow-xl shadow-decor-navy/20"
+                  className="w-full flex items-center justify-center gap-2 bg-decor-navy text-white py-4 rounded-none font-bold shadow-xl shadow-decor-navy/20"
                 >
                   <Phone size={18} />
                   Solicitar Cotización
@@ -222,18 +203,16 @@ export default function Navbar() {
   );
 }
 
-function NavLink({ to, children, scrolled, active, onClick }: any) {
+function NavLink({ to, children, active, onClick }: any) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className={`relative px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 group ${
-        scrolled ? 'text-decor-navy/70 hover:text-decor-navy' : 'text-white/80 hover:text-white'
-      }`}
+      className="relative px-4 py-2 text-[15px] font-bold tracking-wide transition-all duration-300 group text-decor-navy/70 hover:text-decor-navy"
     >
       {children}
       <motion.div 
-        className={`absolute bottom-0 left-4 right-4 h-[2px] bg-decor-accent rounded-full`}
+        className="absolute bottom-0 left-4 right-4 h-[2px] bg-decor-accent rounded-none"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: active ? 1 : 0 }}
         whileHover={{ scaleX: 1 }}
@@ -248,27 +227,27 @@ function MegaMenu({ type, onClose }: { type: 'catalogo' | 'servicios', onClose: 
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 5, x: -10, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 5, x: -10, scale: 0.98 }}
+      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 10, scale: 0.98 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[750px] bg-white shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-gray-100 flex rounded-none overflow-hidden z-50"
+      className="w-[750px] bg-white shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-gray-100 flex rounded-none overflow-hidden z-50"
     >
       {/* Links Area */}
-      <div className="flex-1 p-6 grid grid-cols-2 gap-8 bg-white">
+      <div className="flex-1 p-8 grid grid-cols-2 gap-10 bg-white">
         {isCatalogo ? (
           <>
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">Residencial</h4>
-              <ul className="space-y-3">
+            <div className="space-y-5">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Residencial</h4>
+              <ul className="space-y-4">
                 <MenuLink to="/categoria/cocina" label="Cocinas Premium" onClick={onClose} />
                 <MenuLink to="/categoria/dormitorio" label="Dormitorios" onClick={onClose} />
                 <MenuLink to="/categoria/sala" label="Salas & TV" onClick={onClose} />
               </ul>
             </div>
-            <div className="space-y-4">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">Corporativo</h4>
-              <ul className="space-y-3">
+            <div className="space-y-5">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Corporativo</h4>
+              <ul className="space-y-4">
                 <MenuLink to="/categoria/oficina" label="Oficinas" onClick={onClose} />
                 <MenuLink to="/categoria/comercios" label="Locales" onClick={onClose} />
                 <MenuLink to="/categoria/madera" label="Madera Fina" onClick={onClose} />
@@ -276,7 +255,7 @@ function MegaMenu({ type, onClose }: { type: 'catalogo' | 'servicios', onClose: 
             </div>
           </>
         ) : (
-          <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-4">
+          <div className="col-span-2 grid grid-cols-2 gap-x-10 gap-y-5">
              <MenuLink to="/servicios" label="Diseño 3D" onClick={onClose} />
              <MenuLink to="/servicios" label="Carpintería" onClick={onClose} />
              <MenuLink to="/servicios" label="Construcción" onClick={onClose} />
@@ -285,7 +264,7 @@ function MegaMenu({ type, onClose }: { type: 'catalogo' | 'servicios', onClose: 
         )}
       </div>
 
-      {/* Featured Photo Area (Foto de Aparición) */}
+      {/* Featured Photo Area */}
       <div className="w-[280px] relative overflow-hidden group">
         <motion.div
           initial={{ scale: 1.1, opacity: 0 }}
@@ -299,12 +278,12 @@ function MegaMenu({ type, onClose }: { type: 'catalogo' | 'servicios', onClose: 
               : "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600"
             } 
             alt="Featured" 
-            className="h-full w-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
+            className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
           />
-          <div className="absolute inset-0 bg-decor-navy/20" />
-          <div className="absolute bottom-4 left-4 right-4">
+          <div className="absolute inset-0 bg-decor-navy/10" />
+          <div className="absolute bottom-5 left-5 right-5">
             <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1">Decorforma</p>
-            <p className="text-white/80 text-[11px] font-serif italic">Diseño & Estructura</p>
+            <p className="text-white/80 text-[11px] font-serif italic">Arquitectura Premium</p>
           </div>
         </motion.div>
       </div>
@@ -334,7 +313,7 @@ function MobileNavItem({ to, label, icon: Icon, active, onClick }: any) {
     <Link
       to={to}
       onClick={onClick}
-      className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${
+      className={`flex items-center gap-3 px-4 py-3.5 rounded-none transition-all ${
         active 
           ? 'bg-decor-navy/5 text-decor-navy font-bold border-l-2 border-decor-navy' 
           : 'text-gray-600 hover:bg-gray-50'
@@ -342,7 +321,7 @@ function MobileNavItem({ to, label, icon: Icon, active, onClick }: any) {
     >
       {Icon && <Icon size={20} className={active ? 'text-decor-navy' : 'text-gray-400'} />}
       <span className="text-[16px]">{label}</span>
-      {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-decor-accent" />}
+      {active && <div className="ml-auto w-1.5 h-1.5 rounded-none bg-decor-accent" />}
     </Link>
   );
 }

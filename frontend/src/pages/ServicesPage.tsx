@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layout, Home, Paintbrush, Hammer, Check, ArrowRight } from 'lucide-react';
+import { Layout, Hammer, Paintbrush, Check, ArrowRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { services } from '../data/services';
 
@@ -17,39 +17,45 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-white min-h-screen">
-      {/* Header Section */}
-      <section className="relative h-[40vh] min-h-[350px] flex items-center overflow-hidden bg-decor-navy">
-        <div className="absolute inset-0 flex">
-          <div className="w-full lg:w-1/2 bg-decor-navy flex items-center px-6 lg:px-24 relative z-10">
-            <Reveal x={-30} duration={0.8}>
-              <div className="max-w-xl">
-                <h1 className="text-4xl md:text-7xl font-medium font-serif text-white leading-tight mb-6">
-                  Servicios
-                </h1>
-                <p className="text-white/60 text-lg md:text-xl font-light">
-                  Soluciones integrales para cada etapa de tu proyecto.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-          <div className="hidden lg:block w-1/2 relative">
-            <img 
-              src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-              alt="Servicios Decorforma" 
-              className="w-full h-full object-cover opacity-60"
-            />
-            <div className="absolute inset-0 bg-decor-navy/40 mix-blend-multiply" />
-          </div>
+      {/* Header Section - Centered */}
+      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            alt="Servicios Decorforma" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-decor-navy/60 mix-blend-multiply" />
+        </div>
+        
+        <div className="relative z-10 max-w-3xl px-6">
+          <Reveal y={20} duration={0.8}>
+            <h1 className="text-5xl md:text-8xl font-medium font-serif text-white leading-tight mb-8">
+              Servicios
+            </h1>
+            <p className="text-white/70 text-lg md:text-2xl font-light tracking-wide">
+              Soluciones integrales de diseño y arquitectura para transformar tus espacios.
+            </p>
+            <div className="w-24 h-[1px] bg-decor-accent mx-auto mt-12" />
+          </Reveal>
         </div>
       </section>
 
-      {/* Tabbed Services Section */}
+      {/* Tabbed Services Section - Centered Content */}
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <Reveal y={20}>
+              <h2 className="text-3xl md:text-5xl font-serif text-decor-navy mb-4 italic">Nuestras Especialidades</h2>
+              <p className="text-gray-400 text-sm uppercase tracking-[0.3em]">Calidad en cada detalle</p>
+            </Reveal>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             
-            {/* Left Column: Vertical Tabs */}
-            <div className="lg:col-span-3 space-y-4">
+            {/* Tabs List */}
+            <div className="lg:w-1/4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
               {services.map((service, idx) => {
                 const Icon = icons[idx];
                 const isActive = activeTab === idx;
@@ -57,135 +63,131 @@ export default function ServicesPage() {
                   <button
                     key={service.slug}
                     onClick={() => setActiveTab(idx)}
-                    className={`w-full flex items-center gap-4 p-6 rounded-2xl transition-all duration-300 text-left ${
+                    className={`shrink-0 flex items-center gap-4 p-5 rounded-none border transition-all duration-300 text-left min-w-[200px] lg:min-w-0 ${
                       isActive 
-                        ? 'bg-decor-navy text-white shadow-xl shadow-decor-navy/20 translate-x-2' 
-                        : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                        ? 'bg-decor-navy text-white border-decor-navy shadow-xl shadow-decor-navy/10' 
+                        : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-decor-navy'
                     }`}
                   >
-                    <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'bg-decor-accent text-white' : 'bg-gray-200 text-gray-500'}`}>
-                      <Icon size={20} />
-                    </div>
-                    <span className="font-bold text-sm uppercase tracking-wider">{service.label}</span>
+                    <Icon size={18} className={isActive ? 'text-decor-accent' : 'text-gray-300'} />
+                    <span className="font-bold text-xs uppercase tracking-widest">{service.label}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Center & Right Column: Content */}
-            <div className="lg:col-span-9">
+            {/* Content Area - Centered inside */}
+            <div className="lg:w-3/4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="grid md:grid-cols-2 gap-12 items-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-white border border-gray-100 p-8 md:p-12 shadow-sm rounded-none"
                 >
-                  {/* Service Image */}
-                  <div className="relative">
-                    <div className="absolute -top-6 -left-6 w-full h-full border border-decor-accent/20 rounded-3xl -z-10" />
-                    <img 
-                      src={services[activeTab].image} 
-                      alt={services[activeTab].label} 
-                      className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                    />
-                  </div>
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Service Details */}
+                    <div className="space-y-8 order-2 md:order-1">
+                      <h3 className="text-4xl font-serif text-decor-navy leading-tight">
+                        {services[activeTab].label}
+                      </h3>
+                      <p className="text-gray-500 text-lg leading-relaxed font-light">
+                        {services[activeTab].longDescription}
+                      </p>
+                      <ul className="grid grid-cols-1 gap-4">
+                        {services[activeTab].benefits.map((benefit, i) => (
+                          <li key={i} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
+                            <div className="w-1.5 h-1.5 bg-decor-accent rounded-none" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="pt-4">
+                        <motion.a 
+                          href="/contacto"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="inline-block bg-decor-navy text-white px-10 py-4 rounded-none font-bold text-sm uppercase tracking-widest shadow-xl shadow-decor-navy/10"
+                        >
+                          Consultar Proyecto
+                        </motion.a>
+                      </div>
+                    </div>
 
-                  {/* Service Details */}
-                  <div className="space-y-8">
-                    <h2 className="text-4xl md:text-5xl font-serif text-decor-navy leading-tight">
-                      {services[activeTab].label}
-                    </h2>
-                    <p className="text-gray-500 text-lg leading-relaxed font-light">
-                      {services[activeTab].longDescription}
-                    </p>
-                    <ul className="space-y-4">
-                      {services[activeTab].benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-center gap-3 text-gray-600 font-medium">
-                          <div className="w-5 h-5 rounded-full bg-decor-accent/10 flex items-center justify-center text-decor-accent">
-                            <Check size={14} strokeWidth={3} />
-                          </div>
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                    <motion.a 
-                      href="/contacto"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-block bg-decor-accent text-white px-10 py-5 rounded-xl font-bold text-lg shadow-xl shadow-decor-accent/20"
-                    >
-                      Solicitar servicio
-                    </motion.a>
+                    {/* Service Image */}
+                    <div className="relative order-1 md:order-2 h-[350px] md:h-[450px]">
+                      <img 
+                        src={services[activeTab].image} 
+                        alt={services[activeTab].label} 
+                        className="w-full h-full object-cover rounded-none grayscale-[0.3] hover:grayscale-0 transition-all duration-700 shadow-2xl"
+                      />
+                      <div className="absolute inset-0 border border-gray-100 mix-blend-overlay pointer-events-none" />
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SECTION: NUESTRO PROCESO */}
-      <section className="py-24 bg-decor-muted/20 border-y border-gray-100">
+      {/* SECTION: NUESTRO PROCESO - Centered */}
+      <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <Reveal y={20}>
-              <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mb-4">Nuestro proceso</h2>
-              <p className="text-gray-400 font-light tracking-widest uppercase text-sm">Así trabajamos contigo</p>
-              <div className="w-20 h-[1px] bg-decor-accent mx-auto mt-8" />
+              <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mb-4 italic">Nuestro proceso</h2>
+              <p className="text-gray-400 font-light tracking-[0.4em] uppercase text-xs">Excelencia Paso a Paso</p>
+              <div className="w-16 h-[2px] bg-decor-accent mx-auto mt-8" />
             </Reveal>
           </div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute top-10 left-0 w-full h-[1px] bg-decor-accent/20 hidden lg:block" />
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-              {steps.map((step, i) => (
-                <Reveal key={step.title} delay={i * 0.2} y={30}>
-                  <div className="text-center group">
-                    <div className="w-20 h-20 rounded-full bg-white border border-decor-accent/20 flex items-center justify-center mx-auto mb-8 relative transition-all duration-500 group-hover:bg-decor-accent group-hover:border-decor-accent group-hover:scale-110 shadow-sm">
-                      <span className="text-decor-accent font-serif text-xl group-hover:text-white transition-colors">0{i + 1}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-decor-navy mb-4">{step.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed max-w-[200px] mx-auto">
-                      {step.desc}
-                    </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
+            {steps.map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.15} y={20}>
+                <div className="p-10 bg-white border-r border-b border-gray-100 hover:bg-decor-navy group transition-all duration-500 min-h-[300px] flex flex-col justify-center text-center">
+                  <div className="text-4xl font-serif text-decor-accent/30 group-hover:text-decor-accent mb-6 transition-colors">
+                    0{i + 1}
                   </div>
-                </Reveal>
-              ))}
-            </div>
+                  <h3 className="text-lg font-bold text-decor-navy group-hover:text-white mb-4 uppercase tracking-wider">{step.title}</h3>
+                  <p className="text-gray-500 group-hover:text-white/60 text-sm leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA Banner */}
-      <section className="py-24">
+      {/* FINAL CTA Banner - Fully Centered */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-decor-navy rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 translate-x-1/4" />
-            <Reveal x={-30}>
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl md:text-6xl font-medium font-serif text-white mb-6 leading-tight">
-                  ¿Listo para iniciar <br /> <span className="text-decor-accent italic">tu proyecto?</span>
+          <div className="bg-decor-navy p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none shadow-2xl">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20" />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-decor-navy via-transparent to-black/40" />
+            
+            <div className="relative z-10 max-w-3xl">
+              <Reveal y={30}>
+                <h2 className="text-4xl md:text-7xl font-medium font-serif text-white mb-8 leading-tight">
+                  ¿Iniciamos tu <span className="text-decor-accent italic">visión?</span>
                 </h2>
-                <p className="text-white/50 text-lg font-light max-w-md">Nuestro equipo está listo para ayudarte en cada paso del camino.</p>
-              </div>
-            </Reveal>
-            <Reveal x={30}>
-              <motion.a 
-                href="/contacto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-decor-accent text-white px-12 py-5 rounded-xl font-bold text-lg shadow-2xl shadow-decor-accent/30 flex items-center gap-4 group"
-              >
-                Contáctanos
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-            </Reveal>
+                <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto">
+                  Agenda una consultoría gratuita y descubre cómo podemos optimizar tus espacios con diseño de alta gama.
+                </p>
+                <motion.a 
+                  href="/contacto"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-4 bg-white text-decor-navy px-12 py-5 rounded-none font-bold text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-decor-accent hover:text-white transition-all duration-300"
+                >
+                  Contáctanos
+                  <ArrowRight size={18} />
+                </motion.a>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
