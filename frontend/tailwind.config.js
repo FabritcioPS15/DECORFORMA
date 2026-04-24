@@ -4,6 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
+        decor: {
+          navy: '#1a4567',
+          accent: '#c5a572',
+          base: '#ffffff',
+          dark: '#0B1F4A',
+          muted: '#F4F1EA', // Warm beige
+        },
         navy: {
           50: '#e8f0f9',
           100: '#c5d5ee',
@@ -27,7 +34,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Fira Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',

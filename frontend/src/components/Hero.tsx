@@ -1,249 +1,234 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaWhatsapp, FaRulerCombined } from 'react-icons/fa';
-import { useInView } from '../hooks/useInView';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const slides = [
   {
     image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Cocinas Integrales Modernas y Funcionales',
-    subtitle: 'Distribución Optimizada',
-    description: 'Diseños funcionales con acabados premium. Aprovecha cada espacio de tu cocina con estilo y elegancia.',
-    cta1: 'Cotizar ahora',
-    cta2: 'Ver Galería',
+    title: 'Cocinas de Lujo que Transforman tu Hogar',
+    subtitle: 'DISEÑO DE VANGUARDIA',
+    description: 'Creamos espacios funcionales con acabados premium en melamina. Aprovecha cada rincón con estilo y elegancia excepcional.',
+    cta1: 'Cotizar Proyecto',
+    cta2: 'Ver Catálogo',
     stats: [
-      { value: '+500', label: 'Proyectos entregados' },
-      { value: '8+', label: 'Años de experiencia' },
-      { value: '100%', label: 'Calidad Premium' },
+      { value: '+500', label: 'Proyectos' },
+      { value: '100%', label: 'Garantía' },
     ]
   },
   {
     image: 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Closets a Medida de Alta Gama',
-    subtitle: 'Organización Inteligente',
-    description: 'Aprovecha cada centímetro con módulos, cajones y herrajes a tu gusto. Soluciones de almacenamiento premium.',
-    cta1: 'Diseñar mi closet',
-    cta2: 'Ver Modelos',
+    title: 'Closets a Medida con Acabados Premium',
+    subtitle: 'MAXIMIZA TU ESPACIO',
+    description: 'Soluciones inteligentes de almacenamiento. Diseños personalizados que combinan durabilidad y estética moderna.',
+    cta1: 'Diseñar ahora',
+    cta2: 'Modelos 2024',
     stats: [
-      { value: 'Custom', label: '100% a medida' },
-      { value: 'Soft', label: 'Cierre suave' },
-      { value: 'Top', label: 'Acabados' },
-    ]
-  },
-  {
-    image: 'https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Centros de Entretenimiento Vanguardistas',
-    subtitle: 'Estilo y Orden',
-    description: 'Paneles, repisas y almacenamiento oculto para un living ordenado. El complemento perfecto para tu sala.',
-    cta1: 'Pedir Cotización',
-    cta2: 'Ver Diseños',
-    stats: [
-      { value: 'Moderno', label: 'Minimalista' },
-      { value: 'Led', label: 'Iluminación' },
-      { value: 'Pro', label: 'Instalación' },
+      { value: 'Custom', label: 'A Medida' },
+      { value: 'Elite', label: 'Herrajes' },
     ]
   },
   {
     image: 'https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Oficinas Ejecutivas que Inspiran Exito',
-    subtitle: 'Diseño Corporativo',
-    description: 'Espacios de trabajo con personalidad. Escritorios, estantes y mobiliario diseñado para la excelencia profesional.',
+    title: 'Oficinas con Estilo Corporativo y Serio',
+    subtitle: 'EXCELENCIA PROFESIONAL',
+    description: 'Mobiliario diseñado para inspirar éxito. Escritorios y estantes que elevan la productividad de tu equipo.',
     cta1: 'Equipar Oficina',
-    cta2: 'Casos de Éxito',
+    cta2: 'Nuestros Clientes',
     stats: [
       { value: '+120', label: 'Empresas' },
-      { value: 'Elite', label: 'Acabados' },
-      { value: 'Ergo', label: 'Diseño' },
-    ]
-  },
-  {
-    image: 'https://images.pexels.com/photos/6312023/pexels-photo-6312023.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Dormitorios Juveniles Creativos',
-    subtitle: 'Espacios Propios',
-    description: 'Camas, clósets y estaciones de estudio pensadas para crecer contigo. Funcionalidad y diseño en armonía.',
-    cta1: 'Ver Proyectos',
-    cta2: 'Solicitar Planos',
-    stats: [
-      { value: 'Kids', label: 'Seguro' },
-      { value: 'Color', label: 'Variedad' },
-      { value: 'Smart', label: 'Módulos' },
+      { value: 'Pro', label: 'Instalación' },
     ]
   }
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const { ref, inView } = useInView();
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [currentSlide]);
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-      setIsTransitioning(false);
-    }, 500);
+    setDirection(1);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const handlePrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-      setIsTransitioning(false);
-    }, 500);
+    setDirection(-1);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentSlide) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide(index);
-      setIsTransitioning(false);
-    }, 500);
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as const
+      }
+    }
   };
 
   return (
     <section
       id="hero"
-      className="relative h-screen h-[100dvh] flex items-center overflow-hidden bg-[#0B2545]"
+      className="relative min-h-[90vh] lg:h-screen flex items-center overflow-hidden bg-gray-900"
     >
-      {/* Background Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-            }`}
+      {/* Background with Ken Burns Effect */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0"
         >
-          <div
+          <motion.div
+            animate={{ scale: [1, 1.05] }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${slide.image})` }}
+            style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B2545]/95 via-[#0B2545]/80 to-transparent" />
-          <div className="absolute inset-0 bg-[#0B2545]/20 backdrop-blur-[1px]" />
-        </div>
-      ))}
+          {/* Overlays for readability and branding */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/60 to-transparent" />
+          <div className="absolute inset-0 bg-gray-900/10 backdrop-blur-[2px]" />
+        </motion.div>
+      </AnimatePresence>
 
-      <div
-        ref={ref}
-        className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col justify-center pt-32 pb-16 md:pt-24 md:pb-12 mt-8 md:mt-0"
-      >
-        <div className="max-w-3xl">
-          <div
-            key={`subtitle-${currentSlide}`}
-            className={`inline-flex items-center gap-2 bg-[#1A8FBB]/20 border border-[#1A8FBB]/40 text-[#22BDDD] text-[10px] md:text-xs font-semibold px-4 py-1.5 rounded-full mb-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
           >
-            <span className="w-2 h-2 rounded-full bg-[#22BDDD] animate-pulse" />
-            {slides[currentSlide].subtitle}
-          </div>
+            {/* Subtitle */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-[#22BDDD] text-xs font-black px-4 py-2 rounded-full tracking-[0.2em] uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#22BDDD] animate-pulse" />
+                {slides[currentSlide].subtitle}
+              </span>
+            </motion.div>
 
-          <h1
-            key={`title-${currentSlide}`}
-            className={`text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6 transition-all duration-700 delay-100 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-          >
-            {slides[currentSlide].title.split(' ').map((word, i) =>
-              word.toLowerCase() === 'transforman' || word.toLowerCase() === 'corporativo' || word.toLowerCase() === 'durabilidad' ? (
-                <span key={i} className="text-[#22BDDD]"> {word} </span>
-              ) : ` ${word} `
-            )}
-          </h1>
-
-          <p
-            key={`desc-${currentSlide}`}
-            className={`text-lg text-white/80 leading-relaxed mb-10 max-w-2xl transition-all duration-700 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-          >
-            {slides[currentSlide].description}
-          </p>
-
-          <div
-            className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-          >
-            <a
-              href="https://wa.me/51999999999?text=Hola%2C%20quiero%20cotizar"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-8 py-4 md:px-6 md:py-3.5 rounded-xl shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105 group text-sm md:text-base"
+            {/* Title */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl sm:text-6xl lg:text-8xl font-medium font-serif text-white leading-[1.1] mb-8 tracking-tight"
             >
-              <FaWhatsapp className="group-hover:rotate-12 transition-transform" size={20} />
-              {slides[currentSlide].cta1}
-            </a>
-            <a
-              href="#contacto"
-              className="flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-white font-bold px-8 py-4 md:px-6 md:py-3.5 rounded-xl transition-all duration-300 hover:scale-105 text-sm md:text-base"
-            >
-              <FaRulerCombined size={18} />
-              {slides[currentSlide].cta2}
-            </a>
-          </div>
+              {slides[currentSlide].title.split(' ').map((word, i) => (
+                <span key={i} className={word === 'Transforman' || word === 'Experiencias' || word === 'Premium' ? 'text-decor-accent' : ''}>
+                  {word}{' '}
+                </span>
+              ))}
+            </motion.h1>
 
-          <div
-            className={`flex flex-wrap items-center gap-6 md:gap-10 mt-12 md:mt-16 transition-all duration-700 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-          >
-            {slides[currentSlide].stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col gap-1 border-l-2 border-[#22BDDD]/30 pl-4">
-                <span className="text-3xl font-black text-[#22BDDD] tracking-tight">
-                  {stat.value}
-                </span>
-                <span className="text-white/50 text-xs font-bold uppercase tracking-widest">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+            {/* Description */}
+            <motion.p
+              variants={itemVariants}
+              className="text-lg md:text-xl text-white/70 leading-relaxed mb-12 max-w-2xl font-light"
+            >
+              {slides[currentSlide].description}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-5">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#proyectos"
+                className="bg-decor-accent text-white px-10 py-5 rounded-xl font-bold transition-all shadow-xl shadow-decor-accent/20 flex items-center gap-2"
+              >
+                {slides[currentSlide].cta1}
+                <ArrowDown size={20} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
+                whileTap={{ scale: 0.95 }}
+                href="/catalogo"
+                className="border border-white/30 text-white px-10 py-5 rounded-xl font-bold backdrop-blur-sm transition-all"
+              >
+                {slides[currentSlide].cta2}
+              </motion.a>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center gap-10 mt-16 pt-8 border-t border-white/10"
+            >
+              {slides[currentSlide].stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col gap-1">
+                  <span className="text-3xl font-black text-white">{stat.value}</span>
+                  <span className="text-[#22BDDD] text-xs font-bold uppercase tracking-widest">{stat.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Navigation Controls */}
-      <div className="absolute right-8 bottom-12 z-20 flex items-center gap-4">
+      <div className="absolute right-10 bottom-10 z-20 hidden md:flex items-center gap-4">
         <button
           onClick={handlePrev}
-          className="p-3 rounded-full border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all"
-          aria-label="Anterior"
+          className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-white/50 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center group"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
         </button>
         <button
           onClick={handleNext}
-          className="p-3 rounded-full border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all"
-          aria-label="Siguiente"
+          className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-white/50 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center group"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={28} className="group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
 
-      {/* Indicators */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-1.5 transition-all duration-500 rounded-full ${index === currentSlide ? 'w-12 bg-[#22BDDD]' : 'w-4 bg-white/20 hover:bg-white/40'
-              }`}
-            aria-label={`Ir al slide ${index + 1}`}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-1 rounded-full transition-all duration-500 ${
+              index === currentSlide ? 'w-10 bg-[#22BDDD]' : 'w-4 bg-white/20'
+            }`}
           />
         ))}
       </div>
 
-      <a
+      {/* Scroll Down Indicator */}
+      <motion.a
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
         href="#beneficios"
-        className="absolute bottom-8 left-8 text-white/30 hover:text-[#22BDDD] transition-colors animate-bounce z-10 hidden lg:flex items-center gap-2 text-sm font-bold uppercase tracking-widest vertical-text"
-        style={{ writingMode: 'vertical-rl' }}
+        className="absolute bottom-10 left-10 text-white/30 hover:text-white transition-colors animate-bounce hidden lg:flex flex-col items-center gap-4"
       >
-        <span>Explorar</span>
-        <ArrowDown size={16} />
-      </a>
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] rotate-180" style={{ writingMode: 'vertical-rl' }}>
+          Explorar
+        </span>
+        <ArrowDown size={20} />
+      </motion.a>
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 interface RevealProps {
     children: ReactNode;
@@ -10,16 +10,16 @@ interface RevealProps {
     x?: number;
 }
 
-export const Reveal = ({
+export const Reveal = forwardRef<HTMLDivElement, RevealProps>(({
     children,
     width = 'fit-content',
     delay = 0.2,
     duration = 0.5,
     y = 25,
     x = 0,
-}: RevealProps) => {
+}, ref) => {
     return (
-        <div style={{ position: 'relative', width, overflow: 'visible' }}>
+        <div ref={ref} style={{ position: 'relative', width, overflow: 'visible' }}>
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y, x },
@@ -34,4 +34,6 @@ export const Reveal = ({
             </motion.div>
         </div>
     );
-};
+});
+
+Reveal.displayName = 'Reveal';

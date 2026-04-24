@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { SmoothScroll } from '../components/SmoothScroll';
 
 export default function RootLayout() {
   const location = useLocation();
@@ -12,11 +13,13 @@ export default function RootLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen font-sans">
-      <Navbar />
-      <Outlet />
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <SmoothScroll>
+      <div className="min-h-screen font-sans">
+        <Navbar />
+        <Outlet />
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </SmoothScroll>
   );
 }

@@ -9,42 +9,55 @@ export interface Service {
 
 export const services: Service[] = [
     {
-        slug: 'diseno',
-        label: 'Diseño de muebles de melamina',
-        description: 'Visualiza tu proyecto en 3D antes de empezar.',
-        longDescription: 'Nuestro servicio de diseño utiliza software de última generación para crear planos detallados y renders 3D de tus muebles. Esto te permite ajustar cada detalle, desde el color hasta la distribución interna, asegurando que el resultado final sea exactamente lo que imaginaste.',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop',
+        slug: 'diseno-interiores',
+        label: 'Diseño de interiores',
+        description: 'Visualiza tu proyecto con renderizado 3D de alta gama.',
+        longDescription: 'Creamos conceptos únicos que combinan estética, funcionalidad y confort para transformar tu espacio en una experiencia. Nuestro enfoque se centra en la armonía de los elementos y la optimización del flujo espacial.',
+        image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600',
         benefits: [
-            'Renders fotorrealistas en 3D',
-            'Optimización de espacios pequeños',
-            'Asesoría en combinación de texturas y colores',
-            'Planos técnicos para fabricación precisa'
+            'Concepto y moodboard personalizado',
+            'Distribución inteligente de espacios',
+            'Selección de materiales y acabados premium',
+            'Visualización fotorrealista 3D'
         ]
     },
     {
-        slug: 'domicilio',
-        label: 'Trabajos de melamina a domicilio',
-        description: 'Fabricación e instalación técnica en la comodidad de tu hogar.',
-        longDescription: 'Nos encargamos de todo el proceso en tu ubicación. Desde la toma de medidas milimétricas hasta el ensamblaje final. Nuestro equipo de técnicos expertos garantiza que cada pieza encaje perfectamente en su lugar, cuidando la infraestructura de tu hogar en todo momento.',
-        image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?q=80&w=2070&auto=format&fit=crop',
+        slug: 'remodelacion',
+        label: 'Remodelación',
+        description: 'Transformación total de espacios con ejecución impecable.',
+        longDescription: 'Desde cambios estructurales hasta renovaciones estéticas, gestionamos todo el proceso de remodelación. Nos especializamos en dar nueva vida a espacios antiguos manteniendo la integridad estructural y elevando el valor de la propiedad.',
+        image: 'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1600',
         benefits: [
-            'Toma de medidas profesional sin costo',
-            'Instalación limpia y rápida',
-            'Ajustes en sitio para acabados perfectos',
-            'Personal altamente calificado y uniformado'
+            'Gestión integral de obra',
+            'Cronograma de ejecución detallado',
+            'Personal técnico especializado',
+            'Garantía de calidad en acabados'
         ]
     },
     {
-        slug: 'personalizados',
-        label: 'Muebles personalizados',
-        description: 'Muebles únicos diseñados exclusivamente para tu estilo de vida.',
-        longDescription: 'Si tienes una idea única o un espacio con dimensiones complicadas, este servicio es para ti. Fabricamos desde piezas artísticas en madera fina hasta complejos sistemas de organización en melamina de alto brillo, siempre enfocados en la exclusividad y la funcionalidad total.',
-        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2070&auto=format&fit=crop',
+        slug: 'decoracion',
+        label: 'Decoración',
+        description: 'Curaduría de elementos que definen tu personalidad.',
+        longDescription: 'Seleccionamos cada pieza, textura y color para que hablen de ti. Nuestro servicio de decoración se enfoca en los detalles finales que convierten una casa en un hogar, cuidando siempre el equilibrio visual y la elegancia.',
+        image: 'https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg?auto=compress&cs=tinysrgb&w=1600',
         benefits: [
-            'Materiales premium de alta gama',
-            'Herrajes con cierre suave de marcas líderes',
-            'Garantía extendida por defectos de fabricación',
-            'Resultados únicos que no encontrarás en tiendas'
+            'Curaduría de mobiliario y arte',
+            'Diseño de iluminación ambiental',
+            'Paleta de colores y textiles',
+            'Styling final de espacios'
+        ]
+    },
+    {
+        slug: 'asesoria',
+        label: 'Asesoría profesional',
+        description: 'Guía experta para decisiones de diseño y construcción.',
+        longDescription: 'Te acompañamos en la toma de decisiones críticas para tu proyecto. Ya sea que necesites validar planos, elegir materiales o planificar una inversión inmobiliaria, nuestra experiencia técnica está a tu servicio.',
+        image: 'https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        benefits: [
+            'Análisis de viabilidad técnica',
+            'Asesoría en materiales y costos',
+            'Revisión de planos arquitectónicos',
+            'Planificación estratégica de proyectos'
         ]
     }
 ];

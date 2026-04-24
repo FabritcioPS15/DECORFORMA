@@ -3,6 +3,8 @@ import RootLayout from './layouts/RootLayout';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import ProjectsPage from './pages/ProjectsPage';
 import CatalogPage from './pages/CatalogPage';
 import ServicePage from './pages/ServicePage';
 import ServicesPage from './pages/ServicesPage';
@@ -17,6 +19,8 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'categoria/:slug', element: <CategoryPage /> },
       { path: 'quienes-somos', element: <AboutPage /> },
+      { path: 'contacto', element: <ContactPage /> },
+      { path: 'proyectos', element: <ProjectsPage /> },
       { path: 'catalogo', element: <CatalogPage /> },
       { path: 'servicios', element: <ServicesPage /> },
       { path: 'servicios/:slug', element: <ServicePage /> },
