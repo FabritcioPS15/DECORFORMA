@@ -140,7 +140,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg transition-colors text-decor-navy hover:bg-gray-100"
+            className="md:hidden p-2 rounded-none transition-colors text-decor-navy hover:bg-gray-100"
             onClick={() => setMenuOpen(true)}
           >
             <Menu size={28} />
@@ -172,7 +172,7 @@ export default function Navbar() {
                   alt="Decorforma" 
                   className="h-14 w-auto object-contain"
                 />
-                <button onClick={() => setMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <button onClick={() => setMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-none transition-colors">
                   <X size={24} className="text-gray-500" />
                 </button>
               </div>
@@ -212,7 +212,7 @@ function NavLink({ to, children, active, onClick }: any) {
     >
       {children}
       <motion.div 
-        className="absolute bottom-0 left-4 right-4 h-[2px] bg-decor-accent rounded-none"
+        className="absolute bottom-0 left-4 right-4 h-[3px] bg-decor-navy rounded-none"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: active ? 1 : 0 }}
         whileHover={{ scaleX: 1 }}
