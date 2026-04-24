@@ -117,7 +117,7 @@ export default function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-3xl"
+            className="max-w-3xl text-center lg:text-left mx-auto lg:mx-0"
           >
             {/* Title */}
             <motion.h1
@@ -140,7 +140,7 @@ export default function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-5">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-5 justify-center lg:justify-start">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -36,39 +36,39 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="beneficios" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-5">
+    <section id="beneficios" className="py-24 bg-white border-y border-gray-100">
+      <div className="max-w-7xl mx-auto px-6">
         <Reveal width="100%">
-          <div className="text-center mb-14">
-            <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+          <div className="text-center mb-16">
+            <span className="text-decor-accent text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
               Por qué elegirnos
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-4">
-              Todo lo que necesitas en un solo lugar
+            <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
+              Excelencia en cada detalle
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-light text-lg">
               Desde el primer diseño hasta la instalación final, acompañamos cada
               etapa de tu proyecto con profesionalismo y dedicación.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-gray-100">
           {benefits.map((b, i) => {
             const Icon = b.icon;
             return (
               <Reveal key={b.title} delay={i * 0.1} width="100%">
-                <div className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:border-[#1A8FBB]/30 transition-all duration-500 hover:-translate-y-1">
-                  <div className="w-12 h-12 rounded-xl bg-[#E8F6FB] group-hover:bg-[#1A8FBB] flex items-center justify-center mb-5 transition-colors duration-300">
+                <div className="group bg-white border-r border-b border-gray-100 p-10 hover:bg-decor-navy transition-all duration-500 h-full text-center sm:text-left flex flex-col items-center sm:items-start">
+                  <div className="w-12 h-12 rounded-none bg-gray-50 border border-gray-200 group-hover:bg-decor-accent group-hover:border-decor-accent flex items-center justify-center mb-6 transition-colors duration-500 shrink-0">
                     <Icon
-                      size={22}
-                      className="text-[#1A8FBB] group-hover:text-white transition-colors duration-300"
+                      size={20}
+                      className="text-decor-navy group-hover:text-white transition-colors duration-500"
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0B2545] mb-2">
+                  <h3 className="text-lg font-serif text-decor-navy mb-3 group-hover:text-white transition-colors duration-500">
                     {b.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed font-light group-hover:text-white/70 transition-colors duration-500">{b.desc}</p>
                 </div>
               </Reveal>
             );

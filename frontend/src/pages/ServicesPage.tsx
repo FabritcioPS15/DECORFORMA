@@ -45,10 +45,12 @@ export default function ServicesPage() {
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <Reveal y={20}>
-              <h2 className="text-3xl md:text-5xl font-serif text-decor-navy mb-4 italic">Nuestras Especialidades</h2>
-              <p className="text-gray-400 text-sm uppercase tracking-[0.3em]">Calidad en cada detalle</p>
+          <div className="text-center mb-16 flex flex-col items-center justify-center w-full">
+            <Reveal y={20} width="100%">
+              <div className="flex flex-col items-center justify-center">
+                <h2 className="text-3xl md:text-5xl font-serif text-decor-navy mb-4 italic text-center">Nuestras Especialidades</h2>
+                <p className="text-gray-400 text-sm uppercase tracking-[0.3em] text-center">Calidad en cada detalle</p>
+              </div>
             </Reveal>
           </div>
 
@@ -63,7 +65,7 @@ export default function ServicesPage() {
                   <button
                     key={service.slug}
                     onClick={() => setActiveTab(idx)}
-                    className={`shrink-0 flex items-center gap-4 p-5 rounded-none border transition-all duration-300 text-left min-w-[200px] lg:min-w-0 ${
+                    className={`shrink-0 flex items-center justify-center lg:justify-start gap-4 p-5 rounded-none border transition-all duration-300 text-center lg:text-left min-w-[200px] lg:min-w-0 ${
                       isActive 
                         ? 'bg-decor-navy text-white border-decor-navy shadow-xl shadow-decor-navy/10' 
                         : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-decor-navy'
@@ -89,7 +91,7 @@ export default function ServicesPage() {
                 >
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Service Details */}
-                    <div className="space-y-8 order-2 md:order-1">
+                    <div className="space-y-8 order-2 md:order-1 text-center md:text-left flex flex-col items-center md:items-start">
                       <h3 className="text-4xl font-serif text-decor-navy leading-tight">
                         {services[activeTab].label}
                       </h3>
@@ -98,8 +100,8 @@ export default function ServicesPage() {
                       </p>
                       <ul className="grid grid-cols-1 gap-4">
                         {services[activeTab].benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                            <div className="w-1.5 h-1.5 bg-decor-accent rounded-none" />
+                          <li key={i} className="flex flex-col md:flex-row items-center md:items-start gap-3 text-gray-600 text-sm font-medium text-center md:text-left">
+                            <div className="w-1.5 h-1.5 bg-decor-accent rounded-none shrink-0 mt-1" />
                             {benefit}
                           </li>
                         ))}
@@ -136,11 +138,13 @@ export default function ServicesPage() {
       {/* SECTION: NUESTRO PROCESO - Centered */}
       <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <Reveal y={20}>
-              <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mb-4 italic">Nuestro proceso</h2>
-              <p className="text-gray-400 font-light tracking-[0.4em] uppercase text-xs">Excelencia Paso a Paso</p>
-              <div className="w-16 h-[2px] bg-decor-accent mx-auto mt-8" />
+          <div className="text-center mb-20 flex flex-col items-center justify-center w-full">
+            <Reveal y={20} width="100%">
+              <div className="flex flex-col items-center justify-center">
+                <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mb-4 italic text-center">Nuestro proceso</h2>
+                <p className="text-gray-400 font-light tracking-[0.4em] uppercase text-xs text-center">Excelencia Paso a Paso</p>
+                <div className="w-16 h-[2px] bg-decor-accent mx-auto mt-8" />
+              </div>
             </Reveal>
           </div>
 

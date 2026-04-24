@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { projects, Project } from '../data/projects';
 
@@ -14,45 +14,43 @@ export default function ProjectsPage() {
 
   return (
     <main className="bg-white min-h-screen">
-      {/* Header Section */}
-      <section className="relative h-[40vh] min-h-[350px] flex items-center overflow-hidden bg-decor-navy">
-        <div className="absolute inset-0 flex">
-          <div className="w-full lg:w-1/2 bg-decor-navy flex items-center px-6 lg:px-24 relative z-10">
-            <Reveal x={-30} duration={0.8}>
-              <div className="max-w-xl">
-                <h1 className="text-4xl md:text-7xl font-medium font-serif text-white leading-tight mb-6">
-                  Proyectos
-                </h1>
-                <p className="text-white/60 text-lg md:text-xl font-light">
-                  Espacios diseñados y construidos con pasión y precisión.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-          <div className="hidden lg:block w-1/2 relative">
-            <img 
-              src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-              alt="Proyectos Decorforma" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-decor-navy/40 mix-blend-multiply" />
-          </div>
+      {/* Header Section - Centered (Architecture Style) */}
+      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            alt="Proyectos Decorforma" 
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-decor-navy/60 mix-blend-multiply" />
+        </div>
+        
+        <div className="relative z-10 max-w-3xl px-6">
+          <Reveal y={20} duration={0.8}>
+            <h1 className="text-5xl md:text-8xl font-medium font-serif text-white leading-tight mb-8">
+              Proyectos
+            </h1>
+            <p className="text-white/70 text-lg md:text-2xl font-light tracking-wide">
+              Una curaduría de nuestros trabajos más emblemáticos en diseño y construcción.
+            </p>
+            <div className="w-24 h-[1px] bg-decor-accent mx-auto mt-12" />
+          </Reveal>
         </div>
       </section>
 
-      {/* Filters Section */}
-      <section className="py-12 border-b border-gray-100 sticky top-[72px] bg-white/80 backdrop-blur-md z-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal y={10}>
-            <div className="flex flex-wrap items-center gap-3">
+      {/* Filters Section - Square Style */}
+      <section className="py-8 border-b border-gray-100 sticky top-[72px] bg-white/90 backdrop-blur-md z-40">
+        <div className="max-w-7xl mx-auto px-6 flex justify-center w-full">
+          <Reveal y={10} width="100%">
+            <div className="flex flex-wrap items-center justify-center gap-2 w-full">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 ${
+                  className={`px-8 py-3 rounded-none text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
                     filter === cat 
-                      ? 'bg-decor-accent text-white shadow-lg shadow-decor-accent/20' 
-                      : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                      ? 'bg-decor-navy text-white border-decor-navy shadow-xl shadow-decor-navy/10' 
+                      : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-decor-navy'
                   }`}
                 >
                   {cat}
@@ -67,7 +65,7 @@ export default function ProjectsPage() {
       <section className="py-20 max-w-7xl mx-auto px-6">
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
@@ -79,36 +77,33 @@ export default function ProjectsPage() {
         </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-decor-navy relative overflow-hidden mb-20 mx-6 rounded-[3rem]">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
-          <Reveal x={-20}>
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-20 h-20 rounded-full border border-decor-accent/30 flex items-center justify-center">
-                 <div className="w-12 h-12 rounded-full bg-decor-accent/10 flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-decor-accent">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                 </div>
-              </div>
-              <div>
-                <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">¿Quieres que tu proyecto sea el próximo?</h2>
-                <p className="text-white/50 text-lg font-light">Hablemos y creemos algo extraordinario juntos.</p>
-              </div>
+      {/* CTA Section - Square and Centered */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-decor-navy p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none shadow-2xl">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20" />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-decor-navy via-transparent to-black/40" />
+            
+            <div className="relative z-10 max-w-3xl">
+              <Reveal y={30}>
+                <h2 className="text-4xl md:text-7xl font-medium font-serif text-white mb-8 leading-tight">
+                  ¿Quieres tu espacio <span className="text-decor-accent italic">así?</span>
+                </h2>
+                <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto">
+                  Transformamos tus ideas en realidades arquitectónicas con acabados de lujo y precisión técnica.
+                </p>
+                <motion.a 
+                  href="/contacto"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-4 bg-white text-decor-navy px-12 py-5 rounded-none font-bold text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-decor-accent hover:text-white transition-all duration-300"
+                >
+                  Contáctanos
+                  <ArrowRight size={18} />
+                </motion.a>
+              </Reveal>
             </div>
-          </Reveal>
-          <Reveal x={20}>
-            <motion.a 
-              href="/contacto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-decor-accent text-white px-12 py-5 rounded-xl font-bold text-lg shadow-xl shadow-decor-accent/20"
-            >
-              Contáctanos
-            </motion.a>
-          </Reveal>
+          </div>
         </div>
       </section>
     </main>
@@ -119,18 +114,18 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className={`relative rounded-[2.5rem] overflow-hidden group cursor-pointer ${
+      className={`relative rounded-none overflow-hidden group cursor-pointer border border-white/5 ${
         project.size === 'large' ? 'md:col-span-2' : ''
       } ${project.size === 'tall' ? 'md:row-span-2 min-h-[600px]' : 'h-[400px]'}`}
     >
       <img 
         src={project.image} 
         alt={project.title} 
-        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0"
       />
       
       {/* Dark Gradient Overlay */}
@@ -138,15 +133,15 @@ function ProjectCard({ project }: { project: Project }) {
       
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-        <h3 className="text-3xl font-serif text-white mb-3 tracking-wide">{project.title}</h3>
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <p className="text-white/60 text-sm font-light uppercase tracking-[0.2em]">{project.location}</p>
-            <p className="text-decor-accent text-xs font-black uppercase tracking-[0.3em]">{project.category}</p>
-          </div>
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 scale-0 group-hover:scale-100">
-            <ArrowRight size={20} />
-          </div>
+        <div className="flex items-end justify-between gap-4">
+           <div>
+             <p className="text-decor-accent text-[10px] font-black uppercase tracking-[0.3em] mb-3">{project.category}</p>
+             <h3 className="text-3xl font-serif text-white mb-2 tracking-wide leading-tight">{project.title}</h3>
+             <p className="text-white/40 text-xs font-light uppercase tracking-[0.2em]">{project.location}</p>
+           </div>
+           <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+             <ChevronRight size={20} />
+           </div>
         </div>
       </div>
     </motion.div>

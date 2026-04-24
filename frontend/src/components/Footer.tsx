@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links Grid */}
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-2 gap-10 text-center">
             <div>
               <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-5">Catálogo</h4>
               <ul className="space-y-3 text-gray-500 text-[13px]">
@@ -92,9 +92,9 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="bg-gray-50 p-8 rounded-none">
+          <div className="bg-gray-50 p-8 rounded-none flex flex-col items-center text-center">
             <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-decor-navy mb-5">Contáctanos</h4>
-            <div className="space-y-4 text-[13px]">
+            <div className="space-y-4 text-[13px] flex flex-col items-center">
               <a href="tel:+51999999999" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
                 <Phone size={16} className="text-decor-navy" />
                 +51 999 999 999
@@ -103,8 +103,8 @@ export default function Footer() {
                 <Mail size={16} className="text-decor-navy" />
                 info@decorforma.pe
               </a>
-              <div className="flex items-start gap-3 text-gray-600">
-                <MapPin size={16} className="text-decor-navy mt-0.5" />
+              <div className="flex flex-col items-center gap-2 text-gray-600 mt-2">
+                <MapPin size={16} className="text-decor-navy" />
                 <span>Av. Principal 123, Lima, Perú</span>
               </div>
             </div>

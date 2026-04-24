@@ -40,60 +40,52 @@ export default function ProductCard({
   const activeImage = variants[activeVariant]?.image ?? image;
 
   return (
-    <div className="product-card group relative rounded-2xl bg-white p-1 shadow-[rgba(100,100,111,0.2)_0px_50px_30px_-20px] transition-all duration-500 ease-in-out hover:scale-[1.02]">
-      <div className="product-card__image relative w-full h-[170px] rounded-xl rounded-tr-[3rem] overflow-hidden mb-4 bg-[#F4F8FC]">
+    <div className="product-card group relative rounded-none bg-white border border-gray-100 transition-all duration-500 ease-in-out hover:shadow-xl">
+      <div className="product-card__image relative w-full h-[250px] rounded-none overflow-hidden mb-4 bg-gray-50 border-b border-gray-100">
         {activeImage ? (
           <img
             src={activeImage}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full bg-[#F4F8FC]" />
+          <div className="w-full h-full bg-gray-50" />
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-decor-navy/5 group-hover:bg-transparent transition-colors duration-500" />
 
-        <div className="product-card__badge absolute left-3 bottom-3 bg-white/95 text-[#0B2545] font-extrabold text-xs px-3 py-2 rounded-2xl shadow-[rgba(100,100,111,0.2)_0px_0px_15px_0px]">
+        <div className="product-card__badge absolute left-0 top-4 bg-white text-decor-navy font-bold text-[10px] uppercase tracking-[0.2em] px-4 py-2 rounded-none shadow-md border border-gray-100 border-l-0">
           A medida
         </div>
 
         {priceText ? (
-          <div className="absolute right-3 bottom-3 bg-white/95 text-[#1A8FBB] font-extrabold text-xs px-3 py-2 rounded-2xl shadow-[rgba(100,100,111,0.2)_0px_0px_15px_0px]">
+          <div className="absolute right-0 bottom-4 bg-decor-navy text-white font-bold text-[10px] uppercase tracking-[0.2em] px-4 py-2 rounded-none shadow-md">
             {priceText}
           </div>
         ) : null}
       </div>
 
-      <label className="product-card-fav absolute top-3 right-3 w-[20px] h-[20px] cursor-pointer">
-        <input type="checkbox" />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z" />
-        </svg>
-      </label>
-
-      <div className="px-4 pb-4">
-        <div className="text-[11px] font-extrabold uppercase tracking-wider text-gray-400">
+      <div className="px-6 pb-6 pt-2 text-center sm:text-left flex flex-col items-center sm:items-start">
+        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-decor-accent mb-2">
           Decorforma
         </div>
-        <div className="mt-1 text-sm font-extrabold text-[#0B2545] leading-tight">
+        <div className="mt-1 text-lg font-serif text-decor-navy leading-tight group-hover:text-decor-accent transition-colors">
           {title}
         </div>
         {subtitle ? (
-          <div className="mt-1 text-xs text-gray-500 leading-relaxed">
+          <div className="mt-2 text-sm text-gray-500 leading-relaxed font-light">
             {subtitle}
           </div>
         ) : null}
 
         {tags?.length ? (
-          <div className="mt-4">
-            <div className="text-[11px] font-bold uppercase text-gray-400">Detalles</div>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {tags.slice(0, 4).map((t) => (
+          <div className="mt-5 flex flex-col items-center sm:items-start w-full">
+            <div className="mt-2 flex flex-wrap justify-center sm:justify-start gap-2">
+              {tags.slice(0, 3).map((t) => (
                 <span
                   key={t}
-                  className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#E8F6FB] text-[#0F6E95]"
+                  className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-none border border-gray-200 text-gray-500 group-hover:border-decor-accent/30 transition-colors"
                 >
                   {t}
                 </span>
@@ -103,9 +95,9 @@ export default function ProductCard({
         ) : null}
 
         {variants.length ? (
-          <div className="mt-4">
-            <div className="text-[11px] font-bold uppercase text-gray-400">Color</div>
-            <div className="mt-2 flex flex-wrap items-center gap-2">
+          <div className="mt-5 flex flex-col items-center sm:items-start w-full">
+            <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Color</div>
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
               {variants.map((v, idx) => {
                 const selected = idx === activeVariant;
 
@@ -113,9 +105,9 @@ export default function ProductCard({
                   <button
                     key={v.name}
                     type="button"
-                    className={`h-6 w-6 rounded-full border-2 transition-all duration-200 ${selected
-                      ? 'border-[#0B2545] scale-[1.02]'
-                      : 'border-black/20 hover:border-black/40'
+                    className={`h-5 w-5 rounded-none border transition-all duration-200 ${selected
+                      ? 'border-decor-navy scale-110'
+                      : 'border-gray-200 hover:border-gray-400'
                       }`}
                     style={{ backgroundColor: v.hex }}
                     aria-label={`Color ${v.name}`}
@@ -127,25 +119,15 @@ export default function ProductCard({
           </div>
         ) : null}
 
-        <div className="mt-5 flex gap-2">
+        <div className="mt-6">
           <a
-            href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+            href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE + ' Me interesa el producto: ' + title)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[1.1rem] rounded-b-xl bg-[#1A8FBB] hover:bg-[#0F6E95] text-white font-extrabold text-sm py-2.5 transition-colors group"
+            className="w-full inline-flex items-center justify-center gap-3 rounded-none border border-decor-navy bg-white hover:bg-decor-navy hover:text-white text-decor-navy font-bold text-[11px] uppercase tracking-[0.2em] py-4 transition-all group/btn"
           >
-            <FaWhatsapp size={18} className="group-hover:rotate-12 transition-transform" />
-            Cotiza
-          </a>
-
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[46px] inline-flex items-center justify-center rounded-[1.1rem] rounded-b-xl bg-[#25D366] hover:bg-[#1fba57] transition-colors group"
-            aria-label="Cotizar por WhatsApp"
-          >
-            <FaWhatsapp size={18} className="text-white group-hover:rotate-12 transition-transform" />
+            <FaWhatsapp size={16} className="group-hover/btn:scale-110 transition-transform" />
+            Cotizar por WhatsApp
           </a>
         </div>
       </div>

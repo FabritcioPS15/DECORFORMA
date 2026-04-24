@@ -33,49 +33,49 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-3xl mx-auto px-5">
+    <section className="py-24 bg-white border-y border-gray-100">
+      <div className="max-w-4xl mx-auto px-6">
         <Reveal width="100%">
-          <div className="text-center mb-14">
-            <span className="text-[#1A8FBB] text-sm font-semibold uppercase tracking-widest">
+          <div className="text-center mb-16">
+            <span className="text-decor-accent text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
               Preguntas frecuentes
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B2545] mt-2 mb-4">
+            <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
               Resolvemos tus dudas
             </h2>
-            <p className="text-gray-500 leading-relaxed">
-              ¿Tienes más preguntas? Escríbenos por WhatsApp y te respondemos al instante.
+            <p className="text-gray-500 leading-relaxed font-light text-lg">
+              ¿Tienes más preguntas? Escríbenos por WhatsApp y te respondemos de inmediato.
             </p>
           </div>
         </Reveal>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
             <Reveal key={i} delay={i * 0.05} width="100%">
               <div
-                className={`border border-gray-100 rounded-xl overflow-hidden transition-all duration-500 ${open === i ? 'border-[#1A8FBB]/40 shadow-md' : 'hover:border-gray-200'}`}
+                className={`border rounded-none overflow-hidden transition-all duration-500 bg-white ${open === i ? 'border-decor-navy shadow-lg' : 'border-gray-200 hover:border-gray-300'}`}
               >
                 <button
-                  className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                  className="w-full flex items-center justify-between gap-4 p-6 text-left focus:outline-none"
                   onClick={() => setOpen(open === i ? null : i)}
                 >
                   <span
-                    className={`font-semibold text-sm leading-snug transition-colors ${open === i ? 'text-[#1A8FBB]' : 'text-[#0B2545]'
+                    className={`font-serif text-lg leading-snug transition-colors ${open === i ? 'text-decor-accent italic' : 'text-decor-navy'
                       }`}
                   >
                     {faq.q}
                   </span>
                   <ChevronDown
-                    size={18}
-                    className={`text-[#1A8FBB] flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''
+                    size={20}
+                    className={`text-decor-navy flex-shrink-0 transition-transform duration-500 ${open === i ? 'rotate-180 text-decor-accent' : ''
                       }`}
                   />
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${open === i ? 'max-h-48' : 'max-h-0'
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${open === i ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                 >
-                  <p className="px-5 pb-5 text-gray-500 text-sm leading-relaxed">
+                  <p className="px-6 pb-6 text-gray-500 text-base leading-relaxed font-light border-t border-gray-100 pt-4 mt-2 text-center sm:text-left">
                     {faq.a}
                   </p>
                 </div>
