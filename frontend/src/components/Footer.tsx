@@ -10,47 +10,41 @@ export default function Footer() {
     { label: 'Salas & Centros de TV', to: '/categoria/sala' },
     { label: 'Dormitorios & Closets', to: '/categoria/dormitorio' },
     { label: 'Espacios de Oficina', to: '/categoria/oficina' },
-    { label: 'Instituciones Educativas', to: '/categoria/educativo' },
+    { label: 'Comercios & Instituciones', to: '/categoria/comercios' },
   ];
 
   const serviciosItems = [
-    { label: 'Diseño 3D', to: '/servicios/diseno' },
-    { label: 'Trabajos a Domicilio', to: '/servicios/domicilio' },
-    { label: 'Muebles a Medida', to: '/servicios/personalizados' },
+    { label: 'Diseño 3D', to: '/servicios' },
+    { label: 'Carpintería', to: '/servicios' },
+    { label: 'Muebles a Medida', to: '/servicios' },
   ];
 
   return (
-    <footer className="bg-[#061230] text-white">
-      <div className="max-w-6xl mx-auto px-5 py-12">
+    <footer className="bg-white text-decor-navy border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 py-20">
         {/* Mobile Version */}
-        <div className="lg:hidden flex flex-col gap-8 mb-8">
+        <div className="lg:hidden flex flex-col gap-12">
           {/* Brand Section */}
           <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-md bg-[#1A8FBB] flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="2" y="2" width="7" height="7" rx="1" fill="white" />
-                  <rect x="11" y="2" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-                  <rect x="2" y="11" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-                  <rect x="11" y="11" width="7" height="7" rx="1" fill="white" />
-                </svg>
-              </div>
-              <span className="font-bold text-xl tracking-tight">
-                DECOR<span className="text-[#22BDDD]">FORMA</span>
-              </span>
+            <div className="flex items-center justify-center mb-6">
+              <img 
+                src="/assets/images/DecorformaLogo.png" 
+                alt="Decorforma" 
+                className="h-16 w-auto object-contain"
+              />
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6 px-4">
-              Especialistas en diseño y fabricación de muebles de melamina a medida.
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 px-4 max-w-sm mx-auto">
+              Estudio de arquitectura y especialistas en diseño y fabricación de muebles de melamina premium a medida.
             </p>
             <a
               href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#1A8FBB]/30 w-full max-w-xs"
+              className="inline-flex items-center justify-center bg-decor-navy hover:bg-decor-navy/90 text-white text-sm font-bold px-8 py-4 rounded-none transition-all duration-300 w-full"
             >
               Cotiza por WhatsApp
             </a>
-            <div className="flex gap-3 justify-center mt-6">
+            <div className="flex gap-4 justify-center mt-8">
               {[
                 { icon: Instagram, href: INSTAGRAM_URL, label: 'Instagram' },
                 { icon: Facebook, href: FACEBOOK_URL, label: 'Facebook' },
@@ -61,8 +55,87 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#1A8FBB] flex items-center justify-center transition-colors duration-200"
+                  className="w-12 h-12 rounded-none border border-gray-100 hover:bg-decor-navy hover:text-white flex items-center justify-center transition-all duration-300 text-gray-400"
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links Grid */}
+          <div className="grid grid-cols-2 gap-10">
+            <div>
+              <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-5">Catálogo</h4>
+              <ul className="space-y-3 text-gray-500 text-[13px]">
+                {mueblesItems.slice(0, 4).map((item) => (
+                  <li key={item.label}>
+                    <Link to={item.to} className="hover:text-decor-accent transition-colors font-medium">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-5">Servicios</h4>
+              <ul className="space-y-3 text-gray-500 text-[13px]">
+                {serviciosItems.map((item) => (
+                  <li key={item.label}>
+                    <Link to={item.to} className="hover:text-decor-accent transition-colors font-medium">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div className="bg-gray-50 p-8 rounded-none">
+            <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-decor-navy mb-5">Contáctanos</h4>
+            <div className="space-y-4 text-[13px]">
+              <a href="tel:+51999999999" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
+                <Phone size={16} className="text-decor-navy" />
+                +51 999 999 999
+              </a>
+              <a href="mailto:info@decorforma.pe" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
+                <Mail size={16} className="text-decor-navy" />
+                info@decorforma.pe
+              </a>
+              <div className="flex items-start gap-3 text-gray-600">
+                <MapPin size={16} className="text-decor-navy mt-0.5" />
+                <span>Av. Principal 123, Lima, Perú</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Version */}
+        <div className="hidden lg:grid lg:grid-cols-4 gap-16 mb-20">
+          <div className="col-span-1">
+            <div className="flex items-center mb-8">
+              <img 
+                src="/assets/images/DecorformaLogo.png" 
+                alt="Decorforma" 
+                className="h-20 w-auto object-contain"
+              />
+            </div>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              Transformamos tus espacios con diseño arquitectónico y mobiliario de melamina premium a medida. Más de 10 años de excelencia en Perú.
+            </p>
+            <div className="flex gap-4">
+              {[
+                { icon: Instagram, href: INSTAGRAM_URL, label: 'Instagram' },
+                { icon: Facebook, href: FACEBOOK_URL, label: 'Facebook' },
+                { icon: Youtube, href: YOUTUBE_URL, label: 'YouTube' },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 border border-gray-100 text-gray-400 hover:bg-decor-navy hover:text-white flex items-center justify-center transition-all duration-300"
                 >
                   <Icon size={18} />
                 </a>
@@ -70,246 +143,80 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links Grid */}
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Catálogo</h4>
-              <ul className="space-y-2 text-white/50 text-sm">
-                {mueblesItems.slice(0, 3).map((item) => (
-                  <li key={item.label}>
-                    <Link to={item.to} className="hover:text-[#22BDDD] transition-colors">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Servicios</h4>
-              <ul className="space-y-2 text-white/50 text-sm">
-                {serviciosItems.map((item) => (
-                  <li key={item.label}>
-                    <Link to={item.to} className="hover:text-[#22BDDD] transition-colors">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Contact & Catalog */}
-          <div className="space-y-4">
-            <div className="bg-white/5 rounded-xl p-4">
-              <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-3">Contáctanos</h4>
-              <div className="space-y-3 text-sm">
-                <a href="tel:+51999999999" className="flex items-center gap-3 text-white/50 hover:text-[#22BDDD] transition-colors">
-                  <Phone size={15} className="text-[#1A8FBB]" />
-                  +51 999 999 999
-                </a>
-                <a href="mailto:info@decorforma.pe" className="flex items-center gap-3 text-white/50 hover:text-[#22BDDD] transition-colors">
-                  <Mail size={15} className="text-[#1A8FBB]" />
-                  info@decorforma.pe
-                </a>
-                <div className="flex items-center gap-3 text-white/50">
-                  <MapPin size={15} className="text-[#1A8FBB]" />
-                  Av. Principal 123, Lima
-                </div>
-              </div>
-            </div>
-
-            {CATALOG_2026_URL && (
-              <a
-                href={CATALOG_2026_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-full bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-4 py-3 rounded-lg transition-colors"
-              >
-                Ver Catálogo 2026
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Desktop Version */}
-        <div className="hidden lg:flex lg:flex-row lg:items-start gap-12 mb-12">
-          <div className="lg:flex-1 lg:max-w-md">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-md bg-[#1A8FBB] flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="2" y="2" width="7" height="7" rx="1" fill="white" />
-                  <rect x="11" y="2" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-                  <rect x="2" y="11" width="7" height="7" rx="1" fill="white" opacity="0.6" />
-                  <rect x="11" y="11" width="7" height="7" rx="1" fill="white" />
-                </svg>
-              </div>
-              <span className="font-bold text-xl tracking-tight">
-                DECOR<span className="text-[#22BDDD]">FORMA</span>
-              </span>
-            </div>
-            <p className="text-white/50 text-sm leading-relaxed max-w-xl mb-6">
-              Especialistas en diseño, fabricación y comercialización de muebles
-              de melamina a medida. Transformamos espacios con calidad y
-              precisión desde hace más de 10 años.
-            </p>
-            <a
-              href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#1A8FBB] hover:bg-[#0F6E95] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#1A8FBB]/30"
-            >
-              Cotiza por WhatsApp
-            </a>
-            <div className="flex gap-3 mt-6">
-              {[
-                { icon: Instagram, href: INSTAGRAM_URL, label: 'Instagram' },
-                { icon: Facebook, href: FACEBOOK_URL, label: 'Facebook' },
-                { icon: Youtube, href: YOUTUBE_URL, label: 'YouTube' },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#1A8FBB] flex items-center justify-center transition-colors duration-200"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:w-[220px]">
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
-              Catálogo
-            </h4>
-            <ul className="space-y-3 text-white/50 text-sm">
-              <li>
-                <Link to="/" className="hover:text-[#22BDDD] transition-colors">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link to="/quienes-somos" className="hover:text-[#22BDDD] transition-colors">
-                  Nosotros
-                </Link>
-              </li>
+          <div>
+            <h4 className="font-black text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-8">Catálogo</h4>
+            <ul className="space-y-4 text-gray-500 text-sm">
+              <li><Link to="/" className="hover:text-decor-navy transition-colors">Inicio</Link></li>
+              <li><Link to="/quienes-somos" className="hover:text-decor-navy transition-colors">Nosotros</Link></li>
               {mueblesItems.map((item) => (
                 <li key={item.label}>
-                  <Link
-                    to={item.to}
-                    className="hover:text-[#22BDDD] transition-colors"
-                  >
-                    {item.label}
-                  </Link>
+                  <Link to={item.to} className="hover:text-decor-navy transition-colors">{item.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="lg:w-[260px]">
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
-              Servicios
-            </h4>
-            <ul className="space-y-3 text-white/50 text-sm">
+          <div>
+            <h4 className="font-black text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-8">Servicios</h4>
+            <ul className="space-y-4 text-gray-500 text-sm">
               {serviciosItems.map((item) => (
                 <li key={item.label}>
-                  <Link
-                    to={item.to}
-                    className="hover:text-[#22BDDD] transition-colors"
-                  >
-                    {item.label}
-                  </Link>
+                  <Link to={item.to} className="hover:text-decor-navy transition-colors">{item.label}</Link>
                 </li>
               ))}
-              <li className="pt-2">
-                {CATALOG_2026_URL ? (
+              <li className="pt-4">
+                {CATALOG_2026_URL && (
                   <a
                     href={CATALOG_2026_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-white/15 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                    className="inline-flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-decor-navy text-xs font-bold px-6 py-3 transition-colors"
                   >
-                    Catálogo 2026
+                    Ver Catálogo 2026
                   </a>
-                ) : (
-                  <span className="inline-flex items-center justify-center w-full bg-white/5 text-white/50 text-sm font-semibold px-4 py-2 rounded-lg">
-                    Catálogo 2026
-                  </span>
                 )}
               </li>
             </ul>
           </div>
 
-          <div className="lg:w-[260px]">
-            <h4 className="font-bold text-sm uppercase tracking-widest text-white/80 mb-5">
-              Contáctanos
-            </h4>
-            <ul className="space-y-4 text-sm">
+          <div>
+            <h4 className="font-black text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-8">Contacto</h4>
+            <ul className="space-y-5 text-sm">
               <li>
-                <a
-                  href="tel:+51999999999"
-                  className="flex items-start gap-3 text-white/50 hover:text-[#22BDDD] transition-colors"
-                >
-                  <Phone size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
-                  +51 999 999 999
+                <a href="tel:+51999999999" className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
+                  <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-decor-navy">
+                    <Phone size={18} />
+                  </div>
+                  <span className="font-medium">+51 999 999 999</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:info@decorforma.pe"
-                  className="flex items-start gap-3 text-white/50 hover:text-[#22BDDD] transition-colors"
-                >
-                  <Mail size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
-                  info@decorforma.pe
+                <a href="mailto:info@decorforma.pe" className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
+                  <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-decor-navy">
+                    <Mail size={18} />
+                  </div>
+                  <span className="font-medium">info@decorforma.pe</span>
                 </a>
               </li>
-              <li>
-                <div className="flex items-start gap-3 text-white/50">
-                  <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#1A8FBB]" />
-                  Av. Principal 123, Lima, Perú
+              <li className="flex items-start gap-4 text-gray-600">
+                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-decor-navy flex-shrink-0">
+                  <MapPin size={18} />
                 </div>
-              </li>
-              <li className="pt-4 border-t border-white/5 mt-4">
-                <Link
-                  to="/quienes-somos"
-                  className="text-white font-bold hover:text-[#22BDDD] transition-colors flex items-center gap-2"
-                >
-                  Conoce más sobre nosotros
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link
-                  to="/catalogo"
-                  className="text-white/50 hover:text-[#22BDDD] transition-colors flex items-center gap-2"
-                >
-                  Proyectos realizados
-                </Link>
+                <span className="font-medium pt-2 leading-relaxed">Av. Principal 123, Lima, Perú</span>
               </li>
             </ul>
-            <div className="mt-5 bg-white/5 rounded-xl p-4">
-              <p className="text-white/60 text-xs font-medium mb-1">Horario de atención</p>
-              <p className="text-white/40 text-xs">Lun - Vie: 8am - 6pm</p>
-              <p className="text-white/40 text-xs">Sáb: 9am - 1pm</p>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
-            © {year} DECORFORMA. Todos los derechos reservados.
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-100 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-gray-400 text-[11px] font-medium tracking-wide">
+            © {year} DECORFORMA. TODOS LOS DERECHOS RESERVADOS.
           </p>
-          <div className="flex gap-5 text-white/30 text-xs">
-            <a href="#" className="hover:text-white/60 transition-colors">
-              Política de privacidad
-            </a>
-            <a href="#" className="hover:text-white/60 transition-colors">
-              Términos y condiciones
-            </a>
+          <div className="flex gap-8 text-gray-400 text-[11px] font-bold">
+            <a href="#" className="hover:text-decor-navy transition-colors">POLÍTICA DE PRIVACIDAD</a>
+            <a href="#" className="hover:text-decor-navy transition-colors">TÉRMINOS Y CONDICIONES</a>
           </div>
         </div>
       </div>
-    </footer >
+    </footer>
   );
 }

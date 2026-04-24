@@ -80,20 +80,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-2 group"
             onClick={() => setDesktopDropdown(null)}
           >
-            <div className="w-10 h-10 rounded-xl bg-decor-navy flex items-center justify-center shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-              <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
-                <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" />
-                <rect x="11" y="2" width="7" height="7" rx="1.5" fill="white" opacity="0.6" />
-                <rect x="2" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.6" />
-                <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" />
-              </svg>
-            </div>
-            <span className={`font-serif font-medium text-2xl tracking-tight transition-colors duration-300 ${scrolled ? 'text-decor-navy' : 'text-white'}`}>
-              DECOR<span className="text-decor-accent italic">FORMA</span>
-            </span>
+            <img 
+              src="/assets/images/DecorformaLogo.png" 
+              alt="Decorforma" 
+              className="h-12 md:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -192,9 +186,11 @@ export default function Navbar() {
               className="fixed right-0 top-0 bottom-0 w-[300px] bg-white z-[70] shadow-2xl flex flex-col"
             >
               <div className="p-6 flex items-center justify-between border-b border-gray-100">
-                <span className="font-serif font-medium text-2xl text-decor-navy">
-                  DECOR<span className="text-decor-accent italic">FORMA</span>
-                </span>
+                <img 
+                  src="/assets/images/DecorformaLogo.png" 
+                  alt="Decorforma" 
+                  className="h-10 w-auto object-contain"
+                />
                 <button onClick={() => setMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                   <X size={24} className="text-gray-500" />
                 </button>
