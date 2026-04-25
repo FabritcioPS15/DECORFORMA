@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Reveal } from './Reveal';
+import { WA_NUMBER, WA_MESSAGE } from '../data/site';
 
 const projects = [
   {
@@ -83,7 +84,7 @@ export default function Projects() {
                     </h3>
                   </div>
                   <a
-                    href="https://wa.me/51999999999?text=Quiero%20un%20proyecto%20similar"
+                    href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Quiero un proyecto similar')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-none bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-decor-accent flex-shrink-0"

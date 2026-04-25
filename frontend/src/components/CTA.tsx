@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { FaWhatsapp, FaRulerCombined } from 'react-icons/fa';
 import { Reveal } from './Reveal';
+import { WA_NUMBER, WA_MESSAGE } from '../data/site';
 
 export default function CTA() {
   return (
@@ -28,7 +29,7 @@ export default function CTA() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/51999999999?text=Hola%2C%20quiero%20cotizar%20muebles%20de%20melamina"
+                href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fba57] text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-green-900/30 transition-all duration-200 hover:shadow-xl hover:scale-105 text-base group"

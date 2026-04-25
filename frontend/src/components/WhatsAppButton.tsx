@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-
-const WA_NUMBER = '51999999999';
-const WA_MESSAGE = encodeURIComponent('Hola, quiero cotizar muebles de melamina a medida');
+import { WA_NUMBER, WA_MESSAGE } from '../data/site';
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
