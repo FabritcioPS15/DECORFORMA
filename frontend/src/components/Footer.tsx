@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
+import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -95,9 +95,9 @@ export default function Footer() {
           <div className="bg-gray-50 p-8 rounded-none flex flex-col items-center text-center">
             <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-decor-navy mb-5">Contáctanos</h4>
             <div className="space-y-4 text-[13px] flex flex-col items-center">
-              <a href="tel:+51999999999" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
+              <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
                 <Phone size={16} className="text-decor-navy" />
-                +51 999 999 999
+                {PHONE_NUMBER}
               </a>
               <a href="mailto:info@decorforma.pe" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
                 <Mail size={16} className="text-decor-navy" />
@@ -181,11 +181,11 @@ export default function Footer() {
             <h4 className="font-black text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-8">Contacto</h4>
             <ul className="space-y-5 text-sm">
               <li>
-                <a href="tel:+51999999999" className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
+                <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
                   <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-decor-navy">
                     <Phone size={18} />
                   </div>
-                  <span className="font-medium">+51 999 999 999</span>
+                  <span className="font-medium">{PHONE_NUMBER}</span>
                 </a>
               </li>
               <li>

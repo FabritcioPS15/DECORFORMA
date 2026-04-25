@@ -1,4 +1,5 @@
-export const WA_NUMBER = '51999999999';
+export const WA_NUMBER = '51937142237';
+export const PHONE_NUMBER = '+51 937 142 237';
 export const WA_MESSAGE = encodeURIComponent(
   'Hola, quiero cotizar muebles de melamina a medida'
 );

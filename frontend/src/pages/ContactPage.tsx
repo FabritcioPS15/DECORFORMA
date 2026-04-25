@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import SEO from '../components/SEO';
+import { PHONE_NUMBER } from '../data/site';
 
 export default function ContactPage() {
   return (
@@ -50,7 +51,7 @@ export default function ContactPage() {
                 <ContactInfoItem 
                   icon={Phone} 
                   title="Contacto Directo" 
-                  content="+51 999 999 999"
+                  content={PHONE_NUMBER}
                 />
                 <ContactInfoItem 
                   icon={Mail} 
