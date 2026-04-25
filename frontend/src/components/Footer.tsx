@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
+import { CATALOG_2026_URL, WA_MESSAGE, WA_NUMBER, PHONE_NUMBER, EMAIL, FACEBOOK_URL, INSTAGRAM_URL, YOUTUBE_URL } from '../data/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -99,9 +99,9 @@ export default function Footer() {
                 <Phone size={16} className="text-decor-navy" />
                 {PHONE_NUMBER}
               </a>
-              <a href="mailto:info@decorforma.pe" className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 text-gray-600 hover:text-decor-accent transition-colors">
                 <Mail size={16} className="text-decor-navy" />
-                info@decorforma.pe
+                {EMAIL}
               </a>
               <div className="flex flex-col items-center gap-2 text-gray-600 mt-2">
                 <MapPin size={16} className="text-decor-navy" />
@@ -189,11 +189,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@decorforma.pe" className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
+                <a href={`mailto:${EMAIL}`} className="flex items-center gap-4 text-gray-600 hover:text-decor-navy transition-colors">
                   <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-decor-navy">
                     <Mail size={18} />
                   </div>
-                  <span className="font-medium">info@decorforma.pe</span>
+                  <span className="font-medium">{EMAIL}</span>
                 </a>
               </li>
               <li className="flex items-start gap-4 text-gray-600">

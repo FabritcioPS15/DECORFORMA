@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import SEO from '../components/SEO';
-import { PHONE_NUMBER } from '../data/site';
+import { PHONE_NUMBER, EMAIL } from '../data/site';
 
 export default function ContactPage() {
   return (
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <ContactInfoItem 
                   icon={Mail} 
                   title="Correo Corporativo" 
-                  content="info@decorforma.pe"
+                  content={EMAIL}
                 />
                 <ContactInfoItem 
                   icon={Clock} 
