@@ -9,15 +9,15 @@ interface SEOProps {
   url?: string;
 }
 
-export default function SEO({ 
-  title, 
-  description, 
-  name = "Decorforma", 
+export default function SEO({
+  title,
+  description,
+  name = "Decorforma",
   type = "website",
   image = "https://decorforma.pe/assets/images/DecorformaLogo.png",
   url = "https://decorforma.pe"
 }: SEOProps) {
-  const siteTitle = `${title} | Decorforma - Arquitectura & Mobiliario de Lujo`;
+  const siteTitle = `${title} | Decorforma - Mueblería de Melamina a Medida`;
 
   return (
     <Helmet>

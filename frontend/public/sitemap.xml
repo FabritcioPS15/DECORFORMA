@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://decorforma.pe/</loc>
+    <loc>https://decorformaperu.com/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://decorforma.pe/quienes-somos</loc>
+    <loc>https://decorformaperu.com/quienes-somos</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://decorforma.pe/servicios</loc>
+    <loc>https://decorformaperu.com/servicios</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://decorforma.pe/proyectos</loc>
+    <loc>https://decorformaperu.com/proyectos</loc>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://decorforma.pe/catalogo</loc>
+    <loc>https://decorformaperu.com/catalogo</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://decorforma.pe/contacto</loc>
+    <loc>https://decorformaperu.com/contacto</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>

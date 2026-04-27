@@ -74,7 +74,7 @@ export default function HomePage() {
                   { title: 'Innovación', desc: 'Tendencias y tecnologías sostenibles.', icon: Zap },
                 ].map((item, i) => (
                   <Reveal key={item.title} delay={0.2 + i * 0.1} y={20}>
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 group cursor-default text-center sm:text-left">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 group cursor-default text-center sm:text-left justify-center sm:justify-start">
                       <div className="shrink-0 w-12 h-12 rounded-none border border-gray-200 flex items-center justify-center text-decor-navy bg-white group-hover:bg-decor-navy group-hover:text-white transition-colors duration-500">
                         <item.icon size={18} />
                       </div>
