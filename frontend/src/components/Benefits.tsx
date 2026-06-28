@@ -36,17 +36,17 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="beneficios" className="py-24 bg-white border-y border-gray-100">
+    <section id="beneficios" className="py-16 md:py-24 bg-white border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
         <Reveal width="100%">
           <div className="text-center mb-16">
             <span className="text-decor-accent text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
               Por qué elegirnos
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
               Excelencia en cada detalle
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-light text-lg">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-light text-base sm:text-lg">
               Desde el primer diseño hasta la instalación final, acompañamos cada
               etapa de tu proyecto con profesionalismo y dedicación.
             </p>
@@ -58,7 +58,7 @@ export default function Benefits() {
             const Icon = b.icon;
             return (
               <Reveal key={b.title} delay={i * 0.1} width="100%">
-                <div className="group bg-white border-r border-b border-gray-100 p-10 hover:bg-decor-navy transition-all duration-500 h-full text-center sm:text-left flex flex-col items-center sm:items-start">
+                <div className="group bg-white border-r border-b border-gray-100 p-8 sm:p-10 hover:bg-decor-navy transition-all duration-500 h-full text-center sm:text-left flex flex-col items-center sm:items-start">
                   <div className="w-12 h-12 rounded-none bg-gray-50 border border-gray-200 group-hover:bg-decor-accent group-hover:border-decor-accent flex items-center justify-center mb-6 transition-colors duration-500 shrink-0">
                     <Icon
                       size={20}

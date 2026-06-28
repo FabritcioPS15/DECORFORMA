@@ -12,7 +12,7 @@ export default function ContactPage() {
         description="Ponte en contacto con DECORFORMA. Agenda una consulta gratuita para transformar tus espacios con diseño y mobiliario de alta calidad."
       />
       {/* Header Section - Centered (Architecture Style) */}
-      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+      <section className="relative h-[35vh] min-h-[320px] pt-24 flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">
           <img 
             src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" 
@@ -24,10 +24,10 @@ export default function ContactPage() {
         
         <div className="relative z-10 max-w-3xl px-6">
           <Reveal y={20} duration={0.8}>
-            <h1 className="text-5xl md:text-8xl font-medium font-serif text-white leading-tight mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-medium font-serif text-white leading-tight mb-4 md:mb-8">
               Contacto
             </h1>
-            <p className="text-white/70 text-lg md:text-2xl font-light tracking-wide">
+            <p className="text-white/70 text-base sm:text-lg md:text-2xl font-light tracking-wide">
               Cuéntanos tu visión arquitectónica y construyamos algo extraordinario.
             </p>
             <div className="w-24 h-[1px] bg-decor-accent mx-auto mt-12" />
@@ -36,8 +36,8 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Contact Info Column */}
           <div className="lg:col-span-5 space-y-12">
@@ -70,8 +70,8 @@ export default function ContactPage() {
           {/* Contact Form Column - Square */}
           <div className="lg:col-span-7">
             <Reveal y={30} duration={0.8} delay={0.2}>
-              <div className="bg-white p-8 md:p-14 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] rounded-none">
-                <h3 className="text-2xl font-serif text-decor-navy mb-10 italic">Inicia tu consulta</h3>
+              <div className="bg-white p-6 sm:p-8 md:p-14 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] rounded-none">
+                <h3 className="text-xl sm:text-2xl font-serif text-decor-navy mb-8 sm:mb-10 italic">Inicia tu consulta</h3>
                 <form className="space-y-10">
                   <div className="grid md:grid-cols-2 gap-10">
                     <div className="space-y-3">
@@ -137,20 +137,20 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section - Square */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
+      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal y={20}>
-            <div className="relative h-[500px] w-full rounded-none overflow-hidden shadow-sm border border-gray-200">
+            <div className="relative h-[400px] md:h-[500px] w-full rounded-none overflow-hidden shadow-sm border border-gray-200">
               {/* Map Placeholder with Style */}
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop')] bg-cover bg-center grayscale opacity-50">
                 <div className="absolute inset-0 bg-decor-navy/5 mix-blend-multiply" />
               </div>
               
               {/* Floating Marker */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="bg-white px-10 py-5 rounded-none shadow-2xl flex items-center gap-4 border border-gray-100">
-                  <div className="w-2 h-2 rounded-none bg-decor-accent animate-pulse" />
-                  <span className="font-bold text-decor-navy tracking-[0.3em] uppercase text-[10px]">Decorforma Studio</span>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
+                <div className="bg-white px-6 sm:px-10 py-4 sm:py-5 rounded-none shadow-2xl flex items-center gap-3 sm:gap-4 border border-gray-100 max-w-full">
+                  <div className="w-2 h-2 rounded-none bg-decor-accent animate-pulse shrink-0" />
+                  <span className="font-bold text-decor-navy tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[9px] sm:text-[10px] truncate">Decorforma Studio</span>
                 </div>
               </div>
             </div>

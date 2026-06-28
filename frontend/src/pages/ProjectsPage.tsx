@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, ChevronDown, Check } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { projects, Project } from '../data/projects';
 
@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('Todos');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const categories = ['Todos', 'Residencial', 'Comercial', 'Remodelación', 'Interiores'];
 
   const filteredProjects = filter === 'Todos' 
@@ -21,7 +22,7 @@ export default function ProjectsPage() {
         description="Explora nuestra galería de proyectos residenciales, comerciales y de diseño de interiores. Inspiración y alta calidad en cada detalle."
       />
       {/* Header Section - Centered (Architecture Style) */}
-      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+      <section className="relative h-[35vh] min-h-[320px] pt-24 flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">
           <img 
             src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
@@ -45,30 +46,58 @@ export default function ProjectsPage() {
       </section>
 
       {/* Filters Section - Square Style */}
-      <section className="py-8 border-b border-gray-100 sticky top-[72px] bg-white/90 backdrop-blur-md z-40">
-        <div className="max-w-7xl mx-auto px-6 flex justify-center w-full">
+      <section className="py-4 md:py-6 border-b border-gray-100 sticky top-[72px] bg-white/90 backdrop-blur-md z-40">
+        <div className="max-w-7xl mx-auto px-6 flex justify-center w-full relative">
           <Reveal y={10} width="100%">
-            <div className="flex flex-wrap items-center justify-center gap-2 w-full">
-              {categories.map((cat) => (
+            <div className="flex flex-col items-center justify-center w-full relative">
+              <div className="relative w-full max-w-[280px] sm:max-w-[350px]">
+                {/* Trigger Button */}
                 <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`px-8 py-3 rounded-none text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
-                    filter === cat 
-                      ? 'bg-decor-navy text-white border-decor-navy shadow-xl shadow-decor-navy/10' 
-                      : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-decor-navy'
-                  }`}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center justify-between gap-4 w-full px-6 py-4 bg-white border border-gray-200 text-decor-navy font-bold text-xs uppercase tracking-widest shadow-sm hover:border-gray-300 transition-colors"
                 >
-                  {cat}
+                  <span>{filter}</span>
+                  <ChevronDown size={16} className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-              ))}
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-2 w-full bg-white border border-gray-100 shadow-2xl z-50 rounded-none flex flex-col"
+                    >
+                      {categories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => {
+                            setFilter(cat);
+                            setIsDropdownOpen(false);
+                          }}
+                          className={`flex items-center justify-between px-6 py-4 text-xs font-bold uppercase tracking-widest text-left transition-colors border-b border-gray-50 last:border-0 ${
+                            filter === cat 
+                              ? 'bg-decor-navy text-white' 
+                              : 'bg-white text-gray-500 hover:bg-gray-50 hover:text-decor-navy'
+                          }`}
+                        >
+                          {cat}
+                          {filter === cat && <Check size={16} />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Projects Grid Section */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
+      <section className="pt-8 pb-20 max-w-7xl mx-auto px-6">
         <motion.div 
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1"

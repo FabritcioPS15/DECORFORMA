@@ -21,10 +21,6 @@ const slides = [
     description: 'Soluciones inteligentes de almacenamiento. Diseños personalizados que combinan durabilidad y estética moderna.',
     cta1: 'Diseñar ahora',
     cta2: 'Modelos 2024',
-    stats: [
-      { value: 'Custom', label: 'A Medida' },
-      { value: 'Elite', label: 'Herrajes' },
-    ]
   },
   {
     image: 'https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -32,10 +28,7 @@ const slides = [
     description: 'Mobiliario diseñado para inspirar éxito. Escritorios y estantes que elevan la productividad de tu equipo.',
     cta1: 'Equipar Oficina',
     cta2: 'Nuestros Clientes',
-    stats: [
-      { value: 'Pro', label: 'Workspaces' },
-      { value: 'Design', label: 'Planning' },
-    ]
+
   }
 ];
 
@@ -86,7 +79,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] lg:h-screen flex items-center overflow-hidden bg-gray-900"
+      className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-gray-900"
     >
       {/* Background with Ken Burns Effect */}
       <AnimatePresence mode="wait">
@@ -110,7 +103,7 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-16 lg:pt-32 lg:pb-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -122,7 +115,7 @@ export default function Hero() {
             {/* Title */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-6xl lg:text-8xl font-medium font-serif text-white leading-[1.1] mb-4 tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-medium font-serif text-white leading-[1.1] mb-4 sm:mb-6 tracking-tight"
             >
               {slides[currentSlide].title.split(' ').map((word, i) => (
                 <span key={i} className={word === 'Transforman' || word === 'Experiencias' || word === 'Premium' ? 'text-decor-accent' : ''}>
@@ -134,13 +127,13 @@ export default function Hero() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-white/70 leading-relaxed mb-12 max-w-2xl font-light"
+              className="text-base sm:text-lg lg:text-xl text-white/70 leading-relaxed mb-8 lg:mb-10 max-w-2xl font-light"
             >
               {slides[currentSlide].description}
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-5 justify-center lg:justify-start">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -160,20 +153,6 @@ export default function Hero() {
               </motion.a>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-2 gap-12 pt-8 border-t border-white/10"
-            >
-              {slides[currentSlide].stats.map((stat, i) => (
-                <div key={i}>
-                  <p className="text-4xl md:text-5xl font-serif text-white mb-2">
-                    <CountUp value={stat.value} />
-                  </p>
-                  <span className="text-decor-accent text-xs font-bold uppercase tracking-widest">{stat.label}</span>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -200,9 +179,8 @@ export default function Hero() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-1 rounded-none transition-all duration-500 ${
-              index === currentSlide ? 'w-10 bg-decor-accent' : 'w-4 bg-white/20'
-            }`}
+            className={`h-1 rounded-none transition-all duration-500 ${index === currentSlide ? 'w-10 bg-decor-accent' : 'w-4 bg-white/20'
+              }`}
           />
         ))}
       </div>

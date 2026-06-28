@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layout, Hammer, Paintbrush, Check, ArrowRight } from 'lucide-react';
+import { Layout, Hammer, Paintbrush, Check, ArrowRight, ChevronDown } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 import { services } from '../data/services';
 
@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const icons = [Layout, Hammer, Paintbrush, Layout];
   const steps = [
@@ -24,7 +25,7 @@ export default function ServicesPage() {
         description="Soluciones integrales de diseño, carpintería fina y arquitectura de interiores. Descubre cómo transformamos tus espacios paso a paso."
       />
       {/* Header Section - Centered */}
-      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+      <section className="relative h-[35vh] min-h-[320px] pt-24 flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">
           <img 
             src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" 
@@ -48,7 +49,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Tabbed Services Section - Centered Content */}
-      <section className="py-24 lg:py-32">
+      <section className="py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center mb-16 flex flex-col items-center justify-center w-full">
@@ -62,8 +63,8 @@ export default function ServicesPage() {
 
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             
-            {/* Tabs List */}
-            <div className="lg:w-1/4 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
+            {/* Tabs List - Desktop Sidebar */}
+            <div className="hidden lg:flex lg:w-1/4 flex-col gap-3">
               {services.map((service, idx) => {
                 const Icon = icons[idx];
                 const isActive = activeTab === idx;
@@ -71,7 +72,7 @@ export default function ServicesPage() {
                   <button
                     key={service.slug}
                     onClick={() => setActiveTab(idx)}
-                    className={`shrink-0 flex items-center justify-center lg:justify-start gap-4 p-5 rounded-none border transition-all duration-300 text-center lg:text-left min-w-[200px] lg:min-w-0 ${
+                    className={`flex items-center justify-start gap-4 p-5 rounded-none border transition-all duration-300 text-left ${
                       isActive 
                         ? 'bg-decor-navy text-white border-decor-navy shadow-xl shadow-decor-navy/10' 
                         : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-decor-navy'
@@ -82,6 +83,60 @@ export default function ServicesPage() {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Mobile Dropdown */}
+            <div className="lg:hidden w-full relative z-40 mb-2">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center justify-between gap-4 w-full px-6 py-4 bg-white border border-gray-200 text-decor-navy font-bold text-xs uppercase tracking-widest shadow-sm hover:border-gray-300 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  {(() => {
+                    const ActiveIcon = icons[activeTab];
+                    return <ActiveIcon size={16} className="text-decor-accent" />;
+                  })()}
+                  <span>{services[activeTab]?.label}</span>
+                </div>
+                <ChevronDown size={16} className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-full bg-white border border-gray-100 shadow-2xl z-50 rounded-none flex flex-col"
+                  >
+                    {services.map((service, idx) => {
+                      const Icon = icons[idx];
+                      const isActive = activeTab === idx;
+                      return (
+                        <button
+                          key={service.slug}
+                          onClick={() => {
+                            setActiveTab(idx);
+                            setIsDropdownOpen(false);
+                          }}
+                          className={`flex items-center justify-between px-6 py-4 text-xs font-bold uppercase tracking-widest text-left transition-colors border-b border-gray-50 last:border-0 ${
+                            isActive 
+                              ? 'bg-decor-navy text-white' 
+                              : 'bg-white text-gray-500 hover:bg-gray-50 hover:text-decor-navy'
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon size={16} className={isActive ? 'text-decor-accent' : 'text-gray-400'} />
+                            <span>{service.label}</span>
+                          </div>
+                          {isActive && <Check size={16} />}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Content Area - Centered inside */}

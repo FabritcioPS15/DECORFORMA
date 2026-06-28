@@ -43,17 +43,17 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="proyectos" className="py-24 bg-gray-50 border-y border-gray-100">
+    <section id="proyectos" className="py-16 md:py-24 bg-gray-50 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
         <Reveal width="100%">
           <div className="text-center mb-16">
             <span className="text-decor-accent text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
               Portafolio
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-decor-navy mt-2 mb-4 italic">
               Nuestros Proyectos
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-light text-lg">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-light text-base sm:text-lg">
               Cada proyecto es una historia de transformación. Explora los espacios que hemos diseñado y construido a medida.
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function Projects() {
                     <span className="text-decor-accent text-[10px] font-black uppercase tracking-[0.3em]">
                       {p.category}
                     </span>
-                    <h3 className="text-white font-serif text-2xl leading-tight mt-2 tracking-wide group-hover:text-decor-accent transition-colors">
+                    <h3 className="text-white font-serif text-xl sm:text-2xl leading-tight mt-2 tracking-wide group-hover:text-decor-accent transition-colors">
                       {p.title}
                     </h3>
                   </div>

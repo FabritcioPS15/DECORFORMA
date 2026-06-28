@@ -21,9 +21,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-white text-decor-navy border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
         {/* Mobile Version */}
-        <div className="lg:hidden flex flex-col gap-12">
+        <div className="lg:hidden flex flex-col gap-10">
           {/* Brand Section */}
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links Grid */}
-          <div className="grid grid-cols-2 gap-10 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
             <div>
               <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-5">Catálogo</h4>
               <ul className="space-y-3 text-gray-500 text-[13px]">
@@ -207,13 +207,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-100 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-gray-400 text-[11px] font-medium tracking-wide">
+        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 text-center md:text-left">
+          <p className="text-gray-400 text-[10px] md:text-[11px] font-medium tracking-wide">
             © {year} DECORFORMA. TODOS LOS DERECHOS RESERVADOS.
           </p>
-          <div className="flex gap-8 text-gray-400 text-[11px] font-bold">
+          <div className="flex gap-4 md:gap-8 text-gray-400 text-[10px] md:text-[11px] font-bold">
             <a href="#" className="hover:text-decor-navy transition-colors">POLÍTICA DE PRIVACIDAD</a>
-            <a href="#" className="hover:text-decor-navy transition-colors">TÉRMINOS Y CONDICIONES</a>
+            <a href="#" className="hover:text-decor-navy transition-colors">TÉRMINOS</a>
           </div>
         </div>
       </div>

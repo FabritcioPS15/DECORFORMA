@@ -18,7 +18,7 @@ export default function AboutPage() {
                 description="Conoce la historia detrás de DECORFORMA. Años de experiencia creando mobiliario y arquitectura de interiores con la más alta calidad y dedicación."
             />
             {/* Header Section - Centered (Architecture Style) */}
-            <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+            <section className="relative h-[35vh] min-h-[320px] pt-24 flex items-center justify-center overflow-hidden bg-decor-navy text-center">
                 <div className="absolute inset-0">
                     <img 
                         src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600" 
@@ -30,10 +30,10 @@ export default function AboutPage() {
                 
                 <div className="relative z-10 max-w-3xl px-6">
                     <Reveal y={20} duration={0.8}>
-                        <h1 className="text-5xl md:text-8xl font-medium font-serif text-white leading-tight mb-8">
+                        <h1 className="text-4xl md:text-6xl lg:text-8xl font-medium font-serif text-white leading-tight mb-4 md:mb-8">
                             Nosotros
                         </h1>
-                        <p className="text-white/70 text-lg md:text-2xl font-light tracking-wide">
+                        <p className="text-white/70 text-base sm:text-lg md:text-2xl font-light tracking-wide">
                             Un estudio dedicado a la excelencia en diseño, mobiliario y construcción.
                         </p>
                         <div className="w-24 h-[1px] bg-decor-accent mx-auto mt-12" />
@@ -42,9 +42,9 @@ export default function AboutPage() {
             </section>
 
             {/* SECTION: NUESTRA ESENCIA */}
-            <section className="py-24 lg:py-32">
+            <section className="py-16 md:py-24 lg:py-32">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
                         {/* Left Column: Sketch/Architectural Image */}
                         <Reveal x={-50} duration={0.8}>
                             <div className="relative">
@@ -63,27 +63,27 @@ export default function AboutPage() {
                         <div className="space-y-12">
                             <Reveal y={20}>
                                 <div className="text-center lg:text-left">
-                                    <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-6 block">Nuestra Esencia</span>
-                                    <h2 className="text-4xl md:text-5xl font-medium font-serif text-decor-navy leading-tight mb-8">
-                                        Especialistas en <br /> 
+                                    <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 sm:mb-6 block">Nuestra Esencia</span>
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium font-serif text-decor-navy leading-tight mb-6 md:mb-8">
+                                        Especialistas en <br className="hidden sm:block" /> 
                                         <span className="italic text-decor-accent">arquitectura y carpintería fina</span>
                                     </h2>
-                                    <p className="text-gray-500 text-lg leading-relaxed font-light">
+                                    <p className="text-gray-500 text-base sm:text-lg leading-relaxed font-light">
                                         En DECORFORMA somos expertos en la transformación de espacios a través del diseño y fabricación de muebles de melamina a medida. Combinamos ingeniería de precisión con una estética arquitectónica moderna para crear ambientes funcionales y elegantes.
                                     </p>
                                 </div>
                             </Reveal>
 
-                            <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10 sm:gap-y-12 pt-4">
                                 {values.map((item, i) => (
                                     <Reveal key={item.title} delay={0.2 + i * 0.1} y={20}>
-                                        <div className="space-y-4 group text-center lg:text-left">
-                                            <div className="w-14 h-14 bg-gray-50 flex items-center justify-center text-decor-navy group-hover:bg-decor-navy group-hover:text-white transition-all duration-500 rounded-none mx-auto lg:mx-0">
-                                                <item.icon size={22} />
+                                        <div className="group flex items-start text-left gap-4 sm:gap-5">
+                                            <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 bg-gray-50 flex items-center justify-center text-decor-navy group-hover:bg-decor-accent group-hover:text-white transition-all duration-500 rounded-none shadow-sm">
+                                                <item.icon size={20} />
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-decor-navy text-sm mb-2 uppercase tracking-widest">{item.title}</h4>
-                                                <p className="text-gray-400 text-xs leading-relaxed max-w-[220px] mx-auto lg:mx-0 font-medium">{item.desc}</p>
+                                                <h4 className="font-bold text-decor-navy text-sm mb-2 uppercase tracking-widest group-hover:text-decor-accent transition-colors">{item.title}</h4>
+                                                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed font-light">{item.desc}</p>
                                             </div>
                                         </div>
                                     </Reveal>
@@ -95,18 +95,18 @@ export default function AboutPage() {
             </section>
 
             {/* FINAL CTA Banner - Square and Centered */}
-            <section className="py-24 bg-white">
+            <section className="py-16 md:py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="bg-decor-navy p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none shadow-2xl">
+                    <div className="bg-decor-navy p-8 sm:p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none shadow-2xl">
                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20" />
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-decor-navy via-transparent to-black/40" />
                         
                         <div className="relative z-10 max-w-3xl">
                             <Reveal y={30}>
-                                <h2 className="text-4xl md:text-7xl font-medium font-serif text-white mb-8 leading-tight">
-                                    ¿Iniciamos tu <br /> <span className="text-decor-accent italic">visión?</span>
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium font-serif text-white mb-6 md:mb-8 leading-tight">
+                                    ¿Iniciamos tu <br className="hidden sm:block" /> <span className="text-decor-accent italic">visión?</span>
                                 </h2>
-                                <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto">
+                                <p className="text-white/60 text-base sm:text-lg md:text-xl font-light mb-10 md:mb-12 max-w-xl mx-auto">
                                     Transformamos tus ideas en realidades arquitectónicas con acabados de lujo y precisión técnica.
                                 </p>
                                 <motion.a 

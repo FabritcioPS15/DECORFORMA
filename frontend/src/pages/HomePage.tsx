@@ -18,7 +18,7 @@ export default function HomePage() {
       <Hero />
 
       {/* SECTION: SOBRE NOSOTROS - Architecture Studio Style */}
-      <section className="py-24 lg:py-32 overflow-hidden border-b border-gray-100">
+      <section className="py-16 md:py-24 lg:py-32 overflow-hidden border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Left Column: Visual Composition */}
@@ -55,8 +55,8 @@ export default function HomePage() {
               <Reveal y={20}>
                 <div>
                   <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Sobre Nosotros</span>
-                  <h2 className="text-4xl md:text-6xl font-medium font-serif text-decor-navy leading-tight mb-8">
-                    Expertos en mobiliario <br /> 
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium font-serif text-decor-navy leading-tight mb-8">
+                    Expertos en mobiliario <br className="hidden sm:block" /> 
                     <span className="italic text-decor-accent">de melamina a medida</span>
                   </h2>
                   <p className="text-gray-500 text-lg leading-relaxed font-light">
@@ -92,13 +92,13 @@ export default function HomePage() {
       </section>
 
       {/* SECTION: NUESTROS SERVICIOS */}
-      <section className="py-24 bg-gray-50 border-b border-gray-100">
+      <section className="py-16 md:py-24 bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20 flex flex-col items-center justify-center w-full">
             <Reveal y={20} width="100%">
               <div className="flex flex-col items-center justify-center w-full">
                 <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 block text-center">Nuestros Servicios</span>
-                <h2 className="text-4xl md:text-5xl font-medium font-serif text-decor-navy italic text-center">
+                <h2 className="text-3xl md:text-5xl font-medium font-serif text-decor-navy italic text-center">
                   Soluciones integrales
                 </h2>
                 <div className="w-20 h-[1px] bg-decor-accent mx-auto mt-8" />
@@ -135,13 +135,13 @@ export default function HomePage() {
       </section>
 
       {/* SECTION: PROYECTOS DESTACADOS - Architecture Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 mb-16 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-8 mb-12 md:mb-16 text-center md:text-left">
             <Reveal x={-30}>
               <div>
                 <span className="text-decor-accent text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Proyectos Destacados</span>
-                <h2 className="text-4xl md:text-5xl font-medium font-serif text-decor-navy italic">
+                <h2 className="text-3xl md:text-5xl font-medium font-serif text-decor-navy italic">
                   Obras recientes
                 </h2>
               </div>
@@ -160,9 +160,9 @@ export default function HomePage() {
                 <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0" alt="Proyecto 1" />
               </Reveal>
               <div className="absolute inset-0 bg-gradient-to-t from-decor-navy/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 flex flex-col justify-end items-center sm:items-start p-8 text-center sm:text-left text-white translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+              <div className="absolute inset-0 flex flex-col justify-end items-center sm:items-start p-6 sm:p-8 text-center sm:text-left text-white translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] mb-2 block text-decor-accent">Residencial</span>
-                <h4 className="text-3xl font-serif tracking-wide">Loft Contemporáneo</h4>
+                <h4 className="text-2xl sm:text-3xl font-serif tracking-wide">Loft Contemporáneo</h4>
               </div>
             </div>
             <div className="md:col-span-4 grid grid-rows-2 gap-1">
@@ -189,16 +189,16 @@ export default function HomePage() {
       </section>
 
       {/* FINAL CTA: Architecture Studio Footer CTA */}
-      <section className="py-24 bg-decor-navy relative overflow-hidden border-t border-white/10">
+      <section className="py-16 md:py-24 bg-decor-navy relative overflow-hidden border-t border-white/10">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="bg-decor-navy p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none border border-white/5 shadow-2xl">
+          <div className="bg-decor-navy p-8 sm:p-12 md:p-24 relative overflow-hidden text-center flex flex-col items-center justify-center rounded-none border border-white/5 shadow-2xl">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-decor-navy via-transparent to-black/40" />
             
             <div className="relative z-10 max-w-3xl">
               <Reveal y={30}>
-                <h2 className="text-4xl md:text-7xl font-medium font-serif text-white mb-8 leading-tight">
-                  ¿Listo para transformar <br /> <span className="text-decor-accent italic">tu espacio?</span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium font-serif text-white mb-6 md:mb-8 leading-tight">
+                  ¿Listo para transformar <br className="hidden sm:block" /> <span className="text-decor-accent italic">tu espacio?</span>
                 </h2>
                 <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-xl mx-auto">
                   Inicia una conversación con nuestro equipo de expertos en diseño y construcción. Descubre el potencial de tu propiedad.

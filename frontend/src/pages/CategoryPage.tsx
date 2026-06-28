@@ -46,7 +46,7 @@ export default function CategoryPage() {
         image={category.image}
       />
       {/* Immersive Hero Section - Centered (Architecture Style) */}
-      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-decor-navy text-center">
+      <section className="relative h-[35vh] min-h-[320px] pt-24 flex items-center justify-center overflow-hidden bg-decor-navy text-center">
         <div className="absolute inset-0">
           <img 
             src={category.image} 
